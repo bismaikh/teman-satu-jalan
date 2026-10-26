@@ -17,9 +17,9 @@
  *    - Who has access: "Anyone" (Siapa saja)  <-- PENTING agar form bisa kirim data!
  * 9. Klik "Deploy" > Klik "Authorize access" jika diminta izin akun Google Anda.
  * 10. Salin "Web app URL" yang muncul (akhiran /exec).
- * 11. Buka file "Form Registrasi Peserta Event.html", cari baris:
- *     var GOOGLE_SHEET_WEBAPP_URL = "";
- *     lalu tempelkan URL Web App Anda di antara tanda kutip!
+ * 11. Buka file "index.html", cari baris:
+ *     var GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwKbCoVnEoxO6BtaqbrJym3uToe2-ROZ4lR49jrqUWXPRDBcHGXbhCHLTELQDIJrkPOdA/exec";
+ *     lalu pastikan URL Web App Anda sudah terisi!
  * =========================================================================
  */
 
