@@ -51,6 +51,7 @@ function doPost(e) {
         "Pengalaman Trekking",
         "Intensitas Olahraga",
         "Titik Kumpul",
+        "Metode Pembayaran",
         "Nama Kontak Darurat",
         "No. HP Darurat",
         "Nama File Bukti Transfer"
@@ -105,6 +106,7 @@ function doPost(e) {
           data.pengalamanTrek || "",
           data.intensitasOlahraga || "",
           data.titikKumpul || "",
+          data.metodePembayaran || "QRIS",
           data.kontakDaruratNama || "",
           data.kontakDaruratHp || "",
           data.buktiTransferFileName || "Tidak ada / Konfirmasi WA"

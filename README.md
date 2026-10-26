@@ -11,17 +11,21 @@ Formulir pendaftaran interaktif untuk kegiatan trekking alam ramah syari'ah (pas
 - **Event Showcase & Switcher Dinamis**:
   - **Vol 6: Curug Lewibumi (Aktif)** — Informasi rute, tiket, kuota terbatas, dan titik kumpul Kadubereum / Pom Bensin Palima.
   - **Vol 7: Curug Panjang (Digembok)** — Proteksi status terkunci dengan notifikasi ramah bagi peserta.
-- **Paket Trekking Fleksibel**:
-  - Lovetrail One (Solo / 1 Orang)
-  - Lovetrail Couple (Pasangan / 2 Orang)
-  - Lovetrail Little (Keluarga / 3 Orang)
-  - Lovetrail Squad (Rombongan Sahabat / 4 Orang)
+- **Paket Trekking Fleksibel (Vol 6)**:
+  - Lovetrail Single (160K) — Ikhwan Only (1 Orang)
+  - Lovetrail Couple (320K) — Suami-Istri / Adik-Kaka / Saudara Semahram (2 Orang)
+  - Lovetrail Little Family (475K) — Keluarga 1 Anak (3 Orang)
+  - Lovetrail Squad Family (630K) — Keluarga 2 Anak (4 Orang)
 - **Multi-Petualang Dinamis (Roster Rombongan)**:
   - Form otomatis menyesuaikan jumlah kartu petualang sesuai paket yang dipilih.
   - Petualang 1 otomatis menjadi Penanggung Jawab / PIC (Wajib PIC).
   - Kolom isian lengkap: Nama KTP/KIA, Status Peran/Hubungan, Jenis Kelamin, Usia/Kategori, No. WA, Email, dan Catatan Medis/Alergi.
 - **Kontak Darurat Terstruktur**:
   - Wajib nomor keluarga di luar jalur demi keselamatan rombongan.
+- **Metode Pembayaran QRIS Resmi (Semua Bank & E-Wallet)**:
+  - Pembayaran praktis & otomatis via QRIS (BCA, Mandiri, BRI, BNI, GoPay, OVO, Dana, ShopeePay, dll).
+  - Tampilan tagihan otomatis sesuai paket trekking yang dipilih.
+  - Merchant: **ADVENTURE TEMANSATUJALAN** • NMID: `ID1025375876469` (fitur salin NMID, unduh gambar QRIS, dan zoom modal).
 - **Unggah Bukti Transfer & Janji Seru & Aman 🌿**:
   - Dropzone bukti bayar (gambar/PDF).
   - 5 poin komitmen syari'ah, adab petualang muslim, dan keselamatan.
@@ -40,14 +44,15 @@ Formulir pendaftaran interaktif untuk kegiatan trekking alam ramah syari'ah (pas
 ```
 TSJ/
 ├── index.html                       # Berkas utama form registrasi (siap untuk GitHub Pages)
-├── Form Registrasi Peserta Event.html # Berkas form registrasi identik
 ├── google-apps-script.js             # Kode Google Apps Script untuk Google Sheets
+├── qris.png                          # Gambar QRIS resmi (ADVENTURE TEMANSATUJALAN) cropped transparan
+├── qr.jpeg                           # Gambar asli poster QRIS merchant
 ├── logo.png                          # Logo resmi TSJ format PNG transparan (1080x1080)
 ├── favicon.png                       # Favicon browser format PNG transparan
 ├── logo.jpg                          # Logo asli TSJ
-├── TJ.jpeg                           # Dokumentasi poster TSJ
+├── info.jpeg                         # Poster Infografis Resmi Vol 6 (Paket & Harga Terbaru)
 ├── TJ1.jpeg                          # Poster Event Vol 7 (Curug Panjang)
-├── TJ2.jpeg                          # Poster Event Vol 6 (Curug Lewibumi)
+├── TJ2.jpeg                          # Poster Foto Event Vol 6 (Curug Lewibumi)
 ├── adventure-hero.jpg                # Foto ilustrasi trekking
 ├── .gitignore                        # Konfigurasi file git
 └── README.md                         # Dokumentasi proyek

@@ -799,27 +799,40 @@
 
     .tk-info {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
     }
 
-    .tk-info b {
+    .tk-title-row {
       display: flex;
-      font-size: 1.02rem;
-      font-weight: 700;
-      color: var(--ink);
       align-items: center;
       gap: 8px;
       flex-wrap: wrap;
     }
 
+    .tk-title {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .tk-desc {
+      font-size: 0.8rem;
+      color: var(--ink-secondary);
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
     .tk-badge {
       font-family: var(--font-display);
-      font-size: 0.68rem;
-      font-weight: 800;
+      font-size: 0.72rem;
+      font-weight: 900;
       text-transform: uppercase;
-      background: var(--primary);
-      color: var(--primary-ink);
+      background: var(--ok-bg);
+      color: var(--primary);
+      border: 1px solid var(--primary);
       padding: 2px 7px;
       border-radius: 4px;
       letter-spacing: 0.05em;
@@ -1264,6 +1277,437 @@
       font-weight: 900;
       color: var(--primary);
       letter-spacing: -0.01em;
+    }
+
+    /* Payment Method & QRIS Showcase */
+    .payment-methods-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .pay-method-card {
+      display: block;
+      position: relative;
+      background: var(--card);
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+
+    .pay-method-card:hover {
+      border-color: var(--primary);
+      background: var(--card-hover);
+      box-shadow: 0 4px 18px var(--primary-glow);
+      transform: translateY(-1px);
+    }
+
+    .pay-method-card.expanded {
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 22px var(--primary-glow);
+      background: linear-gradient(145deg, rgba(21, 36, 27, 0.95), rgba(13, 22, 17, 0.95));
+    }
+
+    [data-theme="light"] .pay-method-card {
+      background: #ffffff;
+      border-color: rgba(101, 163, 13, 0.28);
+    }
+
+    [data-theme="light"] .pay-method-card:hover {
+      background: #f9fbf8;
+      border-color: var(--primary);
+    }
+
+    [data-theme="light"] .pay-method-card.expanded {
+      background: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 8px 24px rgba(77, 124, 15, 0.2);
+    }
+
+    .pay-method-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .pay-method-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .pay-method-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .pay-icon {
+      font-size: 1.25rem;
+    }
+
+    .pay-badge-official {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: var(--ok-bg);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .pay-toggle-indicator {
+      font-size: 0.8rem;
+      font-weight: 800;
+      background: var(--primary);
+      color: var(--primary-ink);
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    .pay-toggle-chevron {
+      font-size: 0.72rem;
+      transition: transform 0.25s ease;
+      display: inline-block;
+    }
+
+    .pay-hint-pill {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--ok-bg);
+      border: 1px solid var(--primary);
+      padding: 3px 12px;
+      border-radius: 999px;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .pay-hint-pill:hover {
+      background: var(--primary);
+      color: var(--primary-ink);
+    }
+
+    .pay-method-desc {
+      font-size: 0.85rem;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+    }
+
+    /* Animated reveal when .qris-showcase-box is displayed */
+    @keyframes qrisReveal {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .qris-showcase-box:not(.hide) {
+      animation: qrisReveal 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* QRIS Showcase Box */
+    .qris-showcase-box {
+      background: linear-gradient(145deg, rgba(21, 36, 27, 0.95), rgba(13, 22, 17, 0.95));
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-top: 14px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .qris-showcase-box {
+      background: linear-gradient(145deg, #ffffff, #f7faf5);
+      border-color: rgba(101, 163, 13, 0.35);
+      box-shadow: 0 10px 30px rgba(19, 36, 25, 0.08);
+    }
+
+    .qris-showcase-box::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .qris-amount-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .qris-amount-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .qris-amount-val {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .qris-amount-sub {
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      font-weight: 500;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .qris-status-tag {
+      font-size: 0.76rem;
+      font-weight: 800;
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 5px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    [data-theme="light"] .qris-status-tag {
+      background: #ecfdf5;
+      color: #15803d;
+      border-color: #86efac;
+    }
+
+    .qris-qr-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .qris-qr-frame {
+      width: 180px;
+      max-width: 100%;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      border: 2px solid rgba(132, 204, 22, 0.4);
+      flex-shrink: 0;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .qris-qr-frame:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 30px var(--primary-glow);
+    }
+
+    .qris-qr-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .qris-merchant-details {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .qris-merchant-title {
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+    }
+
+    .qris-nmid-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    .nmid-label {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nmid-code {
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .btn-copy-nmid {
+      background: transparent;
+      border: none;
+      color: var(--ink-secondary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-copy-nmid:hover {
+      background: var(--card-border);
+      color: var(--ink);
+    }
+
+    .qris-scan-hint {
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+
+    .qris-action-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-qris-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-qris-download {
+      background: var(--primary);
+      color: var(--primary-ink);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-qris-download:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+
+    .btn-qris-zoom {
+      background: var(--card);
+      color: var(--ink);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-qris-zoom:hover {
+      background: var(--card-hover);
+      border-color: var(--primary);
+    }
+
+    /* Steps guide */
+    .qris-steps-guide {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    [data-theme="light"] .qris-steps-guide {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .step-guide-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      line-height: 1.4;
+    }
+
+    .step-guide-item b {
+      color: var(--ink);
+    }
+
+    .step-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--ok-bg);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      font-size: 0.72rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    @media (max-width: 520px) {
+      .qris-qr-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .qris-merchant-details {
+        text-align: center;
+      }
+      .qris-action-buttons {
+        justify-content: center;
+      }
+      .qris-amount-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
     /* Validation Errors */
@@ -2110,7 +2554,7 @@
     <!-- Hero Poster Showcase (Dynamic based on selected event) -->
     <header class="hero-card">
       <div class="hero-visual">
-        <img id="heroImg" src="./TJ2.jpeg" alt="Poster Event Teman Satu Jalan">
+        <img id="heroImg" src="./TJ2.jpeg" alt="Poster Event Teman Satu Jalan Vol 6 Goes to Curug Lewi Bumi">
       </div>
 
       <div class="hero-headline">
@@ -2150,7 +2594,7 @@
       <div class="mahram-banner">
         <span class="mahram-icon">👥</span>
         <div class="mahram-text">
-          <h4>Ketentuan Peserta (Syari'ah Friendly)</h4>
+          <h4>Ketentuan Peserta</h4>
           <p><b>Khusus:</b> Pasangan Suami-Istri (Couple), Keluarga (Family), Saudara Semahram, dan Ikhwan (Laki-laki).
           </p>
         </div>
@@ -2173,11 +2617,17 @@
 
       <!-- Section 1: Informasi Kegiatan & Paket -->
       <fieldset>
-        <legend><span class="icon">📋</span> <span class="legend-title">1. Informasi Kegiatan & Paket</span> <span class="legend-pill" id="paketEventName">Vol 6</span></legend>
+        <legend><span class="icon">📋</span> <span class="legend-title">1. Informasi Kegiatan & Paket</span> <span
+            class="legend-pill" id="paketEventName">Vol 6</span></legend>
 
         <!-- Pilihan Paket Trekking -->
         <div class="f" id="tkbox">
-          <span class="lbl">Pilihan Paket Trekking</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+            <span class="lbl" style="margin-bottom:0;">Pilihan Paket Trekking</span>
+            <button type="button" class="btn-info-link" id="btnViewInfografis" onclick="openInfoPosterModal()" style="background:transparent; border:none; color:var(--primary); font-size:0.8rem; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:5px; text-decoration:underline; padding:0;">
+              <span>📊</span> Lihat Brosur Infografis Paket
+            </button>
+          </div>
           <!-- Ticket container rendered dynamically by selected event -->
           <div class="tickets" id="ticketsContainer"></div>
           <p class="err">Pilih salah satu paket trekking.</p>
@@ -2269,7 +2719,8 @@
 
       <!-- Section 2: DATA PETUALANG LENGKAP (MULTI-PESERTA DYNAMIC) -->
       <fieldset id="sectionPetualang">
-        <legend><span class="icon">👥</span> <span class="legend-title">2. Data Petualang</span> <span class="legend-pill"><span id="totalBadgeCount">1</span> Orang</span></legend>
+        <legend><span class="icon">👥</span> <span class="legend-title">2. Data Petualang</span> <span
+            class="legend-pill"><span id="totalBadgeCount">1</span> Orang</span></legend>
 
         <div class="explorer-header-info">
           <span>Setiap petualang yang didaftarkan wajib diisi datanya untuk data simaksi perizinan & asuransi
@@ -2288,7 +2739,8 @@
         <!-- Informasi Alamat Lengkap & Titik Kumpul Dinamis -->
         <div class="f" data-req id="alamatBox">
           <label for="alamatLengkap">Alamat Lengkap Domisili Petualang / Rombongan</label>
-          <textarea id="alamatLengkap" rows="2" placeholder="Nama Jalan, Nomor Rumah, RT/RW, Kelurahan/Desa, Kecamatan"></textarea>
+          <textarea id="alamatLengkap" rows="2"
+            placeholder="Nama Jalan, Nomor Rumah, RT/RW, Kelurahan/Desa, Kecamatan"></textarea>
           <p class="err">Alamat lengkap petualang wajib diisi.</p>
         </div>
 
@@ -2309,13 +2761,15 @@
 
       <!-- Section 3: Kontak Darurat Rombongan -->
       <fieldset id="sectionDarurat">
-        <legend><span class="icon">🆘</span> <span class="legend-title">3. Kontak Darurat</span> <span class="legend-pill darurat-pill">Keluarga di Luar Jalur</span></legend>
+        <legend><span class="icon">🆘</span> <span class="legend-title">3. Kontak Darurat</span> <span
+            class="legend-pill darurat-pill">Keluarga di Luar Jalur</span></legend>
 
         <div class="darurat-info-banner">
           <span class="darurat-info-icon">🛡️</span>
           <div class="darurat-info-text">
             <b>Wajib Kontak di Luar Jalur Trekking:</b>
-            <span>Nomor ini wajib diisi keluarga / kerabat terdekat yang <u>tidak ikut mendaki</u>, untuk segera dihubungi oleh koordinator TSJ jika terjadi kondisi darurat selama kegiatan.</span>
+            <span>Nomor ini wajib diisi keluarga / kerabat terdekat yang <u>tidak ikut mendaki</u>, untuk segera
+              dihubungi oleh koordinator TSJ jika terjadi kondisi darurat selama kegiatan.</span>
           </div>
         </div>
 
@@ -2333,23 +2787,108 @@
         </div>
       </fieldset>
 
-      <!-- Section 4: Bukti Transfer / Pembayaran -->
+      <!-- Section 4: Metode Pembayaran & Bukti Transfer -->
       <fieldset id="bayar">
-        <legend><span class="icon">💳</span> 4. Bukti Transfer / Pembayaran</legend>
+        <legend><span class="icon">💳</span> <span class="legend-title">4. Metode Pembayaran & Bukti Transfer</span></legend>
 
+        <!-- Pilihan Metode Pembayaran: Hanya QRIS Saja (Klik untuk Menampilkan/Menutup) -->
+        <div class="f" id="metodeBayarBox">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+            <span class="lbl" style="margin-bottom:0;">Pilihan Metode Pembayaran</span>
+            <span class="pay-hint-pill" onclick="toggleQrisShowcase()" style="cursor:pointer;" title="Klik untuk menampilkan QRIS">
+              <span id="payToggleBadge">👆 Klik untuk Tampilkan QRIS</span>
+            </span>
+          </div>
+          <div class="payment-methods-grid">
+            <div class="pay-method-card" id="payMethodCard" onclick="toggleQrisShowcase()" role="button" tabindex="0" aria-expanded="false" title="Klik untuk menampilkan kode QRIS & panduan transfer">
+              <input type="radio" name="metodePembayaran" value="QRIS" checked>
+              <div class="pay-method-content">
+                <div class="pay-method-header">
+                  <div class="pay-method-title">
+                    <span class="pay-icon">📱</span>
+                    <b>QRIS (Pembayaran Nasional)</b>
+                    <span class="pay-badge-official">Resmi BI & GPN</span>
+                  </div>
+                  <div class="pay-toggle-indicator" id="payToggleIndicator">
+                    <span id="payToggleText">Tampilkan Kode QRIS</span>
+                    <span class="pay-toggle-chevron" id="payToggleChevron">▼</span>
+                  </div>
+                </div>
+                <div class="pay-method-desc">
+                  Mendukung transfer instan dari <b>BCA, Mandiri, BRI, BNI, GoPay, OVO, Dana, ShopeePay, LinkAja</b> & semua bank. <b>Klik di sini untuk membuka kode QRIS & rincian pembayaran.</b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Showcase QRIS & Tagihan (Hidden by default, baru muncul setelah diklik) -->
+        <div class="qris-showcase-box hide" id="qrisShowcaseBox">
+          <div class="qris-amount-row">
+            <div class="qris-amount-info">
+              <span class="qris-amount-label">Total Tagihan Registrasi:</span>
+              <div class="qris-amount-val" id="qrisTotalDisplay">Rp 0</div>
+              <span class="qris-amount-sub" id="qrisPackageSub">Pilih salah satu paket trekking di bagian atas terlebih dahulu</span>
+            </div>
+            <span class="qris-status-tag">⚡ Bebas Biaya Admin</span>
+          </div>
+
+          <div class="qris-qr-wrapper">
+            <div class="qris-qr-frame" onclick="openQrisZoomModal()" title="Klik untuk memperbesar QRIS">
+              <img src="./qris.png" alt="QRIS Resmi Adventure Temansatujalan" class="qris-qr-img" id="qrisImgPreview">
+            </div>
+            <div class="qris-merchant-details">
+              <div class="qris-merchant-title">ADVENTURE TEMANSATUJALAN</div>
+              <div class="qris-nmid-row">
+                <span class="nmid-label">NMID:</span>
+                <span class="nmid-code" id="nmidCodeTxt">ID1025375876469</span>
+                <button type="button" class="btn-copy-nmid" onclick="copyNmid()" title="Salin NMID">📋 Salin</button>
+              </div>
+              <p class="qris-scan-hint">Scan langsung lewat kamera HP Anda atau unduh gambar QRIS untuk diunggah dari galeri m-Banking/E-Wallet.</p>
+              
+              <div class="qris-action-buttons">
+                <a href="./qris.png" download="QRIS-TemanSatuJalan.png" class="btn-qris-action btn-qris-download" title="Unduh gambar QRIS ke galeri HP">
+                  <span>📥</span> Unduh QRIS
+                </a>
+                <button type="button" class="btn-qris-action btn-qris-zoom" onclick="openQrisZoomModal()" title="Lihat ukuran penuh">
+                  <span>🔍</span> Perbesar QR
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick 3-Step Guide -->
+          <div class="qris-steps-guide">
+            <div class="step-guide-item">
+              <span class="step-num">1</span>
+              <span>Buka aplikasi m-Banking atau E-Wallet Anda (BCA Mobile, Livin' Mandiri, BRImo, GoPay, Dana, dll).</span>
+            </div>
+            <div class="step-guide-item">
+              <span class="step-num">2</span>
+              <span>Pilih menu <b>QRIS / Bayar</b> lalu scan kode QR di atas (atau pilih foto QRIS dari galeri HP).</span>
+            </div>
+            <div class="step-guide-item">
+              <span class="step-num">3</span>
+              <span>Pastikan nama merchant penerima <b>ADVENTURE TEMANSATUJALAN</b>, selesaikan transaksi, dan unggah bukti struknya di bawah.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unggah Struk / Bukti Transfer -->
         <div class="f" data-req id="bukti">
-          <label for="file">Unggah Struk / Bukti Transfer</label>
+          <label for="file">Unggah Struk / Bukti Pembayaran QRIS</label>
           <div class="file-dropzone" id="dropzone">
             <input id="file" type="file" accept="image/*,.pdf">
             <span class="file-icon">📸</span>
-            <div class="file-text">Klik atau seret struk transfer ke sini</div>
-            <div class="file-subtext">Mendukung format JPG, PNG, atau PDF (Maks. 5 MB). Wajib dilampirkan untuk verifikasi pendaftaran.
+            <div class="file-text">Klik atau seret struk pembayaran QRIS ke sini</div>
+            <div class="file-subtext">Mendukung format JPG, PNG, atau PDF (Maks. 5 MB). Wajib dilampirkan untuk
+              verifikasi pendaftaran.
             </div>
             <div class="file-selected hide" id="fileNameBadge">
               <span>📄</span> <span id="fileNameTxt">bukti-transfer.jpg</span>
             </div>
           </div>
-          <p class="err">Struk / bukti transfer wajib diunggah.</p>
+          <p class="err">Struk / bukti pembayaran QRIS wajib diunggah.</p>
         </div>
       </fieldset>
 
@@ -2360,7 +2899,9 @@
         <div class="f" data-req id="boxJanji1">
           <label class="chk">
             <input type="checkbox" id="janji1">
-            <span><b>Rombongan Sesuai Aturan Main:</b> Aku pastikan semua petualang yang didaftarkan sesuai kriteria acara: pasangan suami-istri, keluarga, saudara semahram, atau sesama ikhwan. Jadi nggak ada yang nyempil dari luar jalur ya! 😄</span>
+            <span><b>Rombongan Sesuai Aturan Main:</b> Aku pastikan semua petualang yang didaftarkan sesuai kriteria
+              acara: pasangan suami-istri, keluarga, saudara semahram, atau sesama ikhwan. Jadi nggak ada yang nyempil
+              dari luar jalur ya! 😄</span>
           </label>
           <p class="err">Centang untuk menyetujui kriteria rombongan.</p>
         </div>
@@ -2368,7 +2909,8 @@
         <div class="f" data-req id="boxJanji2">
           <label class="chk">
             <input type="checkbox" id="janji2">
-            <span><b>Badan & Hati Siap Tempur:</b> Semua anggota rombongan dalam kondisi sehat fisik dan mental buat trekking alam bebas di rute pilihan. Lutut aman, semangat on! 💪</span>
+            <span><b>Badan & Hati Siap Tempur:</b> Semua anggota rombongan dalam kondisi sehat fisik dan mental buat
+              trekking alam bebas di rute pilihan. Lutut aman, semangat on! 💪</span>
           </label>
           <p class="err">Centang untuk menyetujui kesiapan fisik & mental.</p>
         </div>
@@ -2376,7 +2918,8 @@
         <div class="f" data-req id="boxJanji3">
           <label class="chk">
             <input type="checkbox" id="janji3">
-            <span><b>Adab Petualang Muslim:</b> Alam dijaga, sampah dibawa pulang (jangan ninggalin apa-apa selain jejak kaki!), aurat dan etika islami tetap terjaga sepanjang kegiatan. 🌲</span>
+            <span><b>Adab Petualang Muslim:</b> Alam dijaga, sampah dibawa pulang (jangan ninggalin apa-apa selain jejak
+              kaki!), aurat dan etika islami tetap terjaga sepanjang kegiatan. 🌲</span>
           </label>
           <p class="err">Centang untuk menyetujui adab petualang muslim.</p>
         </div>
@@ -2384,7 +2927,8 @@
         <div class="f" data-req id="boxJanji4">
           <label class="chk">
             <input type="checkbox" id="janji4">
-            <span><b>Taat Aba-Aba Guide:</b> Ikuti arahan tim dan jangan jalan sendiri demi konten. Pemandangan bagus, tapi keselamatan nomor satu! 📸</span>
+            <span><b>Taat Aba-Aba Guide:</b> Ikuti arahan tim dan jangan jalan sendiri demi konten. Pemandangan bagus,
+              tapi keselamatan nomor satu! 📸</span>
           </label>
           <p class="err">Centang untuk menyetujui arahan guide & keselamatan.</p>
         </div>
@@ -2392,7 +2936,8 @@
         <div class="f" data-req id="boxJanji5">
           <label class="chk">
             <input type="checkbox" id="janji5">
-            <span><b>Siap Kompak & Saling Jaga:</b> Nggak ada yang ditinggal, nggak ada yang ditinggal sendirian di belakang. Kita berangkat bareng, pulang bareng! 🤝</span>
+            <span><b>Siap Kompak & Saling Jaga:</b> Nggak ada yang ditinggal, nggak ada yang ditinggal sendirian di
+              belakang. Kita berangkat bareng, pulang bareng! 🤝</span>
           </label>
           <p class="err">Centang untuk menyetujui komitmen saling jaga & kompak.</p>
         </div>
@@ -2403,7 +2948,8 @@
       </button>
 
       <p class="note">
-        Slot petualangan terbatas, yuk daftar sebelum penuh! Setelah daftar, nomor urut briefing dan info lanjutan akan kami kirim lewat WhatsApp penanggung jawab. Pastikan nomornya aktif, biar kabar seru nggak nyasar! 🌄
+        Slot petualangan terbatas, yuk daftar sebelum penuh! Setelah daftar, nomor urut briefing dan info lanjutan akan
+        kami kirim lewat WhatsApp penanggung jawab. Pastikan nomornya aktif, biar kabar seru nggak nyasar! 🌄
       </p>
     </form>
 
@@ -2464,7 +3010,8 @@
             <div
               style="font-family:var(--font-display); font-weight:900; font-size:1.02rem; color:var(--ink); letter-spacing:0.04em;">
               TEMAN SATU JALAN</div>
-            <div style="font-size:0.75rem; color:var(--primary); font-weight:700; letter-spacing:0.02em;">MOESLIM SPORT CLUB
+            <div style="font-size:0.75rem; color:var(--primary); font-weight:700; letter-spacing:0.02em;">MOESLIM SPORT
+              CLUB
               • PASS RESMI</div>
           </div>
         </div>
@@ -2496,6 +3043,10 @@
         <div class="pass-row">
           <span class="pass-label">Titik Kumpul</span>
           <span class="pass-value" id="passMepo">Desa Kadubereum (06.00 WIB)</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">Metode Pembayaran</span>
+          <span class="pass-value" style="color:var(--primary); font-weight:800;">QRIS (ADVENTURE TEMANSATUJALAN)</span>
         </div>
 
         <!-- Roster Seluruh Petualang yang Terdaftar -->
@@ -2577,6 +3128,44 @@
         Butuh bantuan atau kendala masuk grup? Hubungi Admin TSJ: <a id="modalAdminWa"
           href="https://wa.me/6285882582729" target="_blank" rel="noopener">0858 8258 2729</a>
       </p>
+    </div>
+  </div>
+
+  <!-- POPUP MODAL: INFOGRAFIS BROSUR PAKET RESMI (info.jpeg) -->
+  <div class="modal-overlay hide" id="infoPosterModal" role="dialog" aria-modal="true"
+    aria-labelledby="modalInfoPosterTitle" onclick="if(event.target===this)closeInfoPosterModal()">
+    <div class="modal-card" style="max-width: 480px; padding: 22px; text-align: center;">
+      <button type="button" class="modal-close" onclick="closeInfoPosterModal()" aria-label="Tutup">&times;</button>
+      <div class="modal-celebrate-badge" style="background:var(--ok-bg); color:var(--primary); border:1px solid var(--primary); margin-bottom:12px;">📊 INFOGRAFIS PAKET & HARGA</div>
+      <h3 id="modalInfoPosterTitle" style="font-family:var(--font-display); font-size:1.15rem; margin-bottom:12px; color:var(--ink);">Teman Satu Jalan Vol 6 — Rincian Paket</h3>
+      <div style="border-radius:var(--radius-md); overflow:hidden; border:1.5px solid var(--card-border); background:#0d1611; margin-bottom:14px; box-shadow:var(--shadow-sm);">
+        <img src="./info.jpeg" alt="Infografis Brosur Resmi TSJ Vol 6" style="width:100%; height:auto; display:block;">
+      </div>
+      <button type="button" class="btn-modal-view-pass" onclick="closeInfoPosterModal()" style="width:100%;">Tutup Infografis</button>
+    </div>
+  </div>
+
+  <!-- POPUP MODAL: ZOOM QRIS PEMBAYARAN -->
+  <div class="modal-overlay hide" id="qrisZoomModal" role="dialog" aria-modal="true"
+    aria-labelledby="modalQrisZoomTitle" onclick="if(event.target===this)closeQrisZoomModal()">
+    <div class="modal-card" style="max-width: 440px; padding: 22px; text-align: center;">
+      <button type="button" class="modal-close" onclick="closeQrisZoomModal()" aria-label="Tutup">&times;</button>
+      <div class="modal-celebrate-badge" style="background:#0284c7; color:#fff; margin-bottom:10px;">📱 SCAN & BAYAR</div>
+      <h3 id="modalQrisZoomTitle" style="font-family:var(--font-display); font-size:1.15rem; color:var(--ink); margin-bottom:4px;">QRIS Adventure Temansatujalan</h3>
+      <p style="font-size:0.82rem; color:var(--ink-secondary); margin-bottom:12px;">NMID: ID1025375876469 • Bebas Biaya Admin</p>
+      
+      <div style="background:#ffffff; padding:12px; border-radius:var(--radius-md); box-shadow:0 8px 30px rgba(0,0,0,0.4); display:inline-block; margin-bottom:14px; max-width:100%;">
+        <img src="./qris.png" alt="QRIS Pembayaran TSJ" style="width:100%; max-width:320px; height:auto; display:block; margin:0 auto; border-radius:8px;">
+      </div>
+
+      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+        <a href="./qris.png" download="QRIS-TemanSatuJalan.png" class="btn-modal-join" style="padding:10px 18px; font-size:0.88rem; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <span>📥</span> Unduh QRIS
+        </a>
+        <button type="button" class="btn-modal-view-pass" onclick="closeQrisZoomModal()" style="padding:10px 18px; font-size:0.88rem;">
+          Tutup
+        </button>
+      </div>
     </div>
   </div>
 
@@ -2691,41 +3280,45 @@
           ],
           packages: [
             {
-              name: "Lovetrail One",
-              value: "Lovetrail One",
-              badge: "Solo",
-              desc: "Paket Petualang Mandiri / Individu (1 Orang). Simaksi Curug Lewibumi, Guide & Refreshment",
-              price: 125000,
+              name: "Lovetrail Single",
+              value: "Lovetrail Single (160K - Ikhwan Only)",
+              badge: "160K",
+              desc: "(Ikhwan Only) • 1 Orang",
+              price: 160000,
+              priceDisplay: "160K",
               priceUnit: "/1 orang",
               defaultCount: 1,
               checked: false
             },
             {
               name: "Lovetrail Couple",
-              value: "Lovetrail Couple",
-              badge: "Populer",
-              desc: "Paket Pasangan Suami-Istri / Berdua (2 Orang). Simaksi Curug, Guide, Refreshment buah & Dokumentasi",
-              price: 250000,
+              value: "Lovetrail Couple (320K - Suami-Istri / Adik-Kaka / Mahram)",
+              badge: "320K",
+              desc: "Suami-Istri / Adik-Kaka / Saudara Semahram • 2 Orang",
+              price: 320000,
+              priceDisplay: "320K",
               priceUnit: "/2 orang",
               defaultCount: 2,
               checked: false
             },
             {
-              name: "Lovetrail Little",
-              value: "Lovetrail Little",
-              badge: "Keluarga",
-              desc: "Paket Keluarga dengan Anak (3 Orang). Trekking ramah anak 5 KM Kadubereum – Curug Lewi Bumi",
-              price: 375000,
+              name: "Lovetrail Little Family",
+              value: "Lovetrail Little Family (475K - Keluarga 1 Anak)",
+              badge: "475K",
+              desc: "Keluarga 1 Anak • 3 Orang",
+              price: 475000,
+              priceDisplay: "475K",
               priceUnit: "/3 orang",
               defaultCount: 3,
               checked: false
             },
             {
-              name: "Lovetrail Squad",
-              value: "Lovetrail Squad",
-              badge: "Squad",
-              desc: "Paket Rombongan Sahabat / Grup Petualang (4 Orang). Guide & fasilitas lengkap rombongan",
-              price: 500000,
+              name: "Lovetrail Squad Family",
+              value: "Lovetrail Squad Family (630K - Keluarga 2 Anak)",
+              badge: "630K",
+              desc: "Keluarga 2 Anak • 4 Orang",
+              price: 630000,
+              priceDisplay: "630K",
               priceUnit: "/4 orang",
               defaultCount: 4,
               checked: false
@@ -2884,13 +3477,18 @@
           var label = document.createElement("label");
           label.className = "tk";
 
-          var badgeHtml = pkg.badge ? `<span class="tk-badge">${pkg.badge}</span>` : "";
+          var priceBadge = pkg.badge ? `<span class="tk-badge">${pkg.badge}</span>` : "";
+          var descHtml = pkg.desc ? `<div class="tk-desc">${pkg.desc}</div>` : "";
 
           label.innerHTML = `
         <input type="radio" name="tk" value="${pkg.value}" data-default-count="${pkg.defaultCount}" ${pkg.checked ? "checked" : ""}>
         <div class="tk-card">
           <div class="tk-info">
-            <b>${pkg.name} ${badgeHtml}</b>
+            <div class="tk-title-row">
+              <b class="tk-title">${pkg.name}</b>
+              ${priceBadge}
+            </div>
+            ${descHtml}
           </div>
           <div class="tk-check-icon">✓</div>
         </div>
@@ -2920,8 +3518,32 @@
               }
             }
             renumberCards();
+            updateQrisAmountDisplay();
           });
         });
+
+        updateQrisAmountDisplay();
+      }
+
+      function updateQrisAmountDisplay() {
+        var ticket = getSelectedTicket();
+        var evt = EVENTS_DATA[currentEventKey];
+        var qrisTotal = $("qrisTotalDisplay");
+        var qrisSub = $("qrisPackageSub");
+        if (!qrisTotal) return;
+
+        if (ticket && evt && evt.packages) {
+          var val = ticket.value;
+          var pkg = evt.packages.find(function (p) { return p.value === val; });
+          if (pkg && pkg.price) {
+            qrisTotal.textContent = "Rp " + pkg.price.toLocaleString("id-ID");
+            if (qrisSub) qrisSub.textContent = "Paket: " + pkg.name + " (" + (pkg.badge || pkg.priceDisplay || "") + " • " + (pkg.desc || "") + ")";
+            return;
+          }
+        }
+
+        qrisTotal.textContent = "Rp 0";
+        if (qrisSub) qrisSub.textContent = "Pilih salah satu paket trekking di bagian atas terlebih dahulu";
       }
 
       function getSelectedTicket() {
@@ -3344,6 +3966,7 @@
           pengalamanTrek: trekRadio ? trekRadio.value : "-",
           intensitasOlahraga: sportRadio ? sportRadio.value : "-",
           titikKumpul: $("titikKumpulSelect") ? $("titikKumpulSelect").value : "-",
+          metodePembayaran: "QRIS (ADVENTURE TEMANSATUJALAN)",
           kontakDaruratNama: $("darurat").value.trim(),
           kontakDaruratHp: $("daruratHp").value.trim(),
           buktiTransferFileName: (fileInput && fileInput.files && fileInput.files.length > 0) ? fileInput.files[0].name : "Struk Transfer Terlampir",
@@ -3579,6 +4202,89 @@
       // Toast notice helper is defined above: window.showToast = showToast;
 
       // ==========================================
+      // MODAL INFOGRAFIS BROSUR PAKET RESMI (info.jpeg)
+      // ==========================================
+      window.openInfoPosterModal = function () {
+        if ($("infoPosterModal")) $("infoPosterModal").classList.remove("hide");
+      };
+
+      window.closeInfoPosterModal = function () {
+        if ($("infoPosterModal")) $("infoPosterModal").classList.add("hide");
+      };
+
+      // ==========================================
+      // QRIS PAYMENT & NMID HANDLERS
+      // ==========================================
+      window.copyNmid = function () {
+        var code = "ID1025375876469";
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(function () {
+            showToast("✓ NMID " + code + " berhasil disalin!");
+          }).catch(function () {
+            prompt("Salin NMID QRIS:", code);
+          });
+        } else {
+          prompt("Salin NMID QRIS:", code);
+        }
+      };
+
+      window.openQrisZoomModal = function () {
+        if ($("qrisZoomModal")) $("qrisZoomModal").classList.remove("hide");
+      };
+
+      window.closeQrisZoomModal = function () {
+        if ($("qrisZoomModal")) $("qrisZoomModal").classList.add("hide");
+      };
+
+      // ==========================================
+      // TOGGLE QRIS SHOWCASE (KLIK BARU MUNCUL)
+      // ==========================================
+      window.toggleQrisShowcase = function (forceState) {
+        var box = $("qrisShowcaseBox");
+        var card = $("payMethodCard");
+        var text = $("payToggleText");
+        var chevron = $("payToggleChevron");
+        var badge = $("payToggleBadge");
+        if (!box) return;
+
+        var isCurrentlyHidden = box.classList.contains("hide");
+        var shouldShow = (typeof forceState === "boolean") ? forceState : isCurrentlyHidden;
+
+        if (shouldShow) {
+          box.classList.remove("hide");
+          if (card) {
+            card.classList.add("expanded");
+            card.setAttribute("aria-expanded", "true");
+          }
+          if (text) text.textContent = "Sembunyikan QRIS";
+          if (chevron) chevron.style.transform = "rotate(180deg)";
+          if (badge) badge.textContent = "▲ Sembunyikan QRIS";
+          updateQrisAmountDisplay();
+          try {
+            box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          } catch (e) { }
+        } else {
+          box.classList.add("hide");
+          if (card) {
+            card.classList.remove("expanded");
+            card.setAttribute("aria-expanded", "false");
+          }
+          if (text) text.textContent = "Tampilkan Kode QRIS";
+          if (chevron) chevron.style.transform = "rotate(0deg)";
+          if (badge) badge.textContent = "👆 Klik untuk Tampilkan QRIS";
+        }
+      };
+
+      if ($("payMethodCard")) {
+        $("payMethodCard").addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleQrisShowcase();
+          }
+        });
+      }
+
+      // ==========================================
       // GOOGLE SHEETS SETUP MODAL HANDLERS
       // ==========================================
       window.openSheetConfigModal = function () {
@@ -3670,6 +4376,7 @@
           "Pengalaman Trekking",
           "Intensitas Olahraga",
           "Titik Kumpul",
+          "Metode Pembayaran",
           "Nama Kontak Darurat",
           "No. HP Darurat",
           "Nama File Bukti Transfer"
@@ -3702,6 +4409,7 @@
             data.pengalamanTrek || "",
             data.intensitasOlahraga || "",
             data.titikKumpul || "",
+            data.metodePembayaran || "QRIS",
             data.kontakDaruratNama || "",
             data.kontakDaruratHp || "",
             data.buktiTransferFileName || "Tidak ada / Konfirmasi WA"
@@ -3726,6 +4434,8 @@
         if (e.key === "Escape") {
           closeGroupModal();
           closeSheetConfigModal();
+          closeInfoPosterModal();
+          closeQrisZoomModal();
         }
       });
 
