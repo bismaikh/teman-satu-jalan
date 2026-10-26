@@ -370,6 +370,9 @@
       transition: all 0.3s ease;
     }
 
+    /* =========================================================================
+       HERO POSTER CAROUSEL (Showcase Auto-Play)
+       ========================================================================= */
     .hero-visual {
       position: relative;
       width: 100%;
@@ -379,15 +382,205 @@
       align-items: center;
       overflow: hidden;
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      user-select: none;
     }
 
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      width: 100%;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0d1611;
+    }
+
+    .carousel-slide img,
     .hero-visual img {
       width: 100%;
       height: auto;
       max-width: 100%;
       display: block;
       object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
       transition: opacity 0.3s ease;
+    }
+
+    /* Carousel Nav Buttons */
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 12;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(13, 22, 17, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      padding: 0;
+    }
+
+    .carousel-nav-btn:hover {
+      opacity: 1;
+      background: var(--primary);
+      color: #0d1611;
+      border-color: var(--primary);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 0 16px rgba(132, 204, 22, 0.6);
+    }
+
+    .carousel-nav-btn:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .carousel-nav-btn.prev {
+      left: 14px;
+    }
+
+    .carousel-nav-btn.next {
+      right: 14px;
+    }
+
+    /* Counter Badge */
+    .carousel-badge-counter {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 12;
+      background: rgba(10, 15, 12, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(132, 204, 22, 0.4);
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .carousel-counter-curr {
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    /* Indicators (Dots) */
+    .carousel-indicators {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 12;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 14px;
+      background: rgba(10, 15, 12, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.38);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-dot:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.85);
+      transform: scale(1.2);
+    }
+
+    .carousel-dot.active {
+      width: 24px;
+      background: var(--primary);
+      box-shadow: 0 0 10px rgba(132, 204, 22, 0.85);
+    }
+
+    /* Progress bar */
+    .carousel-progress-track {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.15);
+      z-index: 12;
+      overflow: hidden;
+    }
+
+    .carousel-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #65a30d, var(--primary));
+      transition: width 0.1s linear;
+    }
+
+    @media (max-width: 640px) {
+      .carousel-nav-btn {
+        width: 36px;
+        height: 36px;
+      }
+      .carousel-nav-btn.prev {
+        left: 8px;
+      }
+      .carousel-nav-btn.next {
+        right: 8px;
+      }
+      .carousel-badge-counter {
+        top: 10px;
+        right: 10px;
+        font-size: 0.68rem;
+        padding: 3px 9px;
+      }
+      .carousel-indicators {
+        bottom: 8px;
+        padding: 4px 10px;
+        gap: 5px;
+      }
+      .carousel-dot.active {
+        width: 18px;
+      }
     }
 
     .hero-status-pill {
@@ -2553,8 +2746,53 @@
 
     <!-- Hero Poster Showcase (Dynamic based on selected event) -->
     <header class="hero-card">
-      <div class="hero-visual">
-        <img id="heroImg" src="./TJ2.jpeg" alt="Poster Event Teman Satu Jalan Vol 6 Goes to Curug Lewi Bumi">
+      <div class="hero-visual" id="heroVisual">
+        <div class="carousel-container" id="heroCarousel" aria-roledescription="carousel" aria-label="Showcase Poster dan Informasi Event">
+          <div class="carousel-track" id="heroCarouselTrack">
+            <!-- Slide 1: TJ1.jpeg -->
+            <div class="carousel-slide active" data-index="0">
+              <img id="heroImg" src="./TJ1.jpeg" alt="Poster Teman Satu Jalan Vol 6 Goes to Curug Lewi Bumi" loading="eager">
+            </div>
+            <!-- Slide 2: TJ11.jpeg -->
+            <div class="carousel-slide" data-index="1">
+              <img src="./TJ11.jpeg" alt="Rute Trek & Special Include Curug Lewibumi" loading="lazy">
+            </div>
+            <!-- Slide 3: TJ12.jpeg -->
+            <div class="carousel-slide" data-index="2">
+              <img src="./TJ12.jpeg" alt="Bonus Buku Pulih Bersama Allah Khusus 10 Tiket Pertama" loading="lazy">
+            </div>
+            <!-- Slide 4: info.jpeg -->
+            <div class="carousel-slide" data-index="3">
+              <img src="./info.jpeg" alt="Pilihan Paket Registrasi Vol 6 Curug Lewibumi" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <button type="button" class="carousel-nav-btn prev" id="carouselPrevBtn" aria-label="Slide sebelumnya">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button type="button" class="carousel-nav-btn next" id="carouselNextBtn" aria-label="Slide berikutnya">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+
+          <!-- Top-Right Slide Badge Counter -->
+          <div class="carousel-badge-counter" id="carouselCounter">
+            <span class="carousel-counter-curr">1</span> / <span class="carousel-counter-total">4</span>
+          </div>
+
+          <!-- Bottom Navigation Indicators -->
+          <div class="carousel-indicators" id="carouselIndicators">
+            <button type="button" class="carousel-dot active" data-index="0" aria-label="Slide 1"></button>
+            <button type="button" class="carousel-dot" data-index="1" aria-label="Slide 2"></button>
+            <button type="button" class="carousel-dot" data-index="2" aria-label="Slide 3"></button>
+            <button type="button" class="carousel-dot" data-index="3" aria-label="Slide 4"></button>
+          </div>
+
+          <!-- Progress Bar for Autoplay -->
+          <div class="carousel-progress-track">
+            <div class="carousel-progress-bar" id="carouselProgressBar"></div>
+          </div>
+        </div>
       </div>
 
       <div class="hero-headline">
@@ -3263,8 +3501,14 @@
           destination: "CURUG LEWIBUMI",
           eventNameDisplay: "Vol 6: Goes to Curug Lewibumi",
           badgeLimited: "⚡ KUOTA SANGAT TERBATAS!",
-          posterImg: "./TJ2.jpeg",
+          posterImg: "./TJ1.jpeg",
           posterAlt: "Poster Teman Satu Jalan Vol 6 Goes to Curug Lewi Bumi",
+          carouselImages: [
+            { src: "./TJ1.jpeg", alt: "Poster Teman Satu Jalan Vol 6 Goes to Curug Lewi Bumi" },
+            { src: "./TJ11.jpeg", alt: "Rute Trek & Special Include Curug Lewibumi" },
+            { src: "./TJ12.jpeg", alt: "Bonus Buku Pulih Bersama Allah Khusus 10 Tiket Pertama" },
+            { src: "./info.jpeg", alt: "Pilihan Paket Registrasi Vol 6 Curug Lewibumi" }
+          ],
           date: "29 November 2026",
           time: "06.00 WIB",
           tikum: "Desa Kaduberum",
@@ -3335,6 +3579,9 @@
           badgeLimited: "⚡ KUOTA SANGAT TERBATAS!",
           posterImg: "./TJ1.jpeg",
           posterAlt: "Poster Teman Satu Jalan Vol 7 Goes to Curug Panjang",
+          carouselImages: [
+            { src: "./TJ1.jpeg", alt: "Poster Teman Satu Jalan Vol 7 Goes to Curug Panjang" }
+          ],
           date: "27 Desember 2026",
           time: "06.00 WIB",
           tikum: "Bukit Waruwangi",
@@ -3417,6 +3664,239 @@
 
 
       // ==========================================
+      // HERO CAROUSEL CONTROLLER (AUTO-PLAY & INTERACTIVE)
+      // ==========================================
+      var heroCarouselState = {
+        currentIndex: 0,
+        slidesCount: 0,
+        timer: null,
+        intervalMs: 4000,
+        isPaused: false,
+        touchStartX: 0,
+        touchStartY: 0,
+        touchEndX: 0,
+        touchEndY: 0,
+        listenersAttached: false
+      };
+
+      function setupHeroCarousel(images) {
+        var track = $("heroCarouselTrack");
+        var indicators = $("carouselIndicators");
+        var counter = $("carouselCounter");
+        var prevBtn = $("carouselPrevBtn");
+        var nextBtn = $("carouselNextBtn");
+        var progressTrack = document.querySelector(".carousel-progress-track");
+        var progressBar = $("carouselProgressBar");
+
+        if (!track || !images || images.length === 0) return;
+
+        // Clear any existing autoplay timer
+        stopCarouselAutoplay();
+
+        heroCarouselState.currentIndex = 0;
+        heroCarouselState.slidesCount = images.length;
+        heroCarouselState.isPaused = false;
+
+        // Render Slides
+        track.innerHTML = images.map(function (item, idx) {
+          var idAttr = idx === 0 ? ' id="heroImg"' : '';
+          var loadingAttr = idx === 0 ? 'loading="eager"' : 'loading="lazy"';
+          var activeClass = idx === 0 ? ' active' : '';
+          return '<div class="carousel-slide' + activeClass + '" data-index="' + idx + '">' +
+            '<img' + idAttr + ' src="' + item.src + '" alt="' + (item.alt || 'Poster Event') + '" ' + loadingAttr + '>' +
+            '</div>';
+        }).join('');
+
+        // Render Indicators
+        if (indicators) {
+          if (images.length > 1) {
+            indicators.innerHTML = images.map(function (_, idx) {
+              return '<button type="button" class="carousel-dot' + (idx === 0 ? ' active' : '') + '" data-index="' + idx + '" aria-label="Slide ' + (idx + 1) + '"></button>';
+            }).join('');
+            indicators.style.display = "flex";
+          } else {
+            indicators.innerHTML = "";
+            indicators.style.display = "none";
+          }
+        }
+
+        // Toggle Controls for Single vs Multi Slides
+        var multi = images.length > 1;
+        if (prevBtn) prevBtn.style.display = multi ? "flex" : "none";
+        if (nextBtn) nextBtn.style.display = multi ? "flex" : "none";
+        if (counter) counter.style.display = multi ? "flex" : "none";
+        if (progressTrack) progressTrack.style.display = multi ? "block" : "none";
+
+        updateCarouselUI();
+
+        if (multi) {
+          startCarouselAutoplay();
+        }
+
+        // Attach listeners once
+        if (!heroCarouselState.listenersAttached) {
+          initCarouselListeners();
+          heroCarouselState.listenersAttached = true;
+        }
+      }
+
+      function updateCarouselUI() {
+        var track = $("heroCarouselTrack");
+        var counter = $("carouselCounter");
+        var indicators = $("carouselIndicators");
+        var idx = heroCarouselState.currentIndex;
+        var total = heroCarouselState.slidesCount;
+
+        if (track) {
+          track.style.transform = "translateX(-" + (idx * 100) + "%)";
+        }
+
+        var slides = document.querySelectorAll(".carousel-slide");
+        slides.forEach(function (slide, i) {
+          slide.classList.toggle("active", i === idx);
+        });
+
+        if (indicators) {
+          var dots = indicators.querySelectorAll(".carousel-dot");
+          dots.forEach(function (dot, i) {
+            dot.classList.toggle("active", i === idx);
+          });
+        }
+
+        if (counter) {
+          counter.innerHTML = '<span class="carousel-counter-curr">' + (idx + 1) + '</span> / <span class="carousel-counter-total">' + total + '</span>';
+        }
+
+        var progressBar = $("carouselProgressBar");
+        if (progressBar) {
+          progressBar.style.transition = "none";
+          progressBar.style.width = "0%";
+        }
+      }
+
+      function goToCarouselSlide(newIndex, restart) {
+        if (heroCarouselState.slidesCount <= 1) return;
+        var total = heroCarouselState.slidesCount;
+        heroCarouselState.currentIndex = (newIndex + total) % total;
+        updateCarouselUI();
+
+        if (restart !== false && !heroCarouselState.isPaused) {
+          startCarouselAutoplay();
+        }
+      }
+
+      function nextCarouselSlide() {
+        goToCarouselSlide(heroCarouselState.currentIndex + 1);
+      }
+
+      function prevCarouselSlide() {
+        goToCarouselSlide(heroCarouselState.currentIndex - 1);
+      }
+
+      function startCarouselAutoplay() {
+        stopCarouselAutoplay();
+        if (heroCarouselState.slidesCount <= 1) return;
+
+        var progressBar = $("carouselProgressBar");
+        if (progressBar) {
+          progressBar.style.transition = "none";
+          progressBar.style.width = "0%";
+          void progressBar.offsetWidth; // Force CSS repaint
+          progressBar.style.transition = "width " + heroCarouselState.intervalMs + "ms linear";
+          progressBar.style.width = "100%";
+        }
+
+        heroCarouselState.timer = setTimeout(function () {
+          nextCarouselSlide();
+        }, heroCarouselState.intervalMs);
+      }
+
+      function stopCarouselAutoplay() {
+        if (heroCarouselState.timer) {
+          clearTimeout(heroCarouselState.timer);
+          heroCarouselState.timer = null;
+        }
+        var progressBar = $("carouselProgressBar");
+        if (progressBar) {
+          var computedWidth = window.getComputedStyle(progressBar).width;
+          progressBar.style.transition = "none";
+          progressBar.style.width = computedWidth;
+        }
+      }
+
+      function pauseCarouselAutoplay() {
+        heroCarouselState.isPaused = true;
+        stopCarouselAutoplay();
+      }
+
+      function resumeCarouselAutoplay() {
+        heroCarouselState.isPaused = false;
+        if (heroCarouselState.slidesCount > 1) {
+          startCarouselAutoplay();
+        }
+      }
+
+      function initCarouselListeners() {
+        var container = $("heroCarousel");
+        if (container) {
+          container.addEventListener("mouseenter", pauseCarouselAutoplay);
+          container.addEventListener("mouseleave", resumeCarouselAutoplay);
+
+          container.addEventListener("touchstart", function (e) {
+            heroCarouselState.touchStartX = e.changedTouches[0].screenX;
+            heroCarouselState.touchStartY = e.changedTouches[0].screenY;
+            pauseCarouselAutoplay();
+          }, { passive: true });
+
+          container.addEventListener("touchend", function (e) {
+            heroCarouselState.touchEndX = e.changedTouches[0].screenX;
+            heroCarouselState.touchEndY = e.changedTouches[0].screenY;
+            var diffX = heroCarouselState.touchEndX - heroCarouselState.touchStartX;
+            var diffY = heroCarouselState.touchEndY - heroCarouselState.touchStartY;
+
+            if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+              if (diffX < 0) {
+                nextCarouselSlide();
+              } else {
+                prevCarouselSlide();
+              }
+            }
+            resumeCarouselAutoplay();
+          }, { passive: true });
+        }
+
+        var prevBtn = $("carouselPrevBtn");
+        if (prevBtn) {
+          prevBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            prevCarouselSlide();
+          });
+        }
+
+        var nextBtn = $("carouselNextBtn");
+        if (nextBtn) {
+          nextBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            nextCarouselSlide();
+          });
+        }
+
+        var indicatorsWrap = $("carouselIndicators");
+        if (indicatorsWrap) {
+          indicatorsWrap.addEventListener("click", function (e) {
+            var dot = e.target.closest(".carousel-dot");
+            if (dot) {
+              e.stopPropagation();
+              var targetIdx = parseInt(dot.getAttribute("data-index"), 10);
+              if (!isNaN(targetIdx)) {
+                goToCarouselSlide(targetIdx);
+              }
+            }
+          });
+        }
+      }
+
+      // ==========================================
       // EVENT SWITCHER LOGIC (VOL 6 <-> VOL 7)
       // ==========================================
       window.switchEvent = function (eventKey) {
@@ -3434,9 +3914,8 @@
         $("tabVol6").setAttribute("aria-selected", eventKey === "vol6");
         $("tabVol7").setAttribute("aria-selected", eventKey === "vol7");
 
-        // 2. Update Hero Banner & Headings
-        $("heroImg").src = evt.posterImg;
-        $("heroImg").alt = evt.posterAlt;
+        // 2. Update Hero Banner & Headings & Carousel
+        setupHeroCarousel(evt.carouselImages || [{ src: evt.posterImg, alt: evt.posterAlt }]);
         $("badgeLimited").textContent = evt.badgeLimited;
         $("heroVolTag").textContent = evt.volTag;
         $("heroMainTitle").textContent = evt.titleMain;
