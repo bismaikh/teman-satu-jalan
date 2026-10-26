@@ -9,7 +9,7 @@ Formulir pendaftaran interaktif untuk kegiatan trekking alam ramah syari'ah (pas
 ## 🌟 Fitur Utama
 
 - **Event Showcase & Switcher Dinamis**:
-  - **Vol 6: Curug Lewibumi (Aktif)** — Informasi rute, tiket, kuota terbatas, dan titik kumpul Kadubereum / Rest Area Tol Serang Timur.
+  - **Vol 6: Curug Lewibumi (Aktif)** — Informasi rute, tiket, kuota terbatas, dan titik kumpul Kadubereum / Pom Bensin Palima.
   - **Vol 7: Curug Panjang (Digembok)** — Proteksi status terkunci dengan notifikasi ramah bagi peserta.
 - **Paket Trekking Fleksibel**:
   - Lovetrail One (Solo / 1 Orang)
