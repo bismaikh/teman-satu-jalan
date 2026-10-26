@@ -1,0 +1,3739 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pendaftaran Teman Satu Jalan - Moeslim Sport Club</title>
+
+  <!-- Browser Favicon & Icons (Circular Transparent) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./favicon.png">
+  <link rel="shortcut icon" type="image/png" href="./favicon.png">
+  <link rel="apple-touch-icon" href="./logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesque:wght@700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Space Grotesque', system-ui, -apple-system, sans-serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+      /* Teman Satu Jalan Poster Palette (Army Green + Lime Neon + Sky Blue + Khaki) */
+      --bg: #0d1611;
+      --bg-gradient: radial-gradient(circle at 50% 0%, #1a2f22 0%, #0d1611 75%);
+      --card: #15241b;
+      --card-hover: #1c3124;
+      --card-border: rgba(132, 204, 22, 0.22);
+      --ink: #f4fbf5;
+      --ink-secondary: #a3b8aa;
+      --muted: #6c8374;
+      --line: #22372a;
+
+      /* Lime Neon Accent dari Judul SATUJALAN & LEWIBUMI */
+      --primary: #84cc16;
+      --primary-hover: #65a30d;
+      --primary-ink: #142e05;
+      --primary-glow: rgba(132, 204, 22, 0.3);
+
+      /* Sky Blue dari langit poster */
+      --accent-sky: #38bdf8;
+      --accent-khaki: #d4c5a9;
+
+      --danger: #f87171;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+      --ok-bg: rgba(132, 204, 22, 0.14);
+
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+
+      --safe-t: env(safe-area-inset-top, 0px);
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      color-scheme: dark;
+    }
+
+    [data-theme="light"] {
+      --bg: #f4f6f1;
+      --bg-gradient: radial-gradient(circle at 50% 0%, #e5ede0 0%, #f4f6f1 85%);
+      --card: #ffffff;
+      --card-hover: #f9fbf8;
+      --card-border: rgba(101, 163, 13, 0.25);
+      --ink: #132419;
+      --ink-secondary: #496352;
+      --muted: #6e8475;
+      --line: #d8e4d8;
+
+      --primary: #4d7c0f;
+      --primary-hover: #3f6212;
+      --primary-ink: #ffffff;
+      --primary-glow: rgba(77, 124, 15, 0.2);
+
+      --accent-sky: #0284c7;
+      --accent-khaki: #854d0e;
+
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --ok-bg: #ecfccb;
+
+      --shadow-sm: 0 2px 8px rgba(19, 36, 25, 0.06);
+      --shadow-md: 0 8px 24px -4px rgba(19, 36, 25, 0.12);
+      --shadow-lg: 0 20px 40px -10px rgba(19, 36, 25, 0.16);
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      background-image: var(--bg-gradient);
+      color: var(--ink);
+      font: 16px/1.6 var(--font-body);
+      min-height: 100vh;
+      padding: calc(var(--safe-t) + 12px) 16px calc(var(--safe-b) + 48px);
+      position: relative;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Subtle Topographic Dots Texture */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(var(--card-border) 1px, transparent 1px),
+        radial-gradient(rgba(132, 204, 22, 0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+      opacity: 0.55;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Top Bar: Brand, Club, and Theme Toggle */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card);
+      border: 1.5px solid var(--card-border);
+      padding: 6px 16px 6px 8px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .brand-capsule:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 18px rgba(132, 204, 22, 0.25);
+    }
+
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 12px rgba(132, 204, 22, 0.35);
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .brand-capsule:hover .brand-logo-img {
+      transform: scale(1.08) rotate(4deg);
+    }
+
+    .brand-text-col {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .brand-name {
+      font-size: 0.96rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+    }
+
+    .brand-capsule .pill {
+      background: var(--primary);
+      color: var(--primary-ink);
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .theme-toggle {
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--card-hover);
+      border-color: var(--primary);
+    }
+
+    /* ========================================= */
+    /* MODEL 1: EVENT SELECTOR TABS (VOL 6 & VOL 7) */
+    /* ========================================= */
+    .event-tabs-wrapper {
+      margin-bottom: 18px;
+    }
+
+    .event-tabs-label {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-secondary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .event-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background: var(--card);
+      padding: 6px;
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    @media (max-width: 480px) {
+      .event-tabs {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1.5px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--ink-secondary);
+      font-family: var(--font-display);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: left;
+      position: relative;
+    }
+
+    .tab-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .tab-vol {
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-sky);
+    }
+
+    .tab-badge {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(132, 204, 22, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      letter-spacing: 0.04em;
+    }
+
+    .tab-name {
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-meta {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .tab-btn:hover {
+      background: var(--card-hover);
+      border-color: rgba(132, 204, 22, 0.3);
+    }
+
+    .tab-btn.active {
+      background: var(--ok-bg);
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px var(--primary-glow);
+    }
+
+    .tab-btn.active .tab-name {
+      color: var(--primary);
+    }
+
+    .tab-btn.active .tab-vol {
+      color: var(--primary);
+    }
+
+    .tab-btn.locked {
+      opacity: 0.65;
+      cursor: not-allowed;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    [data-theme="light"] .tab-btn.locked {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .tab-btn.locked:hover {
+      background: rgba(0, 0, 0, 0.25);
+      border-color: rgba(239, 68, 68, 0.35);
+    }
+
+    .tab-badge.locked-badge {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      font-weight: 800;
+    }
+
+    /* Poster Hero Container */
+    .hero-card {
+      background: var(--card);
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 24px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      background: #0d1611;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      object-fit: contain;
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-status-pill {
+      background: rgba(132, 204, 22, 0.15);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .hero-headline {
+      padding: 22px 22px 14px;
+    }
+
+    .vol-tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--accent-sky);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .main-title {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    [data-theme="light"] .main-title {
+      color: #132419;
+    }
+
+    .main-title .highlight {
+      color: var(--primary);
+      text-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .dest-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--card-hover);
+      border: 1px solid var(--card-border);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      margin-top: 10px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+
+    .dest-badge span {
+      color: var(--primary);
+    }
+
+    /* Quick Specs Strip from Poster */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 10px;
+      margin: 16px 22px 20px;
+      padding: 14px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+    }
+
+    [data-theme="light"] .specs-grid {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .spec-box {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .spec-box .label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+    }
+
+    .spec-box .val {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Mahram Requirement Banner */
+    .mahram-banner {
+      margin: 0 22px 22px;
+      background: rgba(132, 204, 22, 0.12);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mahram-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .mahram-text h4 {
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .mahram-text p {
+      font-size: 0.85rem;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    /* Contact Info Ribbon */
+    .contact-ribbon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px 22px;
+      background: rgba(0, 0, 0, 0.35);
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+      color: var(--ink-secondary);
+    }
+
+    [data-theme="light"] .contact-ribbon {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .contact-numbers {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+    }
+
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Fieldsets & Form Styling */
+    fieldset {
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      margin: 20px 0;
+      padding: 22px 20px 10px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    fieldset:focus-within {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    legend {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--ink);
+      padding: 6px 14px;
+      background: var(--card);
+      border: 1.5px solid var(--card-border);
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      letter-spacing: -0.01em;
+      max-width: calc(100% - 10px);
+      box-sizing: border-box;
+      line-height: 1.35;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    legend .icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .legend-title {
+      display: inline-block;
+    }
+
+    .legend-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--ok-bg);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    .legend-pill.darurat-pill {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    [data-theme="light"] .legend-pill.darurat-pill {
+      background: rgba(239, 68, 68, 0.1);
+      color: #dc2626;
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+
+    .darurat-info-banner {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: var(--ink-secondary);
+    }
+
+    [data-theme="light"] .darurat-info-banner {
+      background: rgba(239, 68, 68, 0.05);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .darurat-info-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .darurat-info-text b {
+      display: block;
+      color: #f87171;
+      font-size: 0.86rem;
+      margin-bottom: 2px;
+    }
+
+    [data-theme="light"] .darurat-info-text b {
+      color: #dc2626;
+    }
+
+    .f {
+      margin: 0 0 16px;
+      position: relative;
+    }
+
+    label,
+    .lbl {
+      display: block;
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .opt {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.85em;
+    }
+
+    .hint {
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      margin-top: 5px;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    input[type=date],
+    input[type=number],
+    select,
+    textarea {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.96rem;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      min-height: 48px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    textarea {
+      min-height: 84px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      background: var(--card);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 14px;
+    }
+
+    @media (max-width: 540px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Category Selection */
+    .tickets {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .tickets {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tk {
+      position: relative;
+      display: block;
+      cursor: pointer;
+    }
+
+    .tk input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .tk-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border: 1.5px dashed var(--line);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      background: var(--bg);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      min-height: 58px;
+    }
+
+    .tk-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: transparent;
+      transition: background 0.2s;
+    }
+
+    .tk-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tk-info b {
+      display: flex;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--ink);
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tk-badge {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: var(--primary);
+      color: var(--primary-ink);
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .tk-check-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: transparent;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .tk input:checked+.tk-card .tk-check-icon {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--primary-ink);
+      font-weight: 800;
+    }
+
+    .tk:hover .tk-card {
+      border-color: var(--primary);
+      background: var(--card-hover);
+      transform: translateY(-1px);
+    }
+
+    .tk input:checked+.tk-card {
+      border-style: solid;
+      border-color: var(--primary);
+      background: var(--ok-bg);
+      box-shadow: 0 4px 16px var(--primary-glow);
+    }
+
+    .tk input:checked+.tk-card::before {
+      background: var(--primary);
+    }
+
+    .tk input:focus-visible+.tk-card {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Custom Checkboxes */
+    .chk {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-weight: 400;
+      font-size: 0.92rem;
+      color: var(--ink);
+      margin: 0 0 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .chk input {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      flex: none;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Custom Radio Pills for Transportasi Menuju Titik Kumpul */
+    .radio-pill-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 580px) {
+      .radio-pill-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .radio-pill {
+      position: relative;
+      display: block;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .radio-pill input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .pill-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg);
+      border: 1.5px dashed var(--line);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.91rem;
+    }
+
+    .pill-icon {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .radio-pill:hover .pill-box {
+      border-color: var(--primary);
+      background: var(--card-hover);
+    }
+
+    .radio-pill input:checked+.pill-box {
+      border-style: solid;
+      border-color: var(--primary);
+      background: var(--ok-bg);
+      color: var(--primary);
+      font-weight: 700;
+      box-shadow: 0 2px 12px var(--primary-glow);
+    }
+
+    .radio-pill input:focus-visible+.pill-box {
+      outline: 2px solid var(--primary);
+    }
+
+    /* Custom Segmented Radios (Pengalaman Trekking & Intensitas Olahraga) */
+    .segment-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .seg-item {
+      position: relative;
+      cursor: pointer;
+      display: block;
+      user-select: none;
+    }
+
+    .seg-item input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .seg-item span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 48px;
+      padding: 6px 8px;
+      background: var(--bg);
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      transition: all 0.2s ease;
+      line-height: 1.25;
+    }
+
+    .seg-item:hover span {
+      border-color: var(--primary);
+      color: var(--ink);
+    }
+
+    .seg-item input:checked+span {
+      border-color: var(--primary);
+      background: var(--ok-bg);
+      color: var(--primary);
+      font-weight: 800;
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .seg-item input:focus-visible+span {
+      outline: 2px solid var(--primary);
+    }
+
+    /* Dynamic Multi-Explorer CSS */
+    .explorer-header-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      background: rgba(132, 204, 22, 0.08);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+      line-height: 1.4;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .explorer-header-info b {
+      color: var(--primary);
+      font-size: 0.85rem;
+      background: var(--ok-bg);
+      border: 1px solid var(--primary);
+      padding: 3px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .explorer-card {
+      background: rgba(0, 0, 0, 0.22);
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 18px 16px 8px;
+      margin-bottom: 18px;
+      position: relative;
+      transition: all 0.25s ease;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    [data-theme="light"] .explorer-card {
+      background: rgba(0, 0, 0, 0.025);
+    }
+
+    .explorer-card:hover {
+      border-color: rgba(132, 204, 22, 0.4);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .explorer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--line);
+      gap: 10px;
+    }
+
+    .explorer-title-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .explorer-title-main {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .exp-icon-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .explorer-subtitle {
+      font-size: 0.76rem;
+      color: var(--ink-secondary);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .explorer-actions {
+      flex-shrink: 0;
+    }
+
+    .explorer-badge {
+      font-family: var(--font-display);
+      background: var(--ok-bg);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .explorer-badge.pic-badge {
+      background: rgba(132, 204, 22, 0.18);
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+      box-shadow: 0 0 10px rgba(132, 204, 22, 0.25);
+    }
+
+    .btn-del-explorer {
+      background: transparent;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .btn-del-explorer:hover {
+      background: var(--danger-bg);
+    }
+
+    .btn-add-explorer {
+      width: 100%;
+      min-height: 48px;
+      border: 2px dashed var(--primary);
+      background: var(--ok-bg);
+      color: var(--primary);
+      border-radius: var(--radius-md);
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin: 6px 0 16px;
+    }
+
+    .btn-add-explorer:hover {
+      background: var(--card-hover);
+      box-shadow: 0 4px 16px var(--primary-glow);
+      transform: translateY(-1px);
+    }
+
+    /* File Upload Dropzone */
+    .file-dropzone {
+      border: 2px dashed var(--line);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      background: var(--bg);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .file-dropzone:hover {
+      border-color: var(--primary);
+      background: var(--card-hover);
+    }
+
+    .file-dropzone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .file-icon {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .file-text {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+
+    .file-subtext {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .file-selected {
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--ok-bg);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* Live Total Box */
+    .total-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--line);
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      margin-top: 10px;
+    }
+
+    [data-theme="light"] .total-box {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .total-label {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-secondary);
+    }
+
+    .total-sum {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    /* Validation Errors */
+    .err {
+      color: var(--danger);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin: 6px 0 0;
+      display: none;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .err::before {
+      content: "⚠️";
+      font-size: 0.85em;
+    }
+
+    .bad .err {
+      display: flex;
+    }
+
+    .bad input,
+    .bad select,
+    .bad textarea {
+      border-color: var(--danger) !important;
+      background: var(--danger-bg) !important;
+    }
+
+    /* Action Button */
+    button.main {
+      width: 100%;
+      min-height: 54px;
+      border: 0;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary) 0%, #4d7c0f 100%);
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      margin-top: 8px;
+    }
+
+    button.main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px var(--primary-glow);
+      filter: brightness(1.1);
+    }
+
+    .note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 14px;
+      line-height: 1.4;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    /* Confirmation Boarding Pass Screen */
+    .done {
+      background: var(--card);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      margin-top: 20px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+      animation: slideUp 0.4s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .done::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--accent-sky));
+    }
+
+    .done-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .done-icon {
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .done h2 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.7rem;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+
+    .done-sub {
+      color: var(--ink-secondary);
+      font-size: 0.95rem;
+    }
+
+    .sheet-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #4ade80;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-top: 12px;
+    }
+
+    /* Group Trip WhatsApp Invite Card */
+    .group-invite-card {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.14) 0%, rgba(21, 36, 27, 0.95) 100%);
+      border: 2px solid #22c55e;
+      border-radius: var(--radius-md);
+      padding: 22px 20px;
+      margin: 20px 0 22px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(34, 197, 94, 0.2);
+    }
+
+    [data-theme="light"] .group-invite-card {
+      background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+      border-color: #16a34a;
+      box-shadow: 0 8px 24px rgba(22, 163, 74, 0.12);
+    }
+
+    .group-invite-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #22c55e;
+      color: #052e16;
+      font-family: var(--font-display);
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .group-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .group-desc {
+      color: var(--ink-secondary);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      max-width: 580px;
+      margin: 0 auto 18px;
+    }
+
+    .group-desc b {
+      color: #4ade80;
+    }
+
+    [data-theme="light"] .group-desc b {
+      color: #15803d;
+    }
+
+    .btn-join-group {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 480px;
+      min-height: 52px;
+      background: #22c55e;
+      color: #052e16;
+      border-radius: var(--radius-md);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.02rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-join-group:hover {
+      background: #16a34a;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(34, 197, 94, 0.6);
+    }
+
+    .group-note {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .group-note a {
+      color: #4ade80;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    [data-theme="light"] .group-note a {
+      color: #15803d;
+    }
+
+    .pass-card {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px dashed var(--line);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    [data-theme="light"] .pass-card {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .pass-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+
+    .pass-row:last-child {
+      border-bottom: none;
+    }
+
+    .pass-label {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .pass-value {
+      color: var(--ink);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    /* Roster of Registered Explorers */
+    .pass-roster {
+      margin: 14px 0 6px;
+      padding: 14px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+    }
+
+    .roster-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .roster-list {
+      padding-left: 20px;
+      margin: 0;
+      font-size: 0.88rem;
+    }
+
+    .roster-list li {
+      margin-bottom: 6px;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .roster-list li b {
+      color: var(--primary);
+    }
+
+    .roster-list li span.meta {
+      color: var(--ink-secondary);
+      font-size: 0.82rem;
+    }
+
+    .pass-barcode {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 8px;
+      margin: 18px 0 6px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .barcode-stripes {
+      display: flex;
+      gap: 3px;
+      height: 42px;
+      align-items: center;
+    }
+
+    .barcode-stripes span {
+      background: var(--ink);
+      display: block;
+      height: 100%;
+    }
+
+    .done-finish-wrap {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .btn-finish {
+      width: 100%;
+      min-height: 52px;
+      background: var(--primary);
+      color: var(--primary-ink);
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 18px rgba(132, 204, 22, 0.35);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-finish:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(132, 204, 22, 0.5);
+      filter: brightness(1.08);
+    }
+
+    .btn-finish:active {
+      transform: translateY(0);
+    }
+
+    .done-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      min-height: 46px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--ink);
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-family: var(--font-display);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: var(--card-hover);
+    }
+
+    /* Spreadsheet Status Pill Variations */
+    .sheet-status-pill.clickable {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sheet-status-pill.clickable:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+    }
+
+    .sheet-status-pill.saving {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      animation: pulseGlow 1.8s infinite;
+    }
+
+    .sheet-status-pill.success {
+      background: rgba(34, 197, 94, 0.18);
+      border-color: rgba(34, 197, 94, 0.5);
+      color: #4ade80;
+    }
+
+    .sheet-status-pill.warning {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+
+    /* MODAL OVERLAY & POPUP STYLES */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      padding: 16px;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.hide {
+      display: none !important;
+    }
+
+    .modal-card {
+      background: var(--card);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-lg);
+      max-width: 540px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 28px 22px 24px;
+      position: relative;
+      box-shadow: var(--shadow-lg), 0 0 50px rgba(132, 204, 22, 0.28);
+      text-align: center;
+      animation: modalScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] .modal-card {
+      background: #ffffff;
+      border-color: #22c55e;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 0 40px rgba(34, 197, 94, 0.2);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--ink-secondary);
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-celebrate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #22c55e;
+      color: #052e16;
+      font-family: var(--font-display);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .modal-icon-glow {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 12px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 2px solid #22c55e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 0 25px rgba(34, 197, 94, 0.4);
+      animation: pulseGlow 2.2s infinite;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .modal-subtitle {
+      color: var(--ink-secondary);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .modal-event-pill {
+      background: rgba(132, 204, 22, 0.12);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .modal-event-pill span {
+      background: var(--primary);
+      color: var(--primary-ink);
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .modal-benefits {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 18px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid var(--line);
+    }
+
+    [data-theme="light"] .modal-benefits {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .benefit-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .benefit-text b {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .benefit-text p {
+      font-size: 0.8rem;
+      color: var(--ink-secondary);
+      margin: 2px 0 0;
+      line-height: 1.35;
+    }
+
+    .btn-modal-join {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #22c55e;
+      color: #052e16;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(34, 197, 94, 0.45);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
+    }
+
+    .btn-modal-join:hover {
+      background: #16a34a;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.65);
+    }
+
+    .modal-secondary-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn-modal-copy,
+    .btn-modal-view-pass {
+      flex: 1;
+      padding: 11px 12px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-modal-copy:hover,
+    .btn-modal-view-pass:hover {
+      border-color: var(--primary);
+      background: var(--card-hover);
+    }
+
+    .modal-footer-hint {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .modal-footer-hint a {
+      color: #4ade80;
+      text-decoration: underline;
+    }
+
+    [data-theme="light"] .modal-footer-hint a {
+      color: #16a34a;
+    }
+
+    /* Floating Toast Notification */
+    .toast-notice {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #15241b;
+      border: 1px solid var(--primary);
+      color: #f4fbf5;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(132, 204, 22, 0.3);
+      z-index: 100000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] .toast-notice {
+      background: #ffffff;
+      color: #132419;
+      border-color: #22c55e;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 20px rgba(34, 197, 94, 0.2);
+    }
+
+    .toast-notice.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Responsive Media Queries for Mobile Devices */
+    @media (max-width: 600px) {
+      fieldset {
+        padding: 18px 12px 10px;
+        margin: 16px 0;
+      }
+
+      legend {
+        font-size: 0.88rem;
+        padding: 5px 10px;
+        border-radius: 8px;
+        gap: 6px;
+      }
+
+      .legend-pill {
+        font-size: 0.68rem;
+        padding: 1px 6px;
+      }
+
+      .explorer-card {
+        padding: 14px 12px 6px;
+      }
+
+      .exp-icon-title {
+        font-size: 0.92rem;
+      }
+
+      .explorer-subtitle {
+        font-size: 0.73rem;
+      }
+
+      .explorer-header-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+    }
+
+    @keyframes modalScaleIn {
+      0% {
+        transform: scale(0.92) translateY(24px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 15px rgba(34, 197, 94, 0.35);
+        transform: scale(1);
+      }
+
+      50% {
+        box-shadow: 0 0 28px rgba(34, 197, 94, 0.65);
+        transform: scale(1.04);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="brand-capsule">
+        <img src="./logo.png" alt="Logo Teman Satu Jalan" class="brand-logo-img">
+        <div class="brand-text-col">
+          <span class="brand-name">TMN1JLN.</span>
+          <span class="pill">MOESLIM SPORT CLUB</span>
+        </div>
+      </div>
+      <button type="button" class="theme-toggle" id="themeBtn" aria-label="Ganti Tema">
+        <span id="themeIcon">☀️</span> <span id="themeText">Outdoor Day</span>
+      </button>
+    </div>
+
+    <!-- MODEL 1: EVENT SELECTOR TABS -->
+    <div class="event-tabs-wrapper">
+      <div class="event-tabs-label">
+        <span>🧭 Pilih Ekspedisi yang Ingin Diikuti:</span>
+      </div>
+      <div class="event-tabs" role="tablist">
+        <button type="button" class="tab-btn active" id="tabVol6" onclick="switchEvent('vol6')" role="tab"
+          aria-selected="true">
+          <div class="tab-header-row">
+            <span class="tab-vol">VOL 6</span>
+            <span class="tab-badge">29 Nov 2026</span>
+          </div>
+          <div class="tab-name">🌊 Curug Lewibumi</div>
+          <span class="tab-meta">5 KM • Kadubereum</span>
+        </button>
+
+        <button type="button" class="tab-btn locked" id="tabVol7" onclick="switchEvent('vol7')" role="tab"
+          aria-selected="false" title="Pendaftaran Vol 7 (Curug Panjang) saat ini masih digembok / belum dibuka">
+          <div class="tab-header-row">
+            <span class="tab-vol" style="color:var(--muted);">VOL 7</span>
+            <span class="tab-badge locked-badge">🔒 Digembok</span>
+          </div>
+          <div class="tab-name" style="color:var(--muted);">🔒 Curug Panjang</div>
+          <span class="tab-meta">5 KM • Segera Dibuka</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero Poster Showcase (Dynamic based on selected event) -->
+    <header class="hero-card">
+      <div class="hero-visual">
+        <img id="heroImg" src="./TJ2.jpeg" alt="Poster Event Teman Satu Jalan">
+      </div>
+
+      <div class="hero-headline">
+        <div
+          style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:6px;">
+          <span class="vol-tag" id="heroVolTag">VOL 6</span>
+          <span class="hero-status-pill" id="badgeLimited">⚡ KUOTA SANGAT TERBATAS!</span>
+        </div>
+        <h1 class="main-title"><span id="heroMainTitle">TEMAN</span> <span class="highlight"
+            id="heroHighlightTitle">SATUJALAN</span></h1>
+        <div class="dest-badge">
+          GOES TO <span id="heroDestination">CURUG LEWIBUMI</span>
+        </div>
+      </div>
+
+      <!-- Spesifikasi Event Dinamis Sesuai Event yang Dipilih -->
+      <div class="specs-grid">
+        <div class="spec-box">
+          <span class="label">📅 Tanggal</span>
+          <span class="val" id="specDate">29 November 2026</span>
+        </div>
+        <div class="spec-box">
+          <span class="label">⏰ Waktu</span>
+          <span class="val" id="specTime">06.00 WIB</span>
+        </div>
+        <div class="spec-box">
+          <span class="label">📍 Titik Kumpul</span>
+          <span class="val" id="specTikum">Desa Kaduberum</span>
+        </div>
+        <div class="spec-box">
+          <span class="label">🥾 Jarak Trek</span>
+          <span class="val" id="specDistance">5 KM</span>
+        </div>
+      </div>
+
+      <!-- Syarat Ketentuan Peserta Sesuai Poster -->
+      <div class="mahram-banner">
+        <span class="mahram-icon">👥</span>
+        <div class="mahram-text">
+          <h4>Ketentuan Peserta (Syari'ah Friendly)</h4>
+          <p><b>Khusus:</b> Pasangan Suami-Istri (Couple), Keluarga (Family), Saudara Semahram, dan Ikhwan (Laki-laki).
+          </p>
+        </div>
+      </div>
+
+      <!-- Kontak Resmi Poster -->
+      <div class="contact-ribbon">
+        <span>Informasi & Pendaftaran Resmi:</span>
+        <div class="contact-numbers">
+          <a class="contact-link" href="https://wa.me/6285882582729" target="_blank" rel="noopener">📱 0858 8258
+            2729</a>
+          <a class="contact-link" href="https://wa.me/6285811474778" target="_blank" rel="noopener">📱 0858 1147
+            4778</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Registration Form -->
+    <form id="f" novalidate>
+
+      <!-- Section 1: Informasi Kegiatan & Paket -->
+      <fieldset>
+        <legend><span class="icon">📋</span> <span class="legend-title">1. Informasi Kegiatan & Paket</span> <span class="legend-pill" id="paketEventName">Vol 6</span></legend>
+
+        <!-- Pilihan Paket Trekking -->
+        <div class="f" id="tkbox">
+          <span class="lbl">Pilihan Paket Trekking</span>
+          <!-- Ticket container rendered dynamically by selected event -->
+          <div class="tickets" id="ticketsContainer"></div>
+          <p class="err">Pilih salah satu paket trekking.</p>
+        </div>
+
+        <div class="f">
+          <label for="routeInput">Rute Perjalanan</label>
+          <input type="text" id="routeInput" value="5 KM (Desa Kadubereum - Curug Lewi Bumi)" readonly
+            style="opacity:0.85; cursor:not-allowed;">
+        </div>
+
+        <!-- Pilihan Transportasi Menuju Titik Kumpul -->
+        <div class="f" id="transportBox">
+          <span class="lbl">Pilihan Transportasi Menuju Titik Kumpul</span>
+          <div class="radio-pill-grid">
+            <label class="radio-pill">
+              <input type="radio" name="transportasi" value="Kendaraan Pribadi">
+              <span class="pill-box">
+                <span class="pill-icon">🚗</span>
+                <span class="pill-title">Kendaraan Pribadi</span>
+              </span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="transportasi" value="Transportasi dari Panitia">
+              <span class="pill-box">
+                <span class="pill-icon">🚐</span>
+                <span class="pill-title">Transportasi dari Panitia</span>
+              </span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="transportasi" value="Nebeng/kendaraan bersama peserta lain">
+              <span class="pill-box">
+                <span class="pill-icon">🤝</span>
+                <span class="pill-title">Nebeng/bersama peserta lain</span>
+              </span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="transportasi" value="Datang Secara Mandiri">
+              <span class="pill-box">
+                <span class="pill-icon">🚶</span>
+                <span class="pill-title">Datang Secara Mandiri</span>
+              </span>
+            </label>
+          </div>
+          <p class="err">Pilih salah satu opsi transportasi menuju titik kumpul.</p>
+        </div>
+
+        <!-- Pengalaman Trekking & Intensitas Olahraga -->
+        <div class="row">
+          <div class="f" id="trekBox">
+            <span class="lbl">Apakah Pernah Mengikuti Trekking</span>
+            <div class="segment-group">
+              <label class="seg-item">
+                <input type="radio" name="pengalamanTrek" value="Belum Pernah">
+                <span>Belum Pernah</span>
+              </label>
+              <label class="seg-item">
+                <input type="radio" name="pengalamanTrek" value="Pernah">
+                <span>Pernah</span>
+              </label>
+              <label class="seg-item">
+                <input type="radio" name="pengalamanTrek" value="Sering">
+                <span>Sering</span>
+              </label>
+            </div>
+            <p class="err">Pilih pengalaman trekking Anda.</p>
+          </div>
+
+          <div class="f" id="sportBox">
+            <span class="lbl">Seberapa Intens Olahraga</span>
+            <div class="segment-group">
+              <label class="seg-item">
+                <input type="radio" name="intensitasOlahraga" value="Tidak Pernah">
+                <span>Tidak Pernah</span>
+              </label>
+              <label class="seg-item">
+                <input type="radio" name="intensitasOlahraga" value="Jarang">
+                <span>Jarang</span>
+              </label>
+              <label class="seg-item">
+                <input type="radio" name="intensitasOlahraga" value="Rutin">
+                <span>Rutin</span>
+              </label>
+            </div>
+            <p class="err">Pilih seberapa intens aktivitas olahraga Anda.</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Section 2: DATA PETUALANG LENGKAP (MULTI-PESERTA DYNAMIC) -->
+      <fieldset id="sectionPetualang">
+        <legend><span class="icon">👥</span> <span class="legend-title">2. Data Petualang</span> <span class="legend-pill"><span id="totalBadgeCount">1</span> Orang</span></legend>
+
+        <div class="explorer-header-info">
+          <span>Setiap petualang yang didaftarkan wajib diisi datanya untuk data simaksi perizinan & asuransi
+            jalur:</span>
+          <b id="rosterSummaryText">1 Petualang</b>
+        </div>
+
+        <!-- Container tempat form setiap petualang dibuat secara dinamis -->
+        <div id="explorerContainer"></div>
+
+        <!-- Tombol Tambah Data Petualang Tambahan -->
+        <button type="button" class="btn-add-explorer" id="btnAddExplorer">
+          <span>➕ Tambah Data Petualang / Anggota Lain</span>
+        </button>
+
+        <!-- Informasi Alamat Lengkap & Titik Kumpul Dinamis -->
+        <div class="f" data-req id="alamatBox">
+          <label for="alamatLengkap">Alamat Lengkap Domisili Petualang / Rombongan</label>
+          <textarea id="alamatLengkap" rows="2" placeholder="Nama Jalan, Nomor Rumah, RT/RW, Kelurahan/Desa, Kecamatan"></textarea>
+          <p class="err">Alamat lengkap petualang wajib diisi.</p>
+        </div>
+
+        <div class="row">
+          <div class="f" data-req id="kotaBox">
+            <label for="kota">Kota / Kabupaten Domisili</label>
+            <input id="kota" type="text" autocomplete="address-level2"
+              placeholder="Contoh: Jakarta Selatan / Kota Serang / Kab. Tangerang">
+            <p class="err">Kota / Kabupaten domisili wajib diisi.</p>
+          </div>
+          <div class="f" data-req id="tikumField">
+            <label for="titikKumpulSelect">Konfirmasi Titik Kumpul</label>
+            <select id="titikKumpulSelect"></select>
+            <p class="err">Pilih titik kumpul rombongan.</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Section 3: Kontak Darurat Rombongan -->
+      <fieldset id="sectionDarurat">
+        <legend><span class="icon">🆘</span> <span class="legend-title">3. Kontak Darurat</span> <span class="legend-pill darurat-pill">Keluarga di Luar Jalur</span></legend>
+
+        <div class="darurat-info-banner">
+          <span class="darurat-info-icon">🛡️</span>
+          <div class="darurat-info-text">
+            <b>Wajib Kontak di Luar Jalur Trekking:</b>
+            <span>Nomor ini wajib diisi keluarga / kerabat terdekat yang <u>tidak ikut mendaki</u>, untuk segera dihubungi oleh koordinator TSJ jika terjadi kondisi darurat selama kegiatan.</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="f" data-req>
+            <label for="darurat">Nama Kontak Darurat</label>
+            <input id="darurat" type="text" placeholder="Contoh: Bpk. H. Ahmad (Ayah / Kakak)">
+            <p class="err">Nama kontak darurat wajib diisi demi keselamatan rombongan.</p>
+          </div>
+          <div class="f" data-req>
+            <label for="daruratHp">No. HP / WA Kontak Darurat</label>
+            <input id="daruratHp" type="tel" placeholder="Contoh: 081234567890 (Aktif & Siaga)">
+            <p class="err">No. HP kontak darurat wajib diisi.</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Section 4: Bukti Transfer / Pembayaran -->
+      <fieldset id="bayar">
+        <legend><span class="icon">💳</span> 4. Bukti Transfer / Pembayaran</legend>
+
+        <div class="f" data-req id="bukti">
+          <label for="file">Unggah Struk / Bukti Transfer</label>
+          <div class="file-dropzone" id="dropzone">
+            <input id="file" type="file" accept="image/*,.pdf">
+            <span class="file-icon">📸</span>
+            <div class="file-text">Klik atau seret struk transfer ke sini</div>
+            <div class="file-subtext">Mendukung format JPG, PNG, atau PDF (Maks. 5 MB). Wajib dilampirkan untuk verifikasi pendaftaran.
+            </div>
+            <div class="file-selected hide" id="fileNameBadge">
+              <span>📄</span> <span id="fileNameTxt">bukti-transfer.jpg</span>
+            </div>
+          </div>
+          <p class="err">Struk / bukti transfer wajib diunggah.</p>
+        </div>
+      </fieldset>
+
+      <!-- Section 5: Janji Seru & Aman 🌿 -->
+      <fieldset>
+        <legend><span class="icon">🌿</span> 5. Janji Seru & Aman 🌿</legend>
+
+        <div class="f" data-req id="boxJanji1">
+          <label class="chk">
+            <input type="checkbox" id="janji1">
+            <span><b>Rombongan Sesuai Aturan Main:</b> Aku pastikan semua petualang yang didaftarkan sesuai kriteria acara: pasangan suami-istri, keluarga, saudara semahram, atau sesama ikhwan. Jadi nggak ada yang nyempil dari luar jalur ya! 😄</span>
+          </label>
+          <p class="err">Centang untuk menyetujui kriteria rombongan.</p>
+        </div>
+
+        <div class="f" data-req id="boxJanji2">
+          <label class="chk">
+            <input type="checkbox" id="janji2">
+            <span><b>Badan & Hati Siap Tempur:</b> Semua anggota rombongan dalam kondisi sehat fisik dan mental buat trekking alam bebas di rute pilihan. Lutut aman, semangat on! 💪</span>
+          </label>
+          <p class="err">Centang untuk menyetujui kesiapan fisik & mental.</p>
+        </div>
+
+        <div class="f" data-req id="boxJanji3">
+          <label class="chk">
+            <input type="checkbox" id="janji3">
+            <span><b>Adab Petualang Muslim:</b> Alam dijaga, sampah dibawa pulang (jangan ninggalin apa-apa selain jejak kaki!), aurat dan etika islami tetap terjaga sepanjang kegiatan. 🌲</span>
+          </label>
+          <p class="err">Centang untuk menyetujui adab petualang muslim.</p>
+        </div>
+
+        <div class="f" data-req id="boxJanji4">
+          <label class="chk">
+            <input type="checkbox" id="janji4">
+            <span><b>Taat Aba-Aba Guide:</b> Ikuti arahan tim dan jangan jalan sendiri demi konten. Pemandangan bagus, tapi keselamatan nomor satu! 📸</span>
+          </label>
+          <p class="err">Centang untuk menyetujui arahan guide & keselamatan.</p>
+        </div>
+
+        <div class="f" data-req id="boxJanji5">
+          <label class="chk">
+            <input type="checkbox" id="janji5">
+            <span><b>Siap Kompak & Saling Jaga:</b> Nggak ada yang ditinggal, nggak ada yang ditinggal sendirian di belakang. Kita berangkat bareng, pulang bareng! 🤝</span>
+          </label>
+          <p class="err">Centang untuk menyetujui komitmen saling jaga & kompak.</p>
+        </div>
+      </fieldset>
+
+      <button class="main" type="submit">
+        <span>🥾 DAFTARKAN ROMBONGAN PETUALANG</span>
+      </button>
+
+      <p class="note">
+        Slot petualangan terbatas, yuk daftar sebelum penuh! Setelah daftar, nomor urut briefing dan info lanjutan akan kami kirim lewat WhatsApp penanggung jawab. Pastikan nomornya aktif, biar kabar seru nggak nyasar! 🌄
+      </p>
+    </form>
+
+    <!-- Success Confirmation Screen (Boarding Pass & Multi-Explorer Roster) -->
+    <section class="done hide" id="done" aria-live="polite" tabindex="-1">
+      <div class="done-header">
+        <span class="done-icon">🌊</span>
+        <h2>Pendaftaran Rombongan Berhasil!</h2>
+        <p class="done-sub">Alhamdulillah, seluruh data petualang telah tersimpan di sistem. Konfirmasi resmi dikirim ke
+          <b id="de">email@anda.com</b> & WhatsApp <b id="dhp">0812xxxxxxx</b>.
+        </p>
+        <div class="sheet-status-pill clickable" id="sheetStatusPill" onclick="openSheetConfigModal()"
+          title="Klik untuk cek status sinkronisasi atau atur Google Spreadsheet">
+          <span id="sheetStatusIcon">📊</span> <span id="sheetStatusText">Data rombongan siap dicatat di
+            Spreadsheet</span>
+        </div>
+      </div>
+
+      <!-- AJAKAN BERGABUNG KE GRUP WHATSAPP TRIP -->
+      <div class="group-invite-card" id="groupInviteCard">
+        <div class="group-invite-badge">
+          <span>💬</span> <span>Langkah Terakhir: Wajib Masuk Grup Trip</span>
+        </div>
+        <h3 class="group-title">Gabung ke WhatsApp Group Trip <span id="groupEventName">Vol 6</span>!</h3>
+        <p class="group-desc">
+          Pastikan Anda segera bergabung ke grup koordinasi peserta <b id="groupEventDest">Curug Lewibumi</b> untuk
+          mendapatkan informasi briefing perlengkapan, update cuaca, live location tikum & koordinasi kendaraan bersama.
+        </p>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+          <a href="https://chat.whatsapp.com/DgIVi7aOfYjGh76TbuwxaZ" target="_blank" rel="noopener"
+            class="btn-join-group" id="btnJoinGroup">
+            <span style="font-size:1.35rem;">📲</span>
+            <span id="btnJoinGroupText">Gabung Grup WhatsApp Trip Sekarang</span>
+          </a>
+          <div style="display:flex; gap:10px; width:100%; max-width:480px; flex-wrap:wrap;">
+            <button type="button" class="btn-secondary" style="flex:1; min-height:42px; font-size:0.86rem;"
+              onclick="copyTripGroupLink()">
+              <span>📋</span> <span id="btnCopyCardText">Salin Link Grup</span>
+            </button>
+            <a id="btnShareWa" href="#" target="_blank" rel="noopener" class="btn-secondary"
+              style="flex:1; min-height:42px; font-size:0.86rem; text-decoration:none;">
+              <span>💬</span> <span>Share ke Anggota</span>
+            </a>
+          </div>
+        </div>
+        <small class="group-note">
+          🔒 Grup resmi khusus peserta terdaftar. Jika link terkendala, hubungi Admin: <a id="adminWaLink"
+            href="https://wa.me/6285882582729" target="_blank" rel="noopener">0858 8258 2729</a>
+        </small>
+      </div>
+
+      <div class="pass-card">
+        <div class="pass-brand-row"
+          style="display:flex; align-items:center; gap:12px; padding-bottom:14px; margin-bottom:16px; border-bottom:1.5px solid var(--line);">
+          <img src="./logo.png" alt="Logo Teman Satu Jalan"
+            style="width:48px; height:48px; border-radius:50%; border:2px solid var(--primary); object-fit:cover; box-shadow:0 0 10px rgba(132,204,22,0.3);">
+          <div>
+            <div
+              style="font-family:var(--font-display); font-weight:900; font-size:1.02rem; color:var(--ink); letter-spacing:0.04em;">
+              TEMAN SATU JALAN</div>
+            <div style="font-size:0.75rem; color:var(--primary); font-weight:700; letter-spacing:0.02em;">MOESLIM SPORT CLUB
+              • PASS RESMI</div>
+          </div>
+        </div>
+
+        <div class="pass-row">
+          <span class="pass-label">Kode Registrasi</span>
+          <span class="pass-value" id="passCode">TMN1JLN-V6-7821</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">Kegiatan & Edisi</span>
+          <span class="pass-value" id="passEventName">Vol 6: Goes to Curug Lewibumi</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">Kategori Paket</span>
+          <span class="pass-value" id="passTk">Paket Couple (Suami - Istri)</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">Jumlah Petualang</span>
+          <span class="pass-value" id="passTotalOrang">2 Orang</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">Transportasi Tikum</span>
+          <span class="pass-value" id="passTransport">Kendaraan Pribadi</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">Pengalaman & Olahraga</span>
+          <span class="pass-value" id="passKebugaran">Pernah Trekking • Rutin</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">Titik Kumpul</span>
+          <span class="pass-value" id="passMepo">Desa Kadubereum (06.00 WIB)</span>
+        </div>
+
+        <!-- Roster Seluruh Petualang yang Terdaftar -->
+        <div class="pass-roster">
+          <div class="roster-title">
+            <span>👥 Roster Petualang Terdaftar:</span>
+          </div>
+          <ol class="roster-list" id="passRosterList"></ol>
+        </div>
+
+        <!-- Tombol Selesai (Kembali ke Form Isian) -->
+        <div class="done-finish-wrap">
+          <button type="button" class="btn-finish" id="btnFinish" onclick="backToForm()">
+            <span>🌿 Selesai (Kembali ke Form Isian)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- POPUP MODAL: AJAKAN BERGABUNG KE GRUP WHATSAPP TRIP -->
+  <div class="modal-overlay hide" id="groupInviteModal" role="dialog" aria-modal="true"
+    aria-labelledby="modalGroupTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" onclick="closeGroupModal()" aria-label="Tutup">&times;</button>
+      <div class="modal-celebrate-badge">🎉 PENDAFTARAN ROMBONGAN BERHASIL!</div>
+      <div class="modal-icon-glow">
+        <span>📲</span>
+      </div>
+      <h2 class="modal-title" id="modalGroupTitle">Wajib Masuk ke WhatsApp Group Trip!</h2>
+      <p class="modal-subtitle">
+        Alhamdulillah seluruh data rombongan Anda telah tersimpan. Segera bergabung ke grup koordinasi peserta:
+      </p>
+
+      <div class="modal-event-pill">
+        <span id="modalEventBadge">VOL 6</span>
+        <b id="modalEventName">Goes to Curug Lewibumi</b>
+      </div>
+
+      <div class="modal-benefits">
+        <div class="benefit-item">
+          <span class="benefit-icon">📍</span>
+          <div class="benefit-text">
+            <b>Live Location & Konvoi Tikum</b>
+            <p>Update titik temu akurat, panduan rute, dan rombongan konvoi berangkat bersama.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🎒</span>
+          <div class="benefit-text">
+            <b>Briefing & Checklist Perlengkapan</b>
+            <p>Info cuaca terkini, rekomendasi sepatu & busana trekking syar'i ramah keluarga.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">👥</span>
+          <div class="benefit-text">
+            <b>Koordinasi Guide & Dokumentasi</b>
+            <p>Mengenal sesama petualang, arahan tour leader TSJ, serta akses foto/video dokumentasi.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" target="_blank" rel="noopener" class="btn-modal-join" id="modalJoinBtn">
+        <span style="font-size:1.3rem;">📲</span>
+        <span id="modalJoinBtnText">Gabung Grup WhatsApp Sekarang</span>
+      </a>
+
+      <div class="modal-secondary-row">
+        <button type="button" class="btn-modal-copy" onclick="copyTripGroupLink()">
+          <span>📋</span> <span id="modalBtnCopyText">Salin Link Grup</span>
+        </button>
+        <button type="button" class="btn-modal-view-pass" onclick="closeGroupModal()">
+          <span>👥</span> <span>Lihat Data Rombongan</span>
+        </button>
+      </div>
+
+      <p class="modal-footer-hint">
+        Butuh bantuan atau kendala masuk grup? Hubungi Admin TSJ: <a id="modalAdminWa"
+          href="https://wa.me/6285882582729" target="_blank" rel="noopener">0858 8258 2729</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- MODAL PENGATURAN GOOGLE SHEETS (WEB APP URL) -->
+  <div class="modal-overlay hide" id="sheetConfigModal" role="dialog" aria-modal="true"
+    aria-labelledby="modalSheetConfigTitle">
+    <div class="modal-card" style="max-width: 500px;">
+      <button type="button" class="modal-close" onclick="closeSheetConfigModal()" aria-label="Tutup">&times;</button>
+      <div class="modal-celebrate-badge" style="background:#0284c7; color:#fff;">📊 GOOGLE SPREADSHEET</div>
+      <h2 class="modal-title" id="modalSheetConfigTitle" style="margin-top:10px;">Sinkronisasi Google Sheets</h2>
+      <p class="modal-subtitle">
+        Formulir ini dapat mengirimkan semua data pendaftaran rombongan secara otomatis ke Google Spreadsheet Anda via
+        Google Apps Script.
+      </p>
+
+      <div style="text-align:left; margin:16px 0;">
+        <label for="inputSheetUrl"
+          style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:6px; color:var(--ink);">
+          URL Web App Google Apps Script (akhiran <code>/exec</code>):
+        </label>
+        <input type="url" id="inputSheetUrl" placeholder="https://script.google.com/macros/s/.../exec"
+          style="width:100%; padding:10px 14px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--bg); color:var(--ink); font-size:0.88rem; outline:none;">
+        <small style="display:block; margin-top:8px; font-size:0.78rem; color:var(--muted); line-height:1.4;">
+          💡 <b>Cara cepat:</b> Ikuti petunjuk di file <code>google-apps-script.js</code>, buat deploy Web App ("Who has
+          access: Anyone"), lalu salin Web App URL-nya ke sini.
+        </small>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:18px;">
+        <button type="button" class="btn-join-group" style="flex:1; min-height:44px; font-size:0.95rem;"
+          onclick="saveSheetConfigUrl()">
+          <span>💾 Simpan & Sinkronkan</span>
+        </button>
+        <button type="button" class="btn-secondary" style="flex:0.6; min-height:44px;"
+          onclick="closeSheetConfigModal()">
+          Batal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST NOTIFICATION -->
+  <div class="toast-notice" id="toastNotice">
+    <span>✓</span> <span id="toastNoticeText">Link grup trip berhasil disalin!</span>
+  </div>
+
+  <script>
+    (function () {
+      var $ = function (id) { return document.getElementById(id); };
+      var rp = function (num) { return "Rp" + num.toLocaleString("id-ID"); };
+
+      function showToast(msg) {
+        var toast = $("toastNotice");
+        var toastText = $("toastNoticeText");
+        if (!toast) return;
+        if (toastText) toastText.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(function () {
+          toast.classList.remove("show");
+        }, 3200);
+      }
+      window.showToast = showToast;
+
+      // =========================================================================
+      // GOOGLE SHEETS & APPS SCRIPT WEB APP INTEGRATION CONFIGURATION
+      // =========================================================================
+      // Tempelkan URL Web App Google Apps Script Anda (akhiran /exec) di sini:
+      // Contoh: "https://script.google.com/macros/s/AKfycb.../exec"
+      var GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzR3wAg3kU9cSMCOtIUpmLi1ldAv1vf91_pkQoJah55XCj7McILgYOAx0-SuYT7paOh6Q/exec";
+
+      function getGoogleSheetUrl() {
+        if (GOOGLE_SHEET_WEBAPP_URL && GOOGLE_SHEET_WEBAPP_URL.trim().length > 0) {
+          return GOOGLE_SHEET_WEBAPP_URL.trim();
+        }
+        var stored = localStorage.getItem("TSJ_APPS_SCRIPT_URL");
+        return stored ? stored.trim() : "";
+      }
+
+      // Pastikan URL selalu tersimpan di storage browser
+      try {
+        if (GOOGLE_SHEET_WEBAPP_URL) {
+          localStorage.setItem("TSJ_APPS_SCRIPT_URL", GOOGLE_SHEET_WEBAPP_URL.trim());
+        }
+      } catch (e) { }
+
+      // ==========================================
+      // CONFIGURATION: EVENT VOL 6 & VOL 7
+      // ==========================================
+      var EVENTS_DATA = {
+        vol6: {
+          key: "vol6",
+          volTag: "VOL 6",
+          titleMain: "TEMAN",
+          titleHighlight: "SATUJALAN",
+          destination: "CURUG LEWIBUMI",
+          eventNameDisplay: "Vol 6: Goes to Curug Lewibumi",
+          badgeLimited: "⚡ KUOTA SANGAT TERBATAS!",
+          posterImg: "./TJ2.jpeg",
+          posterAlt: "Poster Teman Satu Jalan Vol 6 Goes to Curug Lewi Bumi",
+          date: "29 November 2026",
+          time: "06.00 WIB",
+          tikum: "Desa Kaduberum",
+          distance: "5 KM",
+          routeDesc: "5 KM (Desa Kadubereum - Curug Lewi Bumi)",
+          codePrefix: "TMN1JLN-V6-",
+          barcodeCaption: "VALIDASI TIKUM DESA KADUBEREUM",
+          waGroupUrl: "https://chat.whatsapp.com/DgIVi7aOfYjGh76TbuwxaZ",
+          waGroupName: "Trip TSJ Vol 6 - Curug Lewibumi",
+          tikumOptions: [
+            "Langsung ke Desa Kadubereum (06.00 WIB)",
+            "Konvoi Bersama dari Rest Area Tol Serang Timur (04.45 WIB)"
+          ],
+          packages: [
+            {
+              name: "Lovetrail One",
+              value: "Lovetrail One",
+              badge: "Solo",
+              desc: "Paket Petualang Mandiri / Individu (1 Orang). Simaksi Curug Lewibumi, Guide & Refreshment",
+              price: 125000,
+              priceUnit: "/1 orang",
+              defaultCount: 1,
+              checked: false
+            },
+            {
+              name: "Lovetrail Couple",
+              value: "Lovetrail Couple",
+              badge: "Populer",
+              desc: "Paket Pasangan Suami-Istri / Berdua (2 Orang). Simaksi Curug, Guide, Refreshment buah & Dokumentasi",
+              price: 250000,
+              priceUnit: "/2 orang",
+              defaultCount: 2,
+              checked: false
+            },
+            {
+              name: "Lovetrail Little",
+              value: "Lovetrail Little",
+              badge: "Keluarga",
+              desc: "Paket Keluarga dengan Anak (3 Orang). Trekking ramah anak 5 KM Kadubereum – Curug Lewi Bumi",
+              price: 375000,
+              priceUnit: "/3 orang",
+              defaultCount: 3,
+              checked: false
+            },
+            {
+              name: "Lovetrail Squad",
+              value: "Lovetrail Squad",
+              badge: "Squad",
+              desc: "Paket Rombongan Sahabat / Grup Petualang (4 Orang). Guide & fasilitas lengkap rombongan",
+              price: 500000,
+              priceUnit: "/4 orang",
+              defaultCount: 4,
+              checked: false
+            }
+          ]
+        },
+        vol7: {
+          key: "vol7",
+          volTag: "VOL 7",
+          titleMain: "TEMAN",
+          titleHighlight: "SATUJALAN",
+          destination: "CURUG PANJANG",
+          eventNameDisplay: "Vol 7: Goes to Curug Panjang",
+          badgeLimited: "⚡ KUOTA SANGAT TERBATAS!",
+          posterImg: "./TJ1.jpeg",
+          posterAlt: "Poster Teman Satu Jalan Vol 7 Goes to Curug Panjang",
+          date: "27 Desember 2026",
+          time: "06.00 WIB",
+          tikum: "Bukit Waruwangi",
+          distance: "5 KM",
+          routeDesc: "5 KM (Treking Bukit Waruwangi – Curug Panjang)",
+          codePrefix: "TMN1JLN-V7-",
+          barcodeCaption: "VALIDASI TIKUM BUKIT WARUWANGI",
+          waGroupUrl: "https://chat.whatsapp.com/Hpiy3L44HJ9BDizakcZK39",
+          waGroupName: "Trip TSJ Vol 7 - Curug Panjang",
+          tikumOptions: [
+            "Langsung ke Bukit Waruwangi (06.00 WIB)",
+            "Konvoi Bersama dari Rest Area Tol Cilegon Timur (04.45 WIB)",
+            "Meeting Point Shuttle Stasiun Serang / Rangkasbitung (05.00 WIB)"
+          ],
+          packages: [
+            {
+              name: "Lovetrail One",
+              value: "Lovetrail One",
+              badge: "Solo",
+              desc: "Paket Petualang Mandiri / Individu (1 Orang). Simaksi Bukit Waruwangi & Curug Panjang, Guide",
+              price: 125000,
+              priceUnit: "/1 orang",
+              defaultCount: 1,
+              checked: false
+            },
+            {
+              name: "Lovetrail Couple",
+              value: "Lovetrail Couple",
+              badge: "Populer",
+              desc: "Paket Pasangan Suami-Istri / Berdua (2 Orang). Simaksi Bukit Waruwangi & Curug Panjang, Guide, Buah & Dokumentasi",
+              price: 250000,
+              priceUnit: "/2 orang",
+              defaultCount: 2,
+              checked: false
+            },
+            {
+              name: "Lovetrail Little",
+              value: "Lovetrail Little",
+              badge: "Keluarga",
+              desc: "Paket Keluarga dengan Anak (3 Orang). Trekking alam ramah keluarga 5 KM Bukit Waruwangi – Curug Panjang",
+              price: 375000,
+              priceUnit: "/3 orang",
+              defaultCount: 3,
+              checked: false
+            },
+            {
+              name: "Lovetrail Squad",
+              value: "Lovetrail Squad",
+              badge: "Squad",
+              desc: "Paket Rombongan Sahabat / Grup Petualang (4 Orang). Guide & fasilitas lengkap rombongan",
+              price: 500000,
+              priceUnit: "/4 orang",
+              defaultCount: 4,
+              checked: false
+            }
+          ]
+        }
+      };
+
+      var currentEventKey = "vol6";
+
+      // Theme Toggle (Dark / Light)
+      var html = document.documentElement;
+      var themeBtn = $("themeBtn");
+      var themeIcon = $("themeIcon");
+      var themeText = $("themeText");
+
+      themeBtn.addEventListener("click", function () {
+        var isDark = html.getAttribute("data-theme") !== "light";
+        if (isDark) {
+          html.setAttribute("data-theme", "light");
+          themeIcon.textContent = "🌲";
+          themeText.textContent = "Forest Night";
+        } else {
+          html.setAttribute("data-theme", "dark");
+          themeIcon.textContent = "☀️";
+          themeText.textContent = "Outdoor Day";
+        }
+      });
+
+
+      // ==========================================
+      // EVENT SWITCHER LOGIC (VOL 6 <-> VOL 7)
+      // ==========================================
+      window.switchEvent = function (eventKey) {
+        if (!EVENTS_DATA[eventKey]) return;
+        if (eventKey === "vol7") {
+          showToast("🔒 Pendaftaran Vol 7 (Curug Panjang) saat ini masih digembok / belum dibuka.");
+          return;
+        }
+        currentEventKey = eventKey;
+        var evt = EVENTS_DATA[eventKey];
+
+        // 1. Update Tabs UI
+        $("tabVol6").classList.toggle("active", eventKey === "vol6");
+        $("tabVol7").classList.toggle("active", eventKey === "vol7");
+        $("tabVol6").setAttribute("aria-selected", eventKey === "vol6");
+        $("tabVol7").setAttribute("aria-selected", eventKey === "vol7");
+
+        // 2. Update Hero Banner & Headings
+        $("heroImg").src = evt.posterImg;
+        $("heroImg").alt = evt.posterAlt;
+        $("badgeLimited").textContent = evt.badgeLimited;
+        $("heroVolTag").textContent = evt.volTag;
+        $("heroMainTitle").textContent = evt.titleMain;
+        $("heroHighlightTitle").textContent = evt.titleHighlight;
+        $("heroDestination").textContent = evt.destination;
+        $("paketEventName").textContent = evt.volTag;
+
+        // 3. Update Specs Grid
+        $("specDate").textContent = evt.date;
+        $("specTime").textContent = evt.time;
+        $("specTikum").textContent = evt.tikum;
+        $("specDistance").textContent = evt.distance;
+        $("routeInput").value = evt.routeDesc;
+
+        // 4. Update Titik Kumpul Options
+        var tikumSelect = $("titikKumpulSelect");
+        tikumSelect.innerHTML = '<option value="" selected disabled>-- Pilih Titik Kumpul --</option>';
+        evt.tikumOptions.forEach(function (optText) {
+          var op = document.createElement("option");
+          op.value = optText;
+          op.textContent = optText;
+          tikumSelect.appendChild(op);
+        });
+
+        // 5. Render Ticket Packages for the selected Event
+        renderTicketsForCurrentEvent();
+
+        // 6. Resync Explorer Cards
+        syncExplorersWithPackage();
+      };
+
+      function renderTicketsForCurrentEvent() {
+        var evt = EVENTS_DATA[currentEventKey];
+        var container = $("ticketsContainer");
+        container.innerHTML = "";
+
+        evt.packages.forEach(function (pkg, idx) {
+          var label = document.createElement("label");
+          label.className = "tk";
+
+          var badgeHtml = pkg.badge ? `<span class="tk-badge">${pkg.badge}</span>` : "";
+
+          label.innerHTML = `
+        <input type="radio" name="tk" value="${pkg.value}" data-default-count="${pkg.defaultCount}" ${pkg.checked ? "checked" : ""}>
+        <div class="tk-card">
+          <div class="tk-info">
+            <b>${pkg.name} ${badgeHtml}</b>
+          </div>
+          <div class="tk-check-icon">✓</div>
+        </div>
+      `;
+
+          container.appendChild(label);
+        });
+
+        // Add change listeners
+        container.querySelectorAll('input[name="tk"]').forEach(function (radio) {
+          radio.addEventListener("change", function () {
+            mark($("tkbox"), true);
+            var target = parseInt(this.dataset.defaultCount, 10) || 1;
+            var cards = explorerContainer.querySelectorAll(".explorer-card");
+
+            if (cards.length === 0) {
+              for (var i = 1; i <= target; i++) {
+                explorerContainer.appendChild(createExplorerCard(i));
+              }
+            } else if (cards.length < target) {
+              for (var j = cards.length + 1; j <= target; j++) {
+                explorerContainer.appendChild(createExplorerCard(j));
+              }
+            } else if (cards.length > target) {
+              for (var k = cards.length - 1; k >= target; k--) {
+                cards[k].remove();
+              }
+            }
+            renumberCards();
+          });
+        });
+      }
+
+      function getSelectedTicket() {
+        return document.querySelector('input[name="tk"]:checked');
+      }
+
+      // ==========================================
+      // DYNAMIC MULTI-EXPLORER LOGIC
+      // ==========================================
+      var explorerContainer = $("explorerContainer");
+      var btnAddExplorer = $("btnAddExplorer");
+      var totalBadgeCount = $("totalBadgeCount");
+      var rosterSummaryText = $("rosterSummaryText");
+
+      var explorerCounter = 0;
+
+      function createExplorerCard(index) {
+        explorerCounter++;
+        var cardId = "explorer_card_" + explorerCounter;
+        var isLeader = (index === 1);
+
+        var card = document.createElement("div");
+        card.className = "explorer-card" + (isLeader ? " pic-card" : "");
+        card.id = cardId;
+
+        var headerHtml = isLeader
+          ? `<div class="explorer-title-box">
+               <div class="explorer-title-main">
+                 <span class="exp-icon-title">👤 Petualang 1</span>
+                 <span class="explorer-badge pic-badge">Wajib (PIC)</span>
+               </div>
+               <div class="explorer-subtitle">Penanggung Jawab / Kontak Utama Rombongan</div>
+             </div>`
+          : `<div class="explorer-title-box">
+               <div class="explorer-title-main">
+                 <span class="exp-icon-title">🥾 Petualang ${index}</span>
+               </div>
+               <div class="explorer-subtitle">Anggota Rombongan</div>
+             </div>
+             <div class="explorer-actions">
+               <button type="button" class="btn-del-explorer" onclick="removeExplorerCard('${cardId}')">🗑️ Hapus</button>
+             </div>`;
+
+        var roleOptions = isLeader
+          ? `<option value="" selected disabled>-- Pilih Status Hubungan / Peran --</option>
+         <option value="Suami / Ayah (Ketua)">Suami / Ayah (Ketua Rombongan)</option>
+         <option value="Ikhwan (Ketua)">Ikhwan (Ketua Rombongan)</option>
+         <option value="Istri / Ibu (Ketua)">Istri / Ibu (Ketua Rombongan)</option>
+         <option value="Saudara Tertua (Ketua)">Saudara Tertua (Ketua)</option>`
+          : `<option value="" selected disabled>-- Pilih Status Hubungan / Peran --</option>
+         <option value="Istri">Istri (Pasangan)</option>
+         <option value="Suami">Suami (Pasangan)</option>
+         <option value="Anak">Anak Kandung</option>
+         <option value="Saudara Kandung">Saudara Kandung (Semahram)</option>
+         <option value="Orang Tua">Orang Tua (Ayah/Ibu)</option>
+         <option value="Teman Ikhwan">Rekan Ikhwan (Laki-laki)</option>`;
+
+        card.innerHTML = `
+      <div class="explorer-top">
+        ${headerHtml}
+      </div>
+
+      <div class="row">
+        <div class="f" data-req>
+          <label for="${cardId}_nama">Nama Lengkap Sesuai Identitas (KTP/KIA)</label>
+          <input type="text" id="${cardId}_nama" class="exp-name" placeholder="${isLeader ? 'Contoh: Muhammad Farhan' : 'Nama lengkap peserta ke-' + index}">
+          <p class="err">Nama lengkap petualang wajib diisi.</p>
+        </div>
+
+        <div class="f" data-req>
+          <label for="${cardId}_peran">Status Hubungan / Peran</label>
+          <select id="${cardId}_peran" class="exp-role">
+            ${roleOptions}
+          </select>
+          <p class="err">Pilih status hubungan / peran.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="f" data-req>
+          <label for="${cardId}_gender">Jenis Kelamin</label>
+          <select id="${cardId}_gender" class="exp-gender">
+            <option value="" selected disabled>-- Pilih Jenis Kelamin --</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+          <p class="err">Pilih jenis kelamin.</p>
+        </div>
+
+        <div class="f" data-req>
+          <label for="${cardId}_usia">Usia / Kategori</label>
+          <input type="text" id="${cardId}_usia" class="exp-age" placeholder="Contoh: 28 Tahun / Dewasa">
+          <p class="err">Usia / kategori petualang wajib diisi.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="f" ${isLeader ? 'data-req' : ''}>
+          <label for="${cardId}_hp">No. WhatsApp / HP ${isLeader ? '' : '<span class="opt">(Opsional jika sama dg ketua)</span>'}</label>
+          <input type="tel" id="${cardId}_hp" class="exp-hp" placeholder="${isLeader ? '08xxxxxxxxxx (Wajib untuk info grup)' : '08xxxxxxxxxx (Boleh dikosongkan jika anak/istri)'}">
+          <p class="err">Nomor WhatsApp wajib 9–14 digit angka.</p>
+        </div>
+
+        <div class="f" ${isLeader ? 'data-req' : ''}>
+          <label for="${cardId}_email">Email ${isLeader ? '' : '<span class="opt">(Opsional)</span>'}</label>
+          <input type="email" id="${cardId}_email" class="exp-email" placeholder="${isLeader ? 'nama@email.com (Untuk pengiriman e-tiket)' : 'email@anggota.com'}">
+          <p class="err">Masukkan format email yang valid.</p>
+        </div>
+      </div>
+
+      <div class="f">
+        <label for="${cardId}_medis">Catatan Medis / Alergi <span class="opt">(Opsional)</span></label>
+        <input type="text" id="${cardId}_medis" class="exp-medis" placeholder="Contoh: Asma, alergi dingin, fit normal">
+      </div>
+    `;
+
+        card.querySelectorAll("input").forEach(function (inp) {
+          inp.addEventListener("input", function () {
+            if (this.value.trim().length >= 2) mark(this.closest(".f"), true);
+          });
+        });
+        card.querySelectorAll("select").forEach(function (sel) {
+          sel.addEventListener("change", function () {
+            if (this.value) mark(this.closest(".f"), true);
+          });
+        });
+
+        return card;
+      }
+
+      function renumberCards() {
+        var cards = explorerContainer.querySelectorAll(".explorer-card");
+        cards.forEach(function (card, idx) {
+          var num = idx + 1;
+          var titleEl = card.querySelector(".exp-icon-title");
+          var subEl = card.querySelector(".explorer-subtitle");
+          if (idx === 0) {
+            if (titleEl) titleEl.textContent = "👤 Petualang 1";
+            if (subEl) subEl.textContent = "Penanggung Jawab / Kontak Utama Rombongan";
+          } else {
+            if (titleEl) titleEl.textContent = "🥾 Petualang " + num;
+            if (subEl) subEl.textContent = "Anggota Rombongan";
+          }
+        });
+
+        var count = cards.length;
+        totalBadgeCount.textContent = count;
+        rosterSummaryText.textContent = count + " Petualang Terdaftar";
+      }
+
+      window.removeExplorerCard = function (cardId) {
+        var card = document.getElementById(cardId);
+        if (card) {
+          card.remove();
+          renumberCards();
+        }
+      };
+
+      btnAddExplorer.addEventListener("click", function () {
+        var currentCount = explorerContainer.querySelectorAll(".explorer-card").length;
+        var newCard = createExplorerCard(currentCount + 1);
+        explorerContainer.appendChild(newCard);
+        renumberCards();
+        newCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      function syncExplorersWithPackage() {
+        var ticket = getSelectedTicket();
+        var targetExplorers = ticket ? (parseInt(ticket.dataset.defaultCount, 10) || 1) : 1;
+
+        var currentCards = explorerContainer.querySelectorAll(".explorer-card");
+        var currentCount = currentCards.length;
+
+        if (currentCount === 0) {
+          for (var i = 1; i <= targetExplorers; i++) {
+            explorerContainer.appendChild(createExplorerCard(i));
+          }
+        } else if (ticket && currentCount < targetExplorers) {
+          for (var j = currentCount + 1; j <= targetExplorers; j++) {
+            explorerContainer.appendChild(createExplorerCard(j));
+          }
+        }
+        renumberCards();
+      }
+
+      // File Upload Feedback
+      var fileInput = $("file");
+      var fileNameBadge = $("fileNameBadge");
+      var fileNameTxt = $("fileNameTxt");
+
+      fileInput.addEventListener("change", function () {
+        if (this.files && this.files.length > 0) {
+          fileNameTxt.textContent = this.files[0].name;
+          fileNameBadge.classList.remove("hide");
+          mark($("bukti"), true);
+        } else {
+          fileNameBadge.classList.add("hide");
+        }
+      });
+
+      function mark(container, isValid) {
+        if (container) {
+          container.classList.toggle("bad", !isValid);
+        }
+        return isValid;
+      }
+
+      // Clear errors on change / input for static fields
+      document.querySelectorAll('input[name="transportasi"]').forEach(function (r) {
+        r.addEventListener("change", function () { mark($("transportBox"), true); });
+      });
+      document.querySelectorAll('input[name="pengalamanTrek"]').forEach(function (r) {
+        r.addEventListener("change", function () { mark($("trekBox"), true); });
+      });
+      document.querySelectorAll('input[name="intensitasOlahraga"]').forEach(function (r) {
+        r.addEventListener("change", function () { mark($("sportBox"), true); });
+      });
+      $("titikKumpulSelect").addEventListener("change", function () {
+        if (this.value) mark($("tikumField"), true);
+      });
+      $("alamatLengkap").addEventListener("input", function () {
+        if (this.value.trim().length >= 5) mark($("alamatBox"), true);
+      });
+      $("kota").addEventListener("input", function () {
+        if (this.value.trim().length >= 2) mark($("kotaBox"), true);
+      });
+      $("darurat").addEventListener("input", function () {
+        if (this.value.trim().length >= 2) mark(this.closest(".f"), true);
+      });
+      $("daruratHp").addEventListener("input", function () {
+        if (/^\+?[0-9\s-]{9,16}$/.test(this.value.trim())) mark(this.closest(".f"), true);
+      });
+      for (var j = 1; j <= 5; j++) {
+        (function (n) {
+          var chk = $("janji" + n);
+          if (chk) {
+            chk.addEventListener("change", function () {
+              if (this.checked) mark($("boxJanji" + n), true);
+            });
+          }
+        })(j);
+      }
+
+      var isSubmitting = false;
+
+      // Submit Handler
+      $("f").addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (isSubmitting) return;
+        var isValid = true;
+        var firstErrorField = null;
+
+        function checkField(container, condition) {
+          var ok = mark(container, condition);
+          if (!ok) {
+            isValid = false;
+            if (!firstErrorField) firstErrorField = container;
+          }
+        }
+
+        // 1. Validate all explorer cards
+        var cards = explorerContainer.querySelectorAll(".explorer-card");
+        if (cards.length === 0) {
+          alert("Harap tambahkan minimal 1 data petualang.");
+          return;
+        }
+
+        var explorerList = [];
+
+        cards.forEach(function (card, idx) {
+          var nameInput = card.querySelector(".exp-name");
+          var roleSelect = card.querySelector(".exp-role");
+          var genderSelect = card.querySelector(".exp-gender");
+          var ageSelect = card.querySelector(".exp-age");
+          var hpInput = card.querySelector(".exp-hp");
+          var emailInput = card.querySelector(".exp-email");
+          var medisInput = card.querySelector(".exp-medis");
+
+          var nameVal = nameInput ? nameInput.value.trim() : "";
+          var hpVal = hpInput ? hpInput.value.trim() : "";
+          var emailVal = emailInput ? emailInput.value.trim() : "";
+          var medisVal = medisInput ? medisInput.value.trim() : "-";
+
+          // Validate name
+          checkField(nameInput.closest(".f"), nameVal.length >= 2);
+
+          // Validate role, gender, age
+          var roleVal = roleSelect ? roleSelect.value.trim() : "";
+          var genderVal = genderSelect ? genderSelect.value.trim() : "";
+          var ageVal = ageSelect ? ageSelect.value.trim() : "";
+          if (roleSelect) checkField(roleSelect.closest(".f"), roleVal !== "");
+          if (genderSelect) checkField(genderSelect.closest(".f"), genderVal !== "");
+          if (ageSelect) checkField(ageSelect.closest(".f"), ageVal.length >= 1);
+
+          // Validate Leader contact
+          if (idx === 0) {
+            checkField(hpInput.closest(".f"), /^\+?[0-9\s-]{9,16}$/.test(hpVal));
+            checkField(emailInput.closest(".f"), /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal));
+          } else {
+            if (hpVal.length > 0) {
+              checkField(hpInput.closest(".f"), /^\+?[0-9\s-]{9,16}$/.test(hpVal));
+            } else {
+              mark(hpInput.closest(".f"), true);
+            }
+          }
+
+          explorerList.push({
+            num: idx + 1,
+            nama: nameVal,
+            peran: roleVal || "Peserta",
+            gender: genderVal || "-",
+            usia: ageVal || "-",
+            hp: hpVal,
+            email: emailVal,
+            medis: medisVal || "-"
+          });
+        });
+
+        // 2. Validate Section 1 Selections
+        var transportRadio = document.querySelector('input[name="transportasi"]:checked');
+        checkField($("transportBox"), !!transportRadio);
+
+        var trekRadio = document.querySelector('input[name="pengalamanTrek"]:checked');
+        checkField($("trekBox"), !!trekRadio);
+
+        var sportRadio = document.querySelector('input[name="intensitasOlahraga"]:checked');
+        checkField($("sportBox"), !!sportRadio);
+
+        // 3. Validate Alamat Lengkap & Kota Domisili
+        checkField($("alamatBox"), $("alamatLengkap").value.trim().length >= 5);
+        checkField($("kotaBox"), $("kota").value.trim().length >= 2);
+
+        // 4. Validate Titik Kumpul
+        var tikumVal = $("titikKumpulSelect") ? $("titikKumpulSelect").value.trim() : "";
+        checkField($("tikumField"), tikumVal !== "");
+
+        // 5. Validate Emergency Contact
+        checkField($("darurat").closest(".f"), $("darurat").value.trim().length >= 2);
+        checkField($("daruratHp").closest(".f"), /^\+?[0-9\s-]{9,16}$/.test($("daruratHp").value.trim()));
+
+        // 6. Ticket Selection
+        checkField($("tkbox"), !!getSelectedTicket());
+
+        // 7. Payment Proof (Wajib Diunggah)
+        var hasFile = (fileInput && fileInput.files && fileInput.files.length > 0);
+        checkField($("bukti"), hasFile);
+
+        // 8. Janji Seru & Aman 🌿 (5 Poin Wajib Centang)
+        checkField($("boxJanji1"), $("janji1").checked);
+        checkField($("boxJanji2"), $("janji2").checked);
+        checkField($("boxJanji3"), $("janji3").checked);
+        checkField($("boxJanji4"), $("janji4").checked);
+        checkField($("boxJanji5"), $("janji5").checked);
+
+        if (!isValid) {
+          isSubmitting = false;
+          if (firstErrorField) {
+            firstErrorField.scrollIntoView({ behavior: "smooth", block: "center" });
+            var inputInside = firstErrorField.querySelector("input, select, textarea");
+            if (inputInside) inputInside.focus();
+          }
+          return;
+        }
+
+        isSubmitting = true;
+
+        // Tampilkan feedback tombol proses
+        var submitBtn = $("f").querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>⏳ Memproses & Mendaftarkan Rombongan...</span>';
+        }
+
+        // Success Generation
+        var evt = EVENTS_DATA[currentEventKey];
+        var randomCode = evt.codePrefix + Math.floor(1000 + Math.random() * 9000);
+        $("passCode").textContent = randomCode;
+
+        var leader = explorerList[0];
+        $("de").textContent = leader.email || "email terdaftar";
+        $("dhp").textContent = leader.hp || $("daruratHp").value;
+        $("passEventName").textContent = evt.eventNameDisplay;
+        $("passTk").textContent = getSelectedTicket().value;
+        $("passTotalOrang").textContent = explorerList.length + " Orang Petualang";
+
+        var transportRadio = document.querySelector('input[name="transportasi"]:checked');
+        var trekRadio = document.querySelector('input[name="pengalamanTrek"]:checked');
+        var sportRadio = document.querySelector('input[name="intensitasOlahraga"]:checked');
+        if ($("passTransport")) $("passTransport").textContent = transportRadio ? transportRadio.value : "-";
+        if ($("passKebugaran")) $("passKebugaran").textContent = (trekRadio ? trekRadio.value : "-") + " • Olahraga: " + (sportRadio ? sportRadio.value : "-");
+
+        $("passMepo").textContent = $("titikKumpulSelect").value;
+        if ($("passBarcodeCaption")) $("passBarcodeCaption").textContent = evt.barcodeCaption;
+
+        // Build the Roster List for all explorers
+        var passRosterList = $("passRosterList");
+        passRosterList.innerHTML = "";
+        explorerList.forEach(function (exp) {
+          var li = document.createElement("li");
+          li.innerHTML = `<b>${exp.nama}</b> (${exp.peran}) — <span class="meta">${exp.gender}, ${exp.usia}</span>`;
+          passRosterList.appendChild(li);
+        });
+
+        // Siapkan Payload Lengkap Rombongan untuk Google Spreadsheet
+        var fullAddress = ($("alamatLengkap") ? $("alamatLengkap").value.trim() : "");
+        var cityVal = ($("kota") ? $("kota").value.trim() : "");
+        var combinedAddress = fullAddress ? (fullAddress + (cityVal ? ", " + cityVal : "")) : (cityVal || "-");
+
+        var payload = {
+          timestamp: new Date().toLocaleString("id-ID"),
+          kodeRegistrasi: randomCode,
+          eventNama: evt.eventNameDisplay,
+          eventKey: currentEventKey,
+          paketTrekking: (getSelectedTicket() ? getSelectedTicket().value : "Paket Trekking"),
+          leaderHp: leader.hp || $("daruratHp").value.trim(),
+          leaderEmail: leader.email || "",
+          alamatLengkap: fullAddress || "-",
+          kotaDomisili: combinedAddress,
+          transportasi: transportRadio ? transportRadio.value : "-",
+          pengalamanTrek: trekRadio ? trekRadio.value : "-",
+          intensitasOlahraga: sportRadio ? sportRadio.value : "-",
+          titikKumpul: $("titikKumpulSelect") ? $("titikKumpulSelect").value : "-",
+          kontakDaruratNama: $("darurat").value.trim(),
+          kontakDaruratHp: $("daruratHp").value.trim(),
+          buktiTransferFileName: (fileInput && fileInput.files && fileInput.files.length > 0) ? fileInput.files[0].name : "Struk Transfer Terlampir",
+          explorers: explorerList
+        };
+
+        // Simpan data pendaftaran aktif ke memory window untuk export CSV
+        window.currentRegistrationData = payload;
+
+        // Simpan cadangan riwayat ke localStorage browser
+        try {
+          var savedList = JSON.parse(localStorage.getItem("TSJ_REGISTRATIONS") || "[]");
+          savedList.push(payload);
+          localStorage.setItem("TSJ_REGISTRATIONS", JSON.stringify(savedList));
+        } catch (err) {
+          console.warn("Storage warning:", err);
+        }
+
+        // 1. KIRIM & SIMPAN DATA KE GOOGLE SPREADSHEET
+        var scriptUrl = getGoogleSheetUrl();
+        var pill = $("sheetStatusPill");
+        var pillText = $("sheetStatusText");
+        var pillIcon = $("sheetStatusIcon");
+
+        if (scriptUrl) {
+          if (pill) {
+            pill.className = "sheet-status-pill saving clickable";
+            if (pillIcon) pillIcon.textContent = "⏳";
+            if (pillText) pillText.textContent = "Sedang mengirim & mencatat ke Google Spreadsheet...";
+          }
+
+          var payloadString = JSON.stringify(payload);
+          var delivered = false;
+
+          function markSaved() {
+            if (delivered) return;
+            delivered = true;
+            if (pill) {
+              pill.className = "sheet-status-pill success clickable";
+              if (pillIcon) pillIcon.textContent = "✅";
+              if (pillText) pillText.textContent = "Semua data rombongan (" + explorerList.length + " petualang) tersimpan di Google Spreadsheet!";
+            }
+          }
+
+          // Kirim via fetch POST (pengiriman tunggal yang bersih)
+          fetch(scriptUrl, {
+            method: "POST",
+            mode: "no-cors",
+            cache: "no-cache",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: payloadString
+          })
+            .then(function () {
+              markSaved();
+            })
+            .catch(function (err) {
+              console.warn("Fetch terkendala:", err);
+              if (!delivered && pill) {
+                pill.className = "sheet-status-pill warning clickable";
+                if (pillIcon) pillIcon.textContent = "⚠️";
+                if (pillText) pillText.textContent = "Data tersimpan di perangkat. Klik untuk coba kirim ulang ke Google Sheets.";
+              }
+            });
+
+        } else {
+          if (pill) {
+            pill.className = "sheet-status-pill clickable";
+            if (pillIcon) pillIcon.textContent = "💾";
+            if (pillText) pillText.textContent = "Data rombongan tersimpan di sistem browser. Klik untuk hubungkan Google Sheets ⚙️";
+          }
+        }
+
+        // 2. PERBARUI KARTU AJAKAN GRUP DI HALAMAN SUKSES
+        if ($("groupEventName")) $("groupEventName").textContent = evt.volTag;
+        if ($("groupEventDest")) $("groupEventDest").textContent = evt.destination;
+        if ($("btnJoinGroup")) {
+          $("btnJoinGroup").href = evt.waGroupUrl;
+          if ($("btnJoinGroupText")) $("btnJoinGroupText").textContent = "Gabung WhatsApp Group " + evt.volTag + " Sekarang";
+        }
+        if ($("adminWaLink")) {
+          $("adminWaLink").href = "https://wa.me/6285882582729?text=" + encodeURIComponent("Assalamu'alaikum Admin TSJ, saya mendaftar " + evt.eventNameDisplay + " [Kode: " + randomCode + "]. Mohon verifikasi pendaftaran & akses grup trip.");
+        }
+        if ($("btnShareWa")) {
+          var shareText = "Bismillah! Kami sudah mendaftar trip *Teman Satu Jalan* (" + evt.eventNameDisplay + ") dengan Kode Registrasi: *" + randomCode + "*. Yuk gabung ke WhatsApp Group Trip resmi di link ini: " + evt.waGroupUrl;
+          $("btnShareWa").href = "https://wa.me/?text=" + encodeURIComponent(shareText);
+        }
+
+        // Tampilkan Halaman Sukses
+        $("f").classList.add("hide");
+        $("done").classList.remove("hide");
+        $("done").focus();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>🥾 DAFTARKAN ROMBONGAN PETUALANG</span>';
+        }
+        isSubmitting = false;
+
+        // 3. MUNCULKAN POPUP MODAL AJAKAN BERGABUNG KEDALAM GRUP TRIP
+        setTimeout(function () {
+          openGroupModal();
+        }, 350);
+      });
+
+      // ==========================================
+      // KEMBALI KE FORM ISIAN (TOMBOL SELESAI)
+      // ==========================================
+      window.backToForm = function () {
+        // 1. Tutup modal grup jika masih terbuka
+        closeGroupModal();
+
+        // 2. Sembunyikan layar sukses, tampilkan formulir
+        $("done").classList.add("hide");
+        $("f").classList.remove("hide");
+
+        // 3. Reset form
+        $("f").reset();
+
+        // 4. Inisialisasi ulang event (Vol 6 / Vol 7) dalam kondisi bersih
+        switchEvent(currentEventKey || "vol6");
+
+        // 5. Pastikan semua radio dan pilihan tidak tercentang
+        document.querySelectorAll('input[name="tk"]').forEach(function (r) { r.checked = false; });
+        document.querySelectorAll('input[name="transportasi"]').forEach(function (r) { r.checked = false; });
+        document.querySelectorAll('input[name="pengalamanTrek"]').forEach(function (r) { r.checked = false; });
+        document.querySelectorAll('input[name="intensitasOlahraga"]').forEach(function (r) { r.checked = false; });
+
+        // 6. Reset titik kumpul ke placeholder default
+        var tikumSelect = $("titikKumpulSelect");
+        if (tikumSelect) tikumSelect.selectedIndex = 0;
+
+        // 7. Reset petualang: buat 1 kartu petualang kosong
+        explorerContainer.innerHTML = "";
+        explorerContainer.appendChild(createExplorerCard(1));
+        renumberCards();
+
+        // 8. Reset isian teks & badge upload file
+        if ($("alamatLengkap")) $("alamatLengkap").value = "";
+        if ($("kota")) $("kota").value = "";
+        if ($("darurat")) $("darurat").value = "";
+        if ($("daruratHp")) $("daruratHp").value = "";
+        if ($("file")) $("file").value = "";
+        if ($("fileNameBadge")) $("fileNameBadge").classList.add("hide");
+        for (var k = 1; k <= 5; k++) {
+          if ($("janji" + k)) $("janji" + k).checked = false;
+        }
+
+        // 9. Bersihkan semua tanda error merah (.bad)
+        document.querySelectorAll(".bad").forEach(function (el) {
+          el.classList.remove("bad");
+        });
+
+        // 10. Re-enable tombol submit jika disabled
+        var submitBtn = $("f").querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>🥾 DAFTARKAN ROMBONGAN PETUALANG</span>';
+        }
+        isSubmitting = false;
+
+        // 11. Scroll mulus kembali ke atas formulir
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      // ==========================================
+      // MODAL AJAKAN BERGABUNG GRUP TRIP HANDLERS
+      // ==========================================
+      window.openGroupModal = function () {
+        var evt = EVENTS_DATA[currentEventKey];
+        if (!evt) return;
+        if ($("modalEventBadge")) $("modalEventBadge").textContent = evt.volTag;
+        if ($("modalEventName")) $("modalEventName").textContent = evt.eventNameDisplay;
+        if ($("modalJoinBtn")) {
+          $("modalJoinBtn").href = evt.waGroupUrl;
+          if ($("modalJoinBtnText")) $("modalJoinBtnText").textContent = "Gabung Grup WhatsApp " + evt.volTag + " Sekarang";
+        }
+        if ($("modalAdminWa")) {
+          $("modalAdminWa").href = "https://wa.me/6285882582729?text=" + encodeURIComponent("Assalamu'alaikum Admin TSJ, mohon bantuan akses grup trip " + evt.eventNameDisplay);
+        }
+        $("groupInviteModal").classList.remove("hide");
+      };
+
+      window.closeGroupModal = function () {
+        $("groupInviteModal").classList.add("hide");
+      };
+
+      window.copyTripGroupLink = function () {
+        var evt = EVENTS_DATA[currentEventKey];
+        var url = (evt && evt.waGroupUrl) ? evt.waGroupUrl : "https://chat.whatsapp.com/invite";
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(function () {
+            showToast("✓ Link grup WhatsApp trip berhasil disalin!");
+            updateCopyBtnTexts();
+          }).catch(function () {
+            fallbackCopyText(url);
+          });
+        } else {
+          fallbackCopyText(url);
+        }
+      };
+
+      function fallbackCopyText(text) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand("copy");
+          showToast("✓ Link grup WhatsApp trip berhasil disalin!");
+          updateCopyBtnTexts();
+        } catch (e) {
+          prompt("Salin tautan WhatsApp Group Trip:", text);
+        }
+        document.body.removeChild(ta);
+      }
+
+      function updateCopyBtnTexts() {
+        if ($("modalBtnCopyText")) $("modalBtnCopyText").textContent = "✓ Link Disalin!";
+        if ($("btnCopyCardText")) $("btnCopyCardText").textContent = "✓ Link Disalin!";
+        setTimeout(function () {
+          if ($("modalBtnCopyText")) $("modalBtnCopyText").textContent = "Salin Link Grup";
+          if ($("btnCopyCardText")) $("btnCopyCardText").textContent = "Salin Link Grup";
+        }, 3000);
+      }
+
+      // Toast notice helper is defined above: window.showToast = showToast;
+
+      // ==========================================
+      // GOOGLE SHEETS SETUP MODAL HANDLERS
+      // ==========================================
+      window.openSheetConfigModal = function () {
+        var currentUrl = getGoogleSheetUrl();
+        if ($("inputSheetUrl")) $("inputSheetUrl").value = currentUrl;
+        $("sheetConfigModal").classList.remove("hide");
+      };
+
+      window.closeSheetConfigModal = function () {
+        $("sheetConfigModal").classList.add("hide");
+      };
+
+      window.saveSheetConfigUrl = function () {
+        var input = $("inputSheetUrl");
+        var url = input ? input.value.trim() : "";
+        localStorage.setItem("TSJ_APPS_SCRIPT_URL", url);
+        showToast("✓ Pengaturan Google Sheets berhasil disimpan!");
+        closeSheetConfigModal();
+
+        // Ambil data aktif atau data registrasi terakhir dari localStorage jika halaman sempat di-refresh
+        var regData = window.currentRegistrationData;
+        if (!regData) {
+          try {
+            var list = JSON.parse(localStorage.getItem("TSJ_REGISTRATIONS") || "[]");
+            if (list.length > 0) regData = list[list.length - 1];
+          } catch (e) { }
+        }
+
+        if (regData && url) {
+          var pill = $("sheetStatusPill");
+          var pillText = $("sheetStatusText");
+          var pillIcon = $("sheetStatusIcon");
+          if (pill) {
+            pill.className = "sheet-status-pill saving clickable";
+            if (pillIcon) pillIcon.textContent = "⏳";
+            if (pillText) pillText.textContent = "Menyinkronkan data rombongan ke Google Spreadsheet...";
+          }
+
+          var payloadString = JSON.stringify(regData);
+
+          fetch(url, {
+            method: "POST",
+            mode: "no-cors",
+            cache: "no-cache",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: payloadString
+          }).then(function () {
+            if (pill) {
+              pill.className = "sheet-status-pill success clickable";
+              if (pillIcon) pillIcon.textContent = "✅";
+              if (pillText) pillText.textContent = "Data rombongan berhasil tersimpan di Google Spreadsheet!";
+            }
+          }).catch(function (err) {
+            console.warn(err);
+            if (navigator.sendBeacon) {
+              navigator.sendBeacon(url, payloadString);
+            }
+          });
+        }
+      };
+
+      // ==========================================
+      // UNDUH DATA SPREADSHEET (.CSV) LOKAL
+      // ==========================================
+      window.downloadCurrentCsv = function () {
+        var data = window.currentRegistrationData;
+        if (!data || !data.explorers || data.explorers.length === 0) {
+          alert("Belum ada data rombongan yang didaftarkan.");
+          return;
+        }
+
+        var headers = [
+          "Waktu Pendaftaran",
+          "Kode Registrasi",
+          "Edisi Event",
+          "Paket Trekking",
+          "No. Petualang",
+          "Nama Lengkap",
+          "Status / Hubungan",
+          "Jenis Kelamin",
+          "Usia / Kategori",
+          "No. WhatsApp",
+          "Email",
+          "Catatan Medis",
+          "Alamat Lengkap Domisili",
+          "Transportasi Titik Kumpul",
+          "Pengalaman Trekking",
+          "Intensitas Olahraga",
+          "Titik Kumpul",
+          "Nama Kontak Darurat",
+          "No. HP Darurat",
+          "Nama File Bukti Transfer"
+        ];
+
+        function escapeCsv(val) {
+          if (val === null || val === undefined) return '""';
+          var s = String(val).replace(/"/g, '""');
+          return '"' + s + '"';
+        }
+
+        var rows = [headers.map(escapeCsv).join(",")];
+
+        data.explorers.forEach(function (exp, idx) {
+          var row = [
+            data.timestamp || new Date().toLocaleString("id-ID"),
+            data.kodeRegistrasi || "",
+            data.eventNama || "",
+            data.paketTrekking || "",
+            "Petualang " + (idx + 1),
+            exp.nama || "",
+            exp.peran || "",
+            exp.gender || "",
+            exp.usia || "",
+            exp.hp || (idx === 0 ? data.leaderHp : ""),
+            exp.email || (idx === 0 ? data.leaderEmail : ""),
+            exp.medis || "-",
+            data.kotaDomisili || "",
+            data.transportasi || "",
+            data.pengalamanTrek || "",
+            data.intensitasOlahraga || "",
+            data.titikKumpul || "",
+            data.kontakDaruratNama || "",
+            data.kontakDaruratHp || "",
+            data.buktiTransferFileName || "Tidak ada / Konfirmasi WA"
+          ];
+          rows.push(row.map(escapeCsv).join(","));
+        });
+
+        var csvContent = "\uFEFF" + rows.join("\r\n");
+        var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        var blobUrl = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = "Pendaftaran_TSJ_" + (data.kodeRegistrasi || "data") + ".csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl);
+      };
+
+      // Close modal on Escape key
+      window.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeGroupModal();
+          closeSheetConfigModal();
+        }
+      });
+
+      // Initialize Default on Page Load (Vol 6)
+      switchEvent("vol6");
+    })();
+  </script>
+
+</body>
+
+</html>
