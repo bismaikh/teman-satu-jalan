@@ -358,6 +358,177 @@
       font-weight: 800;
     }
 
+    /* ========================================= */
+    /* PROMPT: PILIH EKSPEDISI DAHULU SEBELUM MUNCUL */
+    /* ========================================= */
+    .no-event-prompt {
+      background: var(--card);
+      border: 1.5px dashed var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 38px 24px;
+      text-align: center;
+      margin-top: 4px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      animation: fadeIn 0.4s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prompt-icon-ring {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: var(--ok-bg);
+      border: 1.5px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 0 20px var(--primary-glow);
+      animation: pulseGlow 2.5s infinite ease-in-out;
+    }
+
+    .prompt-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(132, 204, 22, 0.12);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .pulsing-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulseDot 1.4s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.7); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 16px var(--primary-glow); }
+      50% { box-shadow: 0 0 28px rgba(132, 204, 22, 0.45); }
+    }
+
+    .prompt-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .prompt-desc {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 22px;
+      line-height: 1.6;
+    }
+
+    .prompt-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 480px) {
+      .prompt-actions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .prompt-expedition-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .prompt-expedition-card:hover {
+      background: var(--card-hover);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--primary-glow);
+    }
+
+    .prompt-expedition-card.highlight {
+      border-color: rgba(132, 204, 22, 0.4);
+      background: rgba(132, 204, 22, 0.05);
+    }
+
+    [data-theme="light"] .prompt-expedition-card {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    [data-theme="light"] .prompt-expedition-card.highlight {
+      background: rgba(132, 204, 22, 0.08);
+    }
+
+    .pec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .pec-tag {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent-sky);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .pec-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .pec-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .pec-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: var(--font-body);
+    }
+
+    .event-content-wrapper {
+      animation: fadeIn 0.4s ease-out;
+    }
+
     /* Poster Hero Container */
     .hero-card {
       background: var(--card);
@@ -2732,8 +2903,8 @@
           <span class="tab-meta">5 KM • Kadubereum</span>
         </button>
 
-        <button type="button" class="tab-btn active" id="tabVol7" onclick="switchEvent('vol7')" role="tab"
-          aria-selected="true" title="Pendaftaran Vol 7 (Curug Panjang)">
+        <button type="button" class="tab-btn" id="tabVol7" onclick="switchEvent('vol7')" role="tab"
+          aria-selected="false" title="Pendaftaran Vol 7 (Curug Panjang)">
           <div class="tab-header-row">
             <span class="tab-vol">VOL 7</span>
             <span class="tab-badge">27 Des 2026</span>
@@ -2744,8 +2915,44 @@
       </div>
     </div>
 
-    <!-- Hero Poster Showcase (Dynamic based on selected event) -->
-    <header class="hero-card">
+    <!-- PROMPT: PILIH EKSPEDISI DAHULU SEBELUM RINCIAN & FORM MUNCUL -->
+    <div id="noEventPrompt" class="no-event-prompt">
+      <div class="prompt-icon-ring">
+        <span class="prompt-icon">🧭</span>
+      </div>
+      <div class="prompt-badge">
+        <span class="pulsing-dot"></span>
+        <span>LANGKAH 1: PILIH EKSPEDISI</span>
+      </div>
+      <h2 class="prompt-title">Pilih Ekspedisi Anda Terlebih Dahulu</h2>
+      <p class="prompt-desc">
+        Silakan klik salah satu ekspedisi di atas (<b>VOL 6: Curug Lewibumi</b> atau <b>VOL 7: Curug Panjang</b>) untuk membuka poster rute perjalanan, rincian paket trekking, dan formulir pendaftaran rombongan.
+      </p>
+      <div class="prompt-actions-grid">
+        <button type="button" class="prompt-expedition-card" onclick="switchEvent('vol6')">
+          <div class="pec-header">
+            <span class="pec-tag">VOL 6 • 29 Nov 2026</span>
+            <span class="pec-badge">Pilih & Buka ➔</span>
+          </div>
+          <div class="pec-title">🌊 Curug Lewibumi</div>
+          <div class="pec-meta">5 KM Trekking • Desa Kadubereum</div>
+        </button>
+
+        <button type="button" class="prompt-expedition-card highlight" onclick="switchEvent('vol7')">
+          <div class="pec-header">
+            <span class="pec-tag">VOL 7 • 27 Des 2026</span>
+            <span class="pec-badge">Pilih & Buka ➔</span>
+          </div>
+          <div class="pec-title">🌲 Curug Panjang</div>
+          <div class="pec-meta">5 KM Trekking • Bukit Waruwangi</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- WRAPPER DETAIL EKSPEDISI & FORMULIR (BARU MUNCUL SETELAH EKSPEDISI DIPILIH) -->
+    <div id="eventContentWrapper" class="event-content-wrapper hide">
+      <!-- Hero Poster Showcase (Dynamic based on selected event) -->
+      <header class="hero-card">
       <div class="hero-visual" id="heroVisual">
         <div class="carousel-container" id="heroCarousel" aria-roledescription="carousel" aria-label="Showcase Poster dan Informasi Event">
           <div class="carousel-track" id="heroCarouselTrack">
@@ -3190,6 +3397,7 @@
         kami kirim lewat WhatsApp penanggung jawab. Pastikan nomornya aktif, biar kabar seru nggak nyasar! 🌄
       </p>
     </form>
+    </div> <!-- /#eventContentWrapper -->
 
     <!-- Success Confirmation Screen (Boarding Pass & Multi-Explorer Roster) -->
     <section class="done hide" id="done" aria-live="polite" tabindex="-1">
@@ -3656,7 +3864,7 @@
         }
       };
 
-      var currentEventKey = "vol7";
+      var currentEventKey = null;
 
       // Theme Toggle (Dark / Light)
       var html = document.documentElement;
@@ -3916,8 +4124,17 @@
       // ==========================================
       window.switchEvent = function (eventKey) {
         if (!EVENTS_DATA[eventKey]) return;
+        var isFirstSelection = !currentEventKey;
         currentEventKey = eventKey;
         var evt = EVENTS_DATA[eventKey];
+
+        // 0. Toggle Prompt vs Content Visibility
+        if ($("noEventPrompt")) {
+          $("noEventPrompt").classList.add("hide");
+        }
+        if ($("eventContentWrapper")) {
+          $("eventContentWrapper").classList.remove("hide");
+        }
 
         // 1. Update Tabs UI
         $("tabVol6").classList.toggle("active", eventKey === "vol6");
@@ -3974,6 +4191,16 @@
 
         // 6. Resync Explorer Cards
         syncExplorersWithPackage();
+
+        // 7. Smooth Scroll on first selection from prompt
+        if (isFirstSelection) {
+          setTimeout(function () {
+            var targetEl = $("eventContentWrapper");
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }, 60);
+        }
       };
 
       function renderTicketsForCurrentEvent() {
@@ -4035,7 +4262,7 @@
 
       function updateQrisAmountDisplay() {
         var ticket = getSelectedTicket();
-        var evt = EVENTS_DATA[currentEventKey];
+        var evt = currentEventKey ? EVENTS_DATA[currentEventKey] : null;
         var qrisTotal = $("qrisTotalDisplay");
         var qrisSub = $("qrisPackageSub");
         if (!qrisTotal) return;
@@ -4589,8 +4816,9 @@
         // 1. Tutup modal grup jika masih terbuka
         closeGroupModal();
 
-        // 2. Sembunyikan layar sukses, tampilkan formulir
+        // 2. Sembunyikan layar sukses, tampilkan formulir & wrapper ekspedisi
         $("done").classList.add("hide");
+        if ($("eventContentWrapper")) $("eventContentWrapper").classList.remove("hide");
         $("f").classList.remove("hide");
 
         // 3. Reset form
@@ -4947,8 +5175,8 @@
         }
       });
 
-      // Initialize Default on Page Load (Vol 7)
-      switchEvent("vol7");
+      // Ekspedisi tidak dibuka otomatis — pengunjung harus memilih VOL 6 atau VOL 7 terlebih dahulu
+      // switchEvent akan dipicu ketika pengunjung mengklik tab atau kartu pilihan ekspedisi
     })();
   </script>
 
