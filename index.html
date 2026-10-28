@@ -2722,8 +2722,8 @@
         <span>🧭 Pilih Ekspedisi yang Ingin Diikuti:</span>
       </div>
       <div class="event-tabs" role="tablist">
-        <button type="button" class="tab-btn active" id="tabVol6" onclick="switchEvent('vol6')" role="tab"
-          aria-selected="true">
+        <button type="button" class="tab-btn" id="tabVol6" onclick="switchEvent('vol6')" role="tab"
+          aria-selected="false">
           <div class="tab-header-row">
             <span class="tab-vol">VOL 6</span>
             <span class="tab-badge">29 Nov 2026</span>
@@ -2732,14 +2732,14 @@
           <span class="tab-meta">5 KM • Kadubereum</span>
         </button>
 
-        <button type="button" class="tab-btn locked" id="tabVol7" onclick="switchEvent('vol7')" role="tab"
-          aria-selected="false" title="Pendaftaran Vol 7 (Curug Panjang) saat ini masih digembok / belum dibuka">
+        <button type="button" class="tab-btn active" id="tabVol7" onclick="switchEvent('vol7')" role="tab"
+          aria-selected="true" title="Pendaftaran Vol 7 (Curug Panjang)">
           <div class="tab-header-row">
-            <span class="tab-vol" style="color:var(--muted);">VOL 7</span>
-            <span class="tab-badge locked-badge">🔒 Digembok</span>
+            <span class="tab-vol">VOL 7</span>
+            <span class="tab-badge">27 Des 2026</span>
           </div>
-          <div class="tab-name" style="color:var(--muted);">🔒 Curug Panjang</div>
-          <span class="tab-meta">5 KM • Segera Dibuka</span>
+          <div class="tab-name">🌲 Curug Panjang</div>
+          <span class="tab-meta">5 KM • Bukit Waruwangi</span>
         </button>
       </div>
     </div>
@@ -2749,21 +2749,21 @@
       <div class="hero-visual" id="heroVisual">
         <div class="carousel-container" id="heroCarousel" aria-roledescription="carousel" aria-label="Showcase Poster dan Informasi Event">
           <div class="carousel-track" id="heroCarouselTrack">
-            <!-- Slide 1: TJ2.jpeg -->
+            <!-- Slide 1: TJ1.jpeg -->
             <div class="carousel-slide active" data-index="0">
-              <img id="heroImg" src="./TJ2.jpeg" alt="Poster Teman Satu Jalan Vol 6 Goes to Curug Lewi Bumi" loading="eager">
+              <img id="heroImg" src="./TJ1.jpeg" alt="Poster Teman Satu Jalan Vol 7 Goes to Curug Panjang" loading="eager">
             </div>
-            <!-- Slide 2: TJ11.jpeg -->
+            <!-- Slide 2: TJ21.png -->
             <div class="carousel-slide" data-index="1">
-              <img src="./TJ11.jpeg" alt="Rute Trek & Special Include Curug Lewibumi" loading="lazy">
+              <img src="./TJ21.png" alt="Rute Trek & Special Include Curug Panjang" loading="lazy">
             </div>
-            <!-- Slide 3: TJ12.jpeg -->
+            <!-- Slide 3: TJ22.png -->
             <div class="carousel-slide" data-index="2">
-              <img src="./TJ12.jpeg" alt="Bonus Buku Pulih Bersama Allah Khusus 10 Tiket Pertama" loading="lazy">
+              <img src="./TJ22.png" alt="Pilihan Paket Registrasi Vol 7 Curug Panjang" loading="lazy">
             </div>
-            <!-- Slide 4: info.jpeg -->
+            <!-- Slide 4: TJ12.jpeg -->
             <div class="carousel-slide" data-index="3">
-              <img src="./info.jpeg" alt="Pilihan Paket Registrasi Vol 6 Curug Lewibumi" loading="lazy">
+              <img src="./TJ12.jpeg" alt="Bonus Buku Pulih Bersama Allah Khusus 10 Tiket Pertama" loading="lazy">
             </div>
           </div>
 
@@ -2798,13 +2798,13 @@
       <div class="hero-headline">
         <div
           style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:6px;">
-          <span class="vol-tag" id="heroVolTag">VOL 6</span>
+          <span class="vol-tag" id="heroVolTag">VOL 7</span>
           <span class="hero-status-pill" id="badgeLimited">⚡ KUOTA SANGAT TERBATAS!</span>
         </div>
         <h1 class="main-title"><span id="heroMainTitle">TEMAN</span> <span class="highlight"
             id="heroHighlightTitle">SATUJALAN</span></h1>
         <div class="dest-badge">
-          GOES TO <span id="heroDestination">CURUG LEWIBUMI</span>
+          GOES TO <span id="heroDestination">CURUG PANJANG</span>
         </div>
       </div>
 
@@ -2812,7 +2812,7 @@
       <div class="specs-grid">
         <div class="spec-box">
           <span class="label">📅 Tanggal</span>
-          <span class="val" id="specDate">29 November 2026</span>
+          <span class="val" id="specDate">27 Desember 2026</span>
         </div>
         <div class="spec-box">
           <span class="label">⏰ Waktu</span>
@@ -2820,7 +2820,7 @@
         </div>
         <div class="spec-box">
           <span class="label">📍 Titik Kumpul</span>
-          <span class="val" id="specTikum">Desa Kaduberum</span>
+          <span class="val" id="specTikum">Bukit Waruwangi</span>
         </div>
         <div class="spec-box">
           <span class="label">🥾 Jarak Trek</span>
@@ -2833,7 +2833,7 @@
         <span class="mahram-icon">👥</span>
         <div class="mahram-text">
           <h4>Ketentuan Peserta</h4>
-          <p><b>Khusus:</b> Pasangan Suami-Istri (Couple), Keluarga (Family), Saudara Semahram, dan Ikhwan (Laki-laki).
+          <p id="mahramDesc"><b>Khusus:</b> Pasangan Suami-Istri (Couple), Keluarga (Family), Saudara Semahram, Ikhwan & Akhwat.
           </p>
         </div>
       </div>
@@ -2856,7 +2856,7 @@
       <!-- Section 1: Informasi Kegiatan & Paket -->
       <fieldset>
         <legend><span class="icon">📋</span> <span class="legend-title">1. Informasi Kegiatan & Paket</span> <span
-            class="legend-pill" id="paketEventName">Vol 6</span></legend>
+            class="legend-pill" id="paketEventName">Vol 7</span></legend>
 
         <!-- Pilihan Paket Trekking -->
         <div class="f" id="tkbox">
@@ -3375,9 +3375,9 @@
     <div class="modal-card" style="max-width: 480px; padding: 22px; text-align: center;">
       <button type="button" class="modal-close" onclick="closeInfoPosterModal()" aria-label="Tutup">&times;</button>
       <div class="modal-celebrate-badge" style="background:var(--ok-bg); color:var(--primary); border:1px solid var(--primary); margin-bottom:12px;">📊 INFOGRAFIS PAKET & HARGA</div>
-      <h3 id="modalInfoPosterTitle" style="font-family:var(--font-display); font-size:1.15rem; margin-bottom:12px; color:var(--ink);">Teman Satu Jalan Vol 6 — Rincian Paket</h3>
+      <h3 id="modalInfoPosterTitle" style="font-family:var(--font-display); font-size:1.15rem; margin-bottom:12px; color:var(--ink);">Teman Satu Jalan Vol 7 — Rincian Paket</h3>
       <div style="border-radius:var(--radius-md); overflow:hidden; border:1.5px solid var(--card-border); background:#0d1611; margin-bottom:14px; box-shadow:var(--shadow-sm);">
-        <img src="./info.jpeg" alt="Infografis Brosur Resmi TSJ Vol 6" style="width:100%; height:auto; display:block;">
+        <img id="modalInfoPosterImg" src="./TJ22.png" alt="Infografis Brosur Resmi TSJ" style="width:100%; height:auto; display:block;">
       </div>
       <button type="button" class="btn-modal-view-pass" onclick="closeInfoPosterModal()" style="width:100%;">Tutup Infografis</button>
     </div>
@@ -3509,6 +3509,10 @@
             { src: "./TJ12.jpeg", alt: "Bonus Buku Pulih Bersama Allah Khusus 10 Tiket Pertama" },
             { src: "./info.jpeg", alt: "Pilihan Paket Registrasi Vol 6 Curug Lewibumi" }
           ],
+          infoPosterImg: "./info.jpeg",
+          infoPosterAlt: "Pilihan Paket Registrasi Vol 6 Curug Lewibumi",
+          infoPosterTitle: "Teman Satu Jalan Vol 6 — Rincian Paket",
+          mahramNotice: "<b>Khusus:</b> Pasangan Suami-Istri (Couple), Keluarga (Family), Saudara Semahram, dan Ikhwan (Laki-laki).",
           date: "29 November 2026",
           time: "06.00 WIB",
           tikum: "Desa Kaduberum",
@@ -3580,8 +3584,15 @@
           posterImg: "./TJ1.jpeg",
           posterAlt: "Poster Teman Satu Jalan Vol 7 Goes to Curug Panjang",
           carouselImages: [
-            { src: "./TJ1.jpeg", alt: "Poster Teman Satu Jalan Vol 7 Goes to Curug Panjang" }
+            { src: "./TJ1.jpeg", alt: "Poster Teman Satu Jalan Vol 7 Goes to Curug Panjang" },
+            { src: "./TJ21.png", alt: "Rute Trek & Special Include Curug Panjang" },
+            { src: "./TJ22.png", alt: "Pilihan Paket Registrasi Vol 7 Curug Panjang" },
+            { src: "./TJ12.jpeg", alt: "Bonus Buku Pulih Bersama Allah Khusus 10 Tiket Pertama" }
           ],
+          infoPosterImg: "./TJ22.png",
+          infoPosterAlt: "Pilihan Paket Registrasi Vol 7 Curug Panjang",
+          infoPosterTitle: "Teman Satu Jalan Vol 7 — Rincian Paket",
+          mahramNotice: "<b>Khusus:</b> Pasangan Suami-Istri (Couple), Keluarga (Family), Saudara Semahram, Ikhwan & Akhwat.",
           date: "27 Desember 2026",
           time: "06.00 WIB",
           tikum: "Bukit Waruwangi",
@@ -3598,41 +3609,45 @@
           ],
           packages: [
             {
-              name: "Lovetrail One",
-              value: "Lovetrail One",
-              badge: "Solo",
-              desc: "Paket Petualang Mandiri / Individu (1 Orang). Simaksi Bukit Waruwangi & Curug Panjang, Guide",
-              price: 125000,
+              name: "Lovetrail Single",
+              value: "Lovetrail Single (200K - Ikhwan/Akhwat)",
+              badge: "200K",
+              desc: "(Ikhwan/Akhwat) • 1 Orang",
+              price: 200000,
+              priceDisplay: "200K",
               priceUnit: "/1 orang",
               defaultCount: 1,
               checked: false
             },
             {
               name: "Lovetrail Couple",
-              value: "Lovetrail Couple",
-              badge: "Populer",
-              desc: "Paket Pasangan Suami-Istri / Berdua (2 Orang). Simaksi Bukit Waruwangi & Curug Panjang, Guide, Buah & Dokumentasi",
-              price: 250000,
+              value: "Lovetrail Couple (400K - Suami-Istri / Adik-Kaka / Mahram)",
+              badge: "400K",
+              desc: "Suami-Istri / Adik-Kaka / Saudara Semahram • 2 Orang",
+              price: 400000,
+              priceDisplay: "400K",
               priceUnit: "/2 orang",
               defaultCount: 2,
               checked: false
             },
             {
-              name: "Lovetrail Little",
-              value: "Lovetrail Little",
-              badge: "Keluarga",
-              desc: "Paket Keluarga dengan Anak (3 Orang). Trekking alam ramah keluarga 5 KM Bukit Waruwangi – Curug Panjang",
-              price: 375000,
+              name: "Lovetrail Little Family",
+              value: "Lovetrail Little Family (585K - Keluarga 1 Anak)",
+              badge: "585K",
+              desc: "Keluarga 1 Anak • 3 Orang",
+              price: 585000,
+              priceDisplay: "585K",
               priceUnit: "/3 orang",
               defaultCount: 3,
               checked: false
             },
             {
-              name: "Lovetrail Squad",
-              value: "Lovetrail Squad",
-              badge: "Squad",
-              desc: "Paket Rombongan Sahabat / Grup Petualang (4 Orang). Guide & fasilitas lengkap rombongan",
-              price: 500000,
+              name: "Lovetrail Squad Family",
+              value: "Lovetrail Squad Family (775K - Keluarga 2 Anak)",
+              badge: "775K",
+              desc: "Keluarga 2 Anak • 4 Orang",
+              price: 775000,
+              priceDisplay: "775K",
               priceUnit: "/4 orang",
               defaultCount: 4,
               checked: false
@@ -3641,7 +3656,7 @@
         }
       };
 
-      var currentEventKey = "vol6";
+      var currentEventKey = "vol7";
 
       // Theme Toggle (Dark / Light)
       var html = document.documentElement;
@@ -3901,10 +3916,6 @@
       // ==========================================
       window.switchEvent = function (eventKey) {
         if (!EVENTS_DATA[eventKey]) return;
-        if (eventKey === "vol7") {
-          showToast("🔒 Pendaftaran Vol 7 (Curug Panjang) saat ini masih digembok / belum dibuka.");
-          return;
-        }
         currentEventKey = eventKey;
         var evt = EVENTS_DATA[eventKey];
 
@@ -3913,6 +3924,24 @@
         $("tabVol7").classList.toggle("active", eventKey === "vol7");
         $("tabVol6").setAttribute("aria-selected", eventKey === "vol6");
         $("tabVol7").setAttribute("aria-selected", eventKey === "vol7");
+
+        // Perbarui modal info brosur paket & visibilitas tombol
+        if ($("modalInfoPosterTitle")) {
+          $("modalInfoPosterTitle").textContent = evt.infoPosterTitle || ("Teman Satu Jalan " + evt.volTag + " — Rincian Paket");
+        }
+        var posterImgEl = $("modalInfoPosterImg") || ($("infoPosterModal") ? $("infoPosterModal").querySelector("img") : null);
+        if (posterImgEl && evt.infoPosterImg) {
+          posterImgEl.src = evt.infoPosterImg;
+          posterImgEl.alt = evt.infoPosterAlt || ("Infografis Brosur Resmi TSJ " + evt.volTag);
+        }
+        if ($("btnViewInfografis")) {
+          $("btnViewInfografis").style.display = "inline-flex";
+        }
+
+        // Perbarui ketentuan peserta mahram
+        if ($("mahramDesc") && evt.mahramNotice) {
+          $("mahramDesc").innerHTML = evt.mahramNotice;
+        }
 
         // 2. Update Hero Banner & Headings & Carousel
         setupHeroCarousel(evt.carouselImages || [{ src: evt.posterImg, alt: evt.posterAlt }]);
@@ -4568,7 +4597,7 @@
         $("f").reset();
 
         // 4. Inisialisasi ulang event (Vol 6 / Vol 7) dalam kondisi bersih
-        switchEvent(currentEventKey || "vol6");
+        switchEvent(currentEventKey || "vol7");
 
         // 5. Pastikan semua radio dan pilihan tidak tercentang
         document.querySelectorAll('input[name="tk"]').forEach(function (r) { r.checked = false; });
@@ -4918,8 +4947,8 @@
         }
       });
 
-      // Initialize Default on Page Load (Vol 6)
-      switchEvent("vol6");
+      // Initialize Default on Page Load (Vol 7)
+      switchEvent("vol7");
     })();
   </script>
 
