@@ -9,29 +9,28 @@ Formulir pendaftaran interaktif untuk kegiatan trekking alam ramah syari'ah (pas
 ## 🌟 Fitur Utama
 
 - **Event Showcase & Switcher Dinamis**:
-  - **Vol 6: Curug Lewibumi (Aktif)** — Informasi rute, tiket, kuota terbatas, dan titik kumpul Kadubereum / Pom Bensin Palima.
-  - **Vol 7: Curug Panjang (Digembok)** — Proteksi status terkunci dengan notifikasi ramah bagi peserta.
-- **Paket Trekking Fleksibel (Vol 6)**:
-  - Lovetrail Single (160K) — Ikhwan Only (1 Orang)
-  - Lovetrail Couple (320K) — Suami-Istri / Adik-Kaka / Saudara Semahram (2 Orang)
-  - Lovetrail Little Family (475K) — Keluarga 1 Anak (3 Orang)
-  - Lovetrail Squad Family (630K) — Keluarga 2 Anak (4 Orang)
+  - **Vol 6: Curug Lewibumi** — Rute 4 KM, meeting point Kadubereum / SPBU Palima.
+  - **Vol 7: Curug Panjang** — Rute 5 KM, meeting point Bukit Waruwangi / Rest Area Tol Cilegon Timur. Dilengkapi **Interactive Carousel 4 Slide** (TJ1.jpeg, TJ21.png, TJ22.png, TJ12.jpeg).
+  - **Pilihan Awal Ekspedisi**: Pengunjung memilih ekspedisi terlebih dahulu sebelum form dan detail ditampilkan.
+- **Pilihan Skema Pembayaran (DP 50% & Lunas 100%)**:
+  - **Lunas (100%)**: Bayar penuh sekarang, pendaftaran langsung terkonfirmasi tuntas.
+  - **DP (Uang Muka 50%)**: Cukup bayar 50% untuk mengamankan kuota slot petualang. Sisa pelunasan (50%) wajib dibayarkan paling lambat **H-3 sebelum hari keberangkatan trip**.
+  - Nominal QRIS dihitung dan disesuaikan otomatis saat memilih paket dan skema pembayaran.
+- **Paket Trekking Fleksibel**:
+  - **Vol 6**: Single (160K), Couple (320K), Little Family (475K), Squad Family (630K).
+  - **Vol 7**: Single (200K), Couple (400K), Little Family (585K), Squad Family (775K).
 - **Multi-Petualang Dinamis (Roster Rombongan)**:
   - Form otomatis menyesuaikan jumlah kartu petualang sesuai paket yang dipilih.
   - Petualang 1 otomatis menjadi Penanggung Jawab / PIC (Wajib PIC).
   - Kolom isian lengkap: Nama KTP/KIA, Status Peran/Hubungan, Jenis Kelamin, Usia/Kategori, No. WA, Email, dan Catatan Medis/Alergi.
-- **Kontak Darurat Terstruktur**:
-  - Wajib nomor keluarga di luar jalur demi keselamatan rombongan.
 - **Metode Pembayaran QRIS Resmi (Semua Bank & E-Wallet)**:
-  - Pembayaran praktis & otomatis via QRIS (BCA, Mandiri, BRI, BNI, GoPay, OVO, Dana, ShopeePay, dll).
-  - Tampilan tagihan otomatis sesuai paket trekking yang dipilih.
-  - Merchant: **ADVENTURE TEMANSATUJALAN** • NMID: `ID1025375876469` (fitur salin NMID, unduh gambar QRIS, dan zoom modal).
-- **Unggah Bukti Transfer & Janji Seru & Aman 🌿**:
-  - Dropzone bukti bayar (gambar/PDF).
-  - 5 poin komitmen syari'ah, adab petualang muslim, dan keselamatan.
-- **Integrasi Otomatis Google Sheets**:
-  - Terkoneksi dengan Web App Google Apps Script.
-  - Deduping data berdasarkan kode registrasi unik (`TMN1JLN-V6-xxxx`).
+  - Pembayaran instan via QRIS (BCA, Mandiri, BRI, BNI, GoPay, OVO, Dana, ShopeePay, dll).
+  - Merchant: **ADVENTURE TEMANSATUJALAN** • NMID: `ID1025375876469` (fitur salin NMID, unduh QRIS, dan zoom modal).
+- **Desain Google Spreadsheet Menarik & Otomatis**:
+  - **Tab 1: 📊 DASHBOARD & REKAP** — Kartu Metrik KPI (Total Petualang, Total Rombongan, Total Kas Masuk, Sisa Tagihan DP, Rekap Gender Ikhwan/Akhwat, dan Tabel Rekap per Event).
+  - **Tab 2: 👥 Data Peserta** — Master database lengkap dengan tema Forest Emerald & Lime, zebra striping, format Rupiah (`Rp #,##0`), serta conditional formatting otomatis.
+  - **Tab 3: 💰 Monitoring Pelunasan H-3** — Monitoring khusus peserta DP lengkap dengan **Link Klik Langsung WhatsApp** untuk menyapa & mengingatkan peserta.
+  - **Menu Khusus Google Sheets (`🌿 Teman Satu Jalan`)**: Satu klik untuk re-design, refresh rumus, dan insert data simulasi.
 - **Tema Dual Mode (Outdoor Day & Forest Night)**:
   - Mode malam hijau tentara & mode siang terang.
 - **Mobile Responsive**:

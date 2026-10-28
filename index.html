@@ -1643,6 +1643,299 @@
       letter-spacing: -0.01em;
     }
 
+    /* =========================================================================
+       SKEMA PEMBAYARAN (LUNAS & DP) STYLING
+       ========================================================================= */
+    .skema-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    .skema-card {
+      position: relative;
+      background: var(--card);
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .skema-card:hover {
+      border-color: var(--primary);
+      background: var(--card-hover);
+      box-shadow: 0 4px 18px var(--primary-glow);
+      transform: translateY(-1px);
+    }
+
+    .skema-card.active {
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 20px var(--primary-glow);
+      background: linear-gradient(145deg, rgba(21, 36, 27, 0.95), rgba(13, 22, 17, 0.95));
+    }
+
+    .skema-card.active.skema-dp-active {
+      border-color: #f59e0b;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.28);
+      background: linear-gradient(145deg, rgba(35, 27, 13, 0.95), rgba(20, 16, 9, 0.95));
+    }
+
+    [data-theme="light"] .skema-card {
+      background: #ffffff;
+      border-color: rgba(101, 163, 13, 0.28);
+    }
+
+    [data-theme="light"] .skema-card:hover {
+      background: #f9fbf8;
+      border-color: var(--primary);
+    }
+
+    [data-theme="light"] .skema-card.active {
+      background: #f7fdf4;
+      border-color: var(--primary);
+      box-shadow: 0 8px 24px rgba(77, 124, 15, 0.18);
+    }
+
+    [data-theme="light"] .skema-card.active.skema-dp-active {
+      background: #fffbeb;
+      border-color: #d97706;
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.18);
+    }
+
+    .skema-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .skema-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .skema-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skema-radio-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--muted);
+      position: relative;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .skema-card.active .skema-radio-circle {
+      border-color: var(--primary);
+      background: var(--primary);
+      box-shadow: 0 0 8px var(--primary-glow);
+    }
+
+    .skema-card.active.skema-dp-active .skema-radio-circle {
+      border-color: #f59e0b;
+      background: #f59e0b;
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+    }
+
+    .skema-card.active .skema-radio-circle::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary-ink);
+    }
+
+    .skema-title-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .skema-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--ink);
+    }
+
+    .skema-badge {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+      width: fit-content;
+    }
+
+    .badge-lunas {
+      background: var(--ok-bg);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .badge-dp {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.5);
+    }
+
+    [data-theme="light"] .badge-dp {
+      color: #b45309;
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(217, 119, 6, 0.4);
+    }
+
+    .skema-amount-badge {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--primary);
+      background: var(--ok-bg);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--primary);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .skema-amount-badge.dp {
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.14);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    [data-theme="light"] .skema-amount-badge.dp {
+      color: #b45309;
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(217, 119, 6, 0.35);
+    }
+
+    .skema-desc {
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .skema-info-pill {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--ok-bg);
+      border: 1px solid var(--primary);
+      padding: 3px 12px;
+      border-radius: 999px;
+      user-select: none;
+    }
+
+    /* Banner Ketentuan Lunas */
+    .lunas-notice-banner {
+      background: var(--ok-bg);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
+      color: var(--ink);
+      line-height: 1.45;
+      animation: qrisReveal 0.25s ease forwards;
+    }
+
+    [data-theme="light"] .lunas-notice-banner {
+      background: #f7fdf4;
+      border-color: rgba(101, 163, 13, 0.35);
+      color: #274011;
+    }
+
+    /* Banner Ketentuan DP */
+    .dp-notice-banner {
+      background: linear-gradient(145deg, rgba(35, 27, 13, 0.95), rgba(20, 16, 9, 0.95));
+      border: 1.5px solid rgba(245, 158, 11, 0.4);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      animation: qrisReveal 0.25s ease forwards;
+    }
+
+    [data-theme="light"] .dp-notice-banner {
+      background: linear-gradient(145deg, #fffbeb, #fef3c7);
+      border-color: rgba(217, 119, 6, 0.35);
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.1);
+    }
+
+    .dp-notice-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #fbbf24;
+      margin-bottom: 8px;
+    }
+
+    [data-theme="light"] .dp-notice-header {
+      color: #b45309;
+    }
+
+    .dp-notice-list {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .dp-notice-list li {
+      margin-bottom: 4px;
+    }
+
+    .dp-notice-list li b {
+      color: var(--ink);
+    }
+
+    .qris-dp-reminder {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.16);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      padding: 5px 12px;
+      border-radius: 6px;
+      animation: qrisReveal 0.25s ease;
+    }
+
+    [data-theme="light"] .qris-dp-reminder {
+      color: #b45309;
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(217, 119, 6, 0.3);
+    }
+
     /* Payment Method & QRIS Showcase */
     .payment-methods-grid {
       display: grid;
@@ -3236,6 +3529,72 @@
       <fieldset id="bayar">
         <legend><span class="icon">💳</span> <span class="legend-title">4. Metode Pembayaran & Bukti Transfer</span></legend>
 
+        <!-- Pilihan Skema Pembayaran: Lunas atau DP -->
+        <div class="f" id="skemaBayarBox">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+            <span class="lbl" style="margin-bottom:0;">Pilihan Skema Pembayaran</span>
+            <span class="skema-info-pill">
+              <span>💡 Bisa DP 50% atau Lunas</span>
+            </span>
+          </div>
+
+          <div class="skema-options-grid">
+            <!-- Opsi 1: Lunas 100% -->
+            <div class="skema-card active" id="skemaCardLunas" onclick="setPaymentScheme('Lunas')" role="button" tabindex="0" title="Pilih Pembayaran Lunas (100%)">
+              <input type="radio" name="skemaBayarRadio" id="skemaRadioLunas" value="Lunas" checked>
+              <div class="skema-card-header">
+                <div class="skema-title-group">
+                  <span class="skema-radio-circle"></span>
+                  <div class="skema-title-text">
+                    <span class="skema-name">Pembayaran Lunas (100%)</span>
+                    <span class="skema-badge badge-lunas">Paling Praktis</span>
+                  </div>
+                </div>
+                <div class="skema-amount-badge" id="skemaValLunas">Rp 0</div>
+              </div>
+              <p class="skema-desc">
+                Bayar penuh sekarang. Pendaftaran langsung tuntas terkonfirmasi 100% tanpa perlu transfer kedua menjelang hari H.
+              </p>
+            </div>
+
+            <!-- Opsi 2: DP / Uang Muka (50%) -->
+            <div class="skema-card" id="skemaCardDp" onclick="setPaymentScheme('DP')" role="button" tabindex="0" title="Pilih Pembayaran DP (50%)">
+              <input type="radio" name="skemaBayarRadio" id="skemaRadioDp" value="DP">
+              <div class="skema-card-header">
+                <div class="skema-title-group">
+                  <span class="skema-radio-circle"></span>
+                  <div class="skema-title-text">
+                    <span class="skema-name">DP / Uang Muka (50%)</span>
+                    <span class="skema-badge badge-dp">Kunci Kuota Dulu</span>
+                  </div>
+                </div>
+                <div class="skema-amount-badge dp" id="skemaValDp">Rp 0</div>
+              </div>
+              <p class="skema-desc">
+                Cukup bayar 50% sekarang untuk mengunci slot petualang Anda. Sisa pelunasan <b>50%</b> dibayarkan paling lambat <b>H-3 kegiatan</b>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Banner Ketentuan Lunas -->
+          <div class="lunas-notice-banner" id="lunasNoticeBanner">
+            <span>✅ <b>Pembayaran Lunas 100%:</b> Slot pendaftaran rombongan langsung terkonfirmasi resmi & tuntas. Anda siap berangkat tanpa memikirkan pelunasan lagi.</span>
+          </div>
+
+          <!-- Banner Informasi & Ketentuan DP -->
+          <div class="dp-notice-banner" id="dpNoticeBanner" style="display:none;">
+            <div class="dp-notice-header">
+              <span class="dp-notice-icon">📋</span>
+              <span>Ketentuan Pembayaran DP (Uang Muka 50%):</span>
+            </div>
+            <ul class="dp-notice-list">
+              <li><b>Kunci Slot Registrasi:</b> Transfer DP sebesar <b id="dpNoticeAmount">Rp 0</b> (50% dari harga paket) melalui QRIS di bawah dan unggah struknya untuk mengamankan kuota peserta Anda.</li>
+              <li><b>Sisa Pelunasan:</b> Sebesar <b id="dpNoticeRemaining">Rp 0</b> (50%) wajib dilunasi maksimal <b>H-3 sebelum hari keberangkatan trip</b>.</li>
+              <li><b>Metode Pelunasan:</b> Pelunasan dapat ditransfer via QRIS yang sama dan dikonfirmasi langsung ke WhatsApp Admin / di dalam WhatsApp Group Trip.</li>
+            </ul>
+          </div>
+        </div>
+
         <!-- Pilihan Metode Pembayaran: Hanya QRIS Saja (Klik untuk Menampilkan/Menutup) -->
         <div class="f" id="metodeBayarBox">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
@@ -3271,9 +3630,12 @@
         <div class="qris-showcase-box hide" id="qrisShowcaseBox">
           <div class="qris-amount-row">
             <div class="qris-amount-info">
-              <span class="qris-amount-label">Total Tagihan Registrasi:</span>
+              <span class="qris-amount-label" id="qrisAmountLabel">Total Tagihan Registrasi (Lunas 100%):</span>
               <div class="qris-amount-val" id="qrisTotalDisplay">Rp 0</div>
               <span class="qris-amount-sub" id="qrisPackageSub">Pilih salah satu paket trekking di bagian atas terlebih dahulu</span>
+              <div class="qris-dp-reminder hide" id="qrisDpReminder">
+                <span>⚠️ Sisa Pelunasan: <b id="qrisDpRemainingVal">Rp 0</b> (Wajib lunas maks. H-3 trip)</span>
+              </div>
             </div>
             <span class="qris-status-tag">⚡ Bebas Biaya Admin</span>
           </div>
@@ -3321,7 +3683,7 @@
 
         <!-- Unggah Struk / Bukti Transfer -->
         <div class="f" data-req id="bukti">
-          <label for="file">Unggah Struk / Bukti Pembayaran QRIS</label>
+          <label for="file" id="buktiTransferLabel">Unggah Struk / Bukti Pembayaran Lunas (100%)</label>
           <div class="file-dropzone" id="dropzone">
             <input id="file" type="file" accept="image/*,.pdf">
             <span class="file-icon">📸</span>
@@ -3407,11 +3769,6 @@
         <p class="done-sub">Alhamdulillah, seluruh data petualang telah tersimpan di sistem. Konfirmasi resmi dikirim ke
           <b id="de">email@anda.com</b> & WhatsApp <b id="dhp">0812xxxxxxx</b>.
         </p>
-        <div class="sheet-status-pill clickable" id="sheetStatusPill" onclick="openSheetConfigModal()"
-          title="Klik untuk cek status sinkronisasi atau atur Google Spreadsheet">
-          <span id="sheetStatusIcon">📊</span> <span id="sheetStatusText">Data rombongan siap dicatat di
-            Spreadsheet</span>
-        </div>
       </div>
 
       <!-- AJAKAN BERGABUNG KE GRUP WHATSAPP TRIP -->
@@ -3491,8 +3848,20 @@
           <span class="pass-value" id="passMepo">Desa Kadubereum (06.00 WIB)</span>
         </div>
         <div class="pass-row">
+          <span class="pass-label">Skema Pembayaran</span>
+          <span class="pass-value" id="passSkemaBayar" style="color:var(--primary); font-weight:800;">Lunas (100%)</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">Nominal Ditransfer</span>
+          <span class="pass-value" id="passNominalBayar">Rp 0</span>
+        </div>
+        <div class="pass-row hide" id="passRowSisa">
+          <span class="pass-label">Sisa Pelunasan (H-3)</span>
+          <span class="pass-value" id="passSisaBayar" style="color:#f59e0b; font-weight:800;">Rp 0 (Wajib lunas maks. H-3 trip)</span>
+        </div>
+        <div class="pass-row">
           <span class="pass-label">Metode Pembayaran</span>
-          <span class="pass-value" style="color:var(--primary); font-weight:800;">QRIS (ADVENTURE TEMANSATUJALAN)</span>
+          <span class="pass-value" style="color:var(--ink-secondary); font-weight:600;">QRIS (ADVENTURE TEMANSATUJALAN)</span>
         </div>
 
         <!-- Roster Seluruh Petualang yang Terdaftar -->
@@ -3615,44 +3984,6 @@
     </div>
   </div>
 
-  <!-- MODAL PENGATURAN GOOGLE SHEETS (WEB APP URL) -->
-  <div class="modal-overlay hide" id="sheetConfigModal" role="dialog" aria-modal="true"
-    aria-labelledby="modalSheetConfigTitle">
-    <div class="modal-card" style="max-width: 500px;">
-      <button type="button" class="modal-close" onclick="closeSheetConfigModal()" aria-label="Tutup">&times;</button>
-      <div class="modal-celebrate-badge" style="background:#0284c7; color:#fff;">📊 GOOGLE SPREADSHEET</div>
-      <h2 class="modal-title" id="modalSheetConfigTitle" style="margin-top:10px;">Sinkronisasi Google Sheets</h2>
-      <p class="modal-subtitle">
-        Formulir ini dapat mengirimkan semua data pendaftaran rombongan secara otomatis ke Google Spreadsheet Anda via
-        Google Apps Script.
-      </p>
-
-      <div style="text-align:left; margin:16px 0;">
-        <label for="inputSheetUrl"
-          style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:6px; color:var(--ink);">
-          URL Web App Google Apps Script (akhiran <code>/exec</code>):
-        </label>
-        <input type="url" id="inputSheetUrl" placeholder="https://script.google.com/macros/s/.../exec"
-          style="width:100%; padding:10px 14px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--bg); color:var(--ink); font-size:0.88rem; outline:none;">
-        <small style="display:block; margin-top:8px; font-size:0.78rem; color:var(--muted); line-height:1.4;">
-          💡 <b>Cara cepat:</b> Ikuti petunjuk di file <code>google-apps-script.js</code>, buat deploy Web App ("Who has
-          access: Anyone"), lalu salin Web App URL-nya ke sini.
-        </small>
-      </div>
-
-      <div style="display:flex; gap:10px; margin-top:18px;">
-        <button type="button" class="btn-join-group" style="flex:1; min-height:44px; font-size:0.95rem;"
-          onclick="saveSheetConfigUrl()">
-          <span>💾 Simpan & Sinkronkan</span>
-        </button>
-        <button type="button" class="btn-secondary" style="flex:0.6; min-height:44px;"
-          onclick="closeSheetConfigModal()">
-          Batal
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- FLOATING TOAST NOTIFICATION -->
   <div class="toast-notice" id="toastNotice">
     <span>✓</span> <span id="toastNoticeText">Link grup trip berhasil disalin!</span>
@@ -3678,9 +4009,8 @@
       // =========================================================================
       // GOOGLE SHEETS & APPS SCRIPT WEB APP INTEGRATION CONFIGURATION
       // =========================================================================
-      // Tempelkan URL Web App Google Apps Script Anda (akhiran /exec) di sini:
-      // Contoh: "https://script.google.com/macros/s/AKfycb.../exec"
-      var GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwKbCoVnEoxO6BtaqbrJym3uToe2-ROZ4lR49jrqUWXPRDBcHGXbhCHLTELQDIJrkPOdA/exec";
+      // URL Web App Google Apps Script Aktif:
+      var GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwVy1aa2ajN8W7o7MGl6FLWeFLaGgoy89GIuWf350sBwgngUNdDVQ111PiA2Y_u3CjPPg/exec";
 
       function getGoogleSheetUrl() {
         if (GOOGLE_SHEET_WEBAPP_URL && GOOGLE_SHEET_WEBAPP_URL.trim().length > 0) {
@@ -4260,25 +4590,127 @@
         updateQrisAmountDisplay();
       }
 
+      // ==========================================
+      // SKEMA PEMBAYARAN: LUNAS vs DP (50%)
+      // ==========================================
+      var currentPaymentScheme = "Lunas";
+
+      function setPaymentScheme(scheme) {
+        currentPaymentScheme = (scheme === "DP") ? "DP" : "Lunas";
+        var cardLunas = $("skemaCardLunas");
+        var cardDp = $("skemaCardDp");
+        var radioLunas = $("skemaRadioLunas");
+        var radioDp = $("skemaRadioDp");
+        var lunasBanner = $("lunasNoticeBanner");
+        var dpBanner = $("dpNoticeBanner");
+        var reminder = $("qrisDpReminder");
+
+        if (currentPaymentScheme === "DP") {
+          if (cardLunas) {
+            cardLunas.classList.remove("active");
+            cardLunas.classList.remove("skema-dp-active");
+          }
+          if (cardDp) {
+            cardDp.classList.add("active");
+            cardDp.classList.add("skema-dp-active");
+          }
+          if (radioDp) radioDp.checked = true;
+          if (lunasBanner) lunasBanner.style.display = "none";
+          if (dpBanner) dpBanner.style.display = "block";
+          if (reminder) reminder.classList.remove("hide");
+        } else {
+          if (cardDp) {
+            cardDp.classList.remove("active");
+            cardDp.classList.remove("skema-dp-active");
+          }
+          if (cardLunas) {
+            cardLunas.classList.add("active");
+            cardLunas.classList.remove("skema-dp-active");
+          }
+          if (radioLunas) radioLunas.checked = true;
+          if (lunasBanner) lunasBanner.style.display = "block";
+          if (dpBanner) dpBanner.style.display = "none";
+          if (reminder) reminder.classList.add("hide");
+        }
+
+        updateQrisAmountDisplay();
+      }
+      window.setPaymentScheme = setPaymentScheme;
+
+      ["skemaCardLunas", "skemaCardDp"].forEach(function (id) {
+        var el = $(id);
+        if (el) {
+          el.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setPaymentScheme(id === "skemaCardDp" ? "DP" : "Lunas");
+            }
+          });
+        }
+      });
+
       function updateQrisAmountDisplay() {
         var ticket = getSelectedTicket();
         var evt = currentEventKey ? EVENTS_DATA[currentEventKey] : null;
         var qrisTotal = $("qrisTotalDisplay");
         var qrisSub = $("qrisPackageSub");
-        if (!qrisTotal) return;
+        var qrisLabel = $("qrisAmountLabel");
+        var skemaValLunas = $("skemaValLunas");
+        var skemaValDp = $("skemaValDp");
+        var dpNoticeAmount = $("dpNoticeAmount");
+        var dpNoticeRemaining = $("dpNoticeRemaining");
+        var qrisDpRemainingVal = $("qrisDpRemainingVal");
+        var reminder = $("qrisDpReminder");
+        var buktiLabel = $("buktiTransferLabel");
+
+        if (buktiLabel) {
+          buktiLabel.textContent = (currentPaymentScheme === "DP")
+            ? "Unggah Struk / Bukti Pembayaran DP (50%)"
+            : "Unggah Struk / Bukti Pembayaran Lunas (100%)";
+        }
 
         if (ticket && evt && evt.packages) {
           var val = ticket.value;
           var pkg = evt.packages.find(function (p) { return p.value === val; });
           if (pkg && pkg.price) {
-            qrisTotal.textContent = "Rp " + pkg.price.toLocaleString("id-ID");
-            if (qrisSub) qrisSub.textContent = "Paket: " + pkg.name + " (" + (pkg.badge || pkg.priceDisplay || "") + " • " + (pkg.desc || "") + ")";
+            var fullPrice = pkg.price;
+            var dpPrice = Math.round(fullPrice * 0.5);
+            var sisaPrice = fullPrice - dpPrice;
+
+            var fullFormatted = "Rp " + fullPrice.toLocaleString("id-ID");
+            var dpFormatted = "Rp " + dpPrice.toLocaleString("id-ID");
+            var sisaFormatted = "Rp " + sisaPrice.toLocaleString("id-ID");
+
+            if (skemaValLunas) skemaValLunas.textContent = fullFormatted;
+            if (skemaValDp) skemaValDp.textContent = dpFormatted;
+            if (dpNoticeAmount) dpNoticeAmount.textContent = dpFormatted;
+            if (dpNoticeRemaining) dpNoticeRemaining.textContent = sisaFormatted;
+            if (qrisDpRemainingVal) qrisDpRemainingVal.textContent = sisaFormatted;
+
+            if (currentPaymentScheme === "DP") {
+              if (qrisLabel) qrisLabel.textContent = "Nominal Transfer QRIS Sekarang (DP 50%):";
+              if (qrisTotal) qrisTotal.textContent = dpFormatted;
+              if (qrisSub) qrisSub.textContent = "Paket: " + pkg.name + " • Uang Muka DP 50% (Total Tagihan Paket: " + fullFormatted + ")";
+              if (reminder) reminder.classList.remove("hide");
+            } else {
+              if (qrisLabel) qrisLabel.textContent = "Total Tagihan Registrasi (Lunas 100%):";
+              if (qrisTotal) qrisTotal.textContent = fullFormatted;
+              if (qrisSub) qrisSub.textContent = "Paket: " + pkg.name + " (" + (pkg.badge || pkg.priceDisplay || "") + " • " + (pkg.desc || "") + ")";
+              if (reminder) reminder.classList.add("hide");
+            }
             return;
           }
         }
 
-        qrisTotal.textContent = "Rp 0";
+        if (skemaValLunas) skemaValLunas.textContent = "Rp 0";
+        if (skemaValDp) skemaValDp.textContent = "Rp 0";
+        if (dpNoticeAmount) dpNoticeAmount.textContent = "Rp 0";
+        if (dpNoticeRemaining) dpNoticeRemaining.textContent = "Rp 0";
+        if (qrisDpRemainingVal) qrisDpRemainingVal.textContent = "Rp 0";
+        if (qrisLabel) qrisLabel.textContent = (currentPaymentScheme === "DP") ? "Nominal Transfer QRIS (DP 50%):" : "Total Tagihan Registrasi:";
+        if (qrisTotal) qrisTotal.textContent = "Rp 0";
         if (qrisSub) qrisSub.textContent = "Pilih salah satu paket trekking di bagian atas terlebih dahulu";
+        if (reminder) reminder.classList.add("hide");
       }
 
       function getSelectedTicket() {
@@ -4673,6 +5105,32 @@
         $("passMepo").textContent = $("titikKumpulSelect").value;
         if ($("passBarcodeCaption")) $("passBarcodeCaption").textContent = evt.barcodeCaption;
 
+        // Hitung rincian pembayaran DP atau Lunas
+        var ticket = getSelectedTicket();
+        var selectedPkg = (evt && evt.packages && ticket) ? evt.packages.find(function (p) { return p.value === ticket.value; }) : null;
+        var fullPrice = selectedPkg ? selectedPkg.price : 0;
+        var dpPrice = Math.round(fullPrice * 0.5);
+        var sisaPrice = fullPrice - dpPrice;
+
+        var isDp = (currentPaymentScheme === "DP");
+        var nominalStr = isDp ? ("Rp " + dpPrice.toLocaleString("id-ID")) : ("Rp " + fullPrice.toLocaleString("id-ID"));
+        var sisaStr = isDp ? ("Rp " + sisaPrice.toLocaleString("id-ID")) : "Rp 0 (Lunas)";
+        var skemaStr = isDp ? "DP / Uang Muka (50%)" : "Lunas (100%)";
+        var metodeStr = isDp 
+          ? ("QRIS - DP 50% (Bayar: " + nominalStr + ", Sisa: " + sisaStr + " maks. H-3)")
+          : ("QRIS - Lunas 100% (" + nominalStr + ")");
+
+        if ($("passSkemaBayar")) $("passSkemaBayar").textContent = skemaStr;
+        if ($("passNominalBayar")) $("passNominalBayar").textContent = nominalStr;
+        if ($("passRowSisa")) {
+          if (isDp) {
+            $("passRowSisa").classList.remove("hide");
+            if ($("passSisaBayar")) $("passSisaBayar").textContent = sisaStr + " (Wajib lunas maks. H-3 trip)";
+          } else {
+            $("passRowSisa").classList.add("hide");
+          }
+        }
+
         // Build the Roster List for all explorers
         var passRosterList = $("passRosterList");
         passRosterList.innerHTML = "";
@@ -4693,6 +5151,9 @@
           eventNama: evt.eventNameDisplay,
           eventKey: currentEventKey,
           paketTrekking: (getSelectedTicket() ? getSelectedTicket().value : "Paket Trekking"),
+          skemaPembayaran: skemaStr,
+          nominalBayar: nominalStr,
+          sisaPelunasan: sisaStr,
           leaderHp: leader.hp || $("daruratHp").value.trim(),
           leaderEmail: leader.email || "",
           alamatLengkap: fullAddress || "-",
@@ -4701,7 +5162,7 @@
           pengalamanTrek: trekRadio ? trekRadio.value : "-",
           intensitasOlahraga: sportRadio ? sportRadio.value : "-",
           titikKumpul: $("titikKumpulSelect") ? $("titikKumpulSelect").value : "-",
-          metodePembayaran: "QRIS (ADVENTURE TEMANSATUJALAN)",
+          metodePembayaran: metodeStr,
           kontakDaruratNama: $("darurat").value.trim(),
           kontakDaruratHp: $("daruratHp").value.trim(),
           buktiTransferFileName: (fileInput && fileInput.files && fileInput.files.length > 0) ? fileInput.files[0].name : "Struk Transfer Terlampir",
@@ -4721,32 +5182,9 @@
         }
 
         // 1. KIRIM & SIMPAN DATA KE GOOGLE SPREADSHEET
+        // 1. KIRIM & SIMPAN DATA KE GOOGLE SPREADSHEET (OTOMATIS DI LATAR BELAKANG)
         var scriptUrl = getGoogleSheetUrl();
-        var pill = $("sheetStatusPill");
-        var pillText = $("sheetStatusText");
-        var pillIcon = $("sheetStatusIcon");
-
         if (scriptUrl) {
-          if (pill) {
-            pill.className = "sheet-status-pill saving clickable";
-            if (pillIcon) pillIcon.textContent = "⏳";
-            if (pillText) pillText.textContent = "Sedang mengirim & mencatat ke Google Spreadsheet...";
-          }
-
-          var payloadString = JSON.stringify(payload);
-          var delivered = false;
-
-          function markSaved() {
-            if (delivered) return;
-            delivered = true;
-            if (pill) {
-              pill.className = "sheet-status-pill success clickable";
-              if (pillIcon) pillIcon.textContent = "✅";
-              if (pillText) pillText.textContent = "Semua data rombongan (" + explorerList.length + " petualang) tersimpan di Google Spreadsheet!";
-            }
-          }
-
-          // Kirim via fetch POST (pengiriman tunggal yang bersih)
           fetch(scriptUrl, {
             method: "POST",
             mode: "no-cors",
@@ -4754,26 +5192,10 @@
             headers: {
               "Content-Type": "text/plain;charset=utf-8"
             },
-            body: payloadString
-          })
-            .then(function () {
-              markSaved();
-            })
-            .catch(function (err) {
-              console.warn("Fetch terkendala:", err);
-              if (!delivered && pill) {
-                pill.className = "sheet-status-pill warning clickable";
-                if (pillIcon) pillIcon.textContent = "⚠️";
-                if (pillText) pillText.textContent = "Data tersimpan di perangkat. Klik untuk coba kirim ulang ke Google Sheets.";
-              }
-            });
-
-        } else {
-          if (pill) {
-            pill.className = "sheet-status-pill clickable";
-            if (pillIcon) pillIcon.textContent = "💾";
-            if (pillText) pillText.textContent = "Data rombongan tersimpan di sistem browser. Klik untuk hubungkan Google Sheets ⚙️";
-          }
+            body: JSON.stringify(payload)
+          }).catch(function (err) {
+            console.warn("Background spreadsheet sync notice:", err);
+          });
         }
 
         // 2. PERBARUI KARTU AJAKAN GRUP DI HALAMAN SUKSES
@@ -4784,7 +5206,8 @@
           if ($("btnJoinGroupText")) $("btnJoinGroupText").textContent = "Gabung WhatsApp Group " + evt.volTag + " Sekarang";
         }
         if ($("adminWaLink")) {
-          $("adminWaLink").href = "https://wa.me/6285882582729?text=" + encodeURIComponent("Assalamu'alaikum Admin TSJ, saya mendaftar " + evt.eventNameDisplay + " [Kode: " + randomCode + "]. Mohon verifikasi pendaftaran & akses grup trip.");
+          var adminMsg = "Assalamu'alaikum Admin TSJ, saya mendaftar " + evt.eventNameDisplay + " [Kode: " + randomCode + "] dengan Skema " + skemaStr + " (" + nominalStr + (isDp ? ", Sisa: " + sisaStr : "") + "). Mohon verifikasi pendaftaran & akses grup trip.";
+          $("adminWaLink").href = "https://wa.me/6285882582729?text=" + encodeURIComponent(adminMsg);
         }
         if ($("btnShareWa")) {
           var shareText = "Bismillah! Kami sudah mendaftar trip *Teman Satu Jalan* (" + evt.eventNameDisplay + ") dengan Kode Registrasi: *" + randomCode + "*. Yuk gabung ke WhatsApp Group Trip resmi di link ini: " + evt.waGroupUrl;
@@ -4823,6 +5246,9 @@
 
         // 3. Reset form
         $("f").reset();
+
+        // Reset skema pembayaran ke default Lunas
+        setPaymentScheme("Lunas");
 
         // 4. Inisialisasi ulang event (Vol 6 / Vol 7) dalam kondisi bersih
         switchEvent(currentEventKey || "vol7");
@@ -5020,69 +5446,7 @@
         });
       }
 
-      // ==========================================
-      // GOOGLE SHEETS SETUP MODAL HANDLERS
-      // ==========================================
-      window.openSheetConfigModal = function () {
-        var currentUrl = getGoogleSheetUrl();
-        if ($("inputSheetUrl")) $("inputSheetUrl").value = currentUrl;
-        $("sheetConfigModal").classList.remove("hide");
-      };
 
-      window.closeSheetConfigModal = function () {
-        $("sheetConfigModal").classList.add("hide");
-      };
-
-      window.saveSheetConfigUrl = function () {
-        var input = $("inputSheetUrl");
-        var url = input ? input.value.trim() : "";
-        localStorage.setItem("TSJ_APPS_SCRIPT_URL", url);
-        showToast("✓ Pengaturan Google Sheets berhasil disimpan!");
-        closeSheetConfigModal();
-
-        // Ambil data aktif atau data registrasi terakhir dari localStorage jika halaman sempat di-refresh
-        var regData = window.currentRegistrationData;
-        if (!regData) {
-          try {
-            var list = JSON.parse(localStorage.getItem("TSJ_REGISTRATIONS") || "[]");
-            if (list.length > 0) regData = list[list.length - 1];
-          } catch (e) { }
-        }
-
-        if (regData && url) {
-          var pill = $("sheetStatusPill");
-          var pillText = $("sheetStatusText");
-          var pillIcon = $("sheetStatusIcon");
-          if (pill) {
-            pill.className = "sheet-status-pill saving clickable";
-            if (pillIcon) pillIcon.textContent = "⏳";
-            if (pillText) pillText.textContent = "Menyinkronkan data rombongan ke Google Spreadsheet...";
-          }
-
-          var payloadString = JSON.stringify(regData);
-
-          fetch(url, {
-            method: "POST",
-            mode: "no-cors",
-            cache: "no-cache",
-            headers: {
-              "Content-Type": "text/plain;charset=utf-8"
-            },
-            body: payloadString
-          }).then(function () {
-            if (pill) {
-              pill.className = "sheet-status-pill success clickable";
-              if (pillIcon) pillIcon.textContent = "✅";
-              if (pillText) pillText.textContent = "Data rombongan berhasil tersimpan di Google Spreadsheet!";
-            }
-          }).catch(function (err) {
-            console.warn(err);
-            if (navigator.sendBeacon) {
-              navigator.sendBeacon(url, payloadString);
-            }
-          });
-        }
-      };
 
       // ==========================================
       // UNDUH DATA SPREADSHEET (.CSV) LOKAL
@@ -5169,7 +5533,6 @@
       window.addEventListener("keydown", function (e) {
         if (e.key === "Escape") {
           closeGroupModal();
-          closeSheetConfigModal();
           closeInfoPosterModal();
           closeQrisZoomModal();
         }
