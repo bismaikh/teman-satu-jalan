@@ -3571,7 +3571,7 @@
                 <div class="skema-amount-badge dp" id="skemaValDp">Rp 0</div>
               </div>
               <p class="skema-desc">
-                Cukup bayar 50% sekarang untuk mengunci slot petualang Anda. Sisa pelunasan <b>50%</b> dibayarkan paling lambat <b>H-3 kegiatan</b>.
+                Cukup bayar 50% sekarang untuk mengunci slot petualang Anda. Sisa pelunasan <b>50%</b> dibayarkan paling lambat <b>H-7 kegiatan</b>.
               </p>
             </div>
           </div>
@@ -3589,7 +3589,7 @@
             </div>
             <ul class="dp-notice-list">
               <li><b>Kunci Slot Registrasi:</b> Transfer DP sebesar <b id="dpNoticeAmount">Rp 0</b> (50% dari harga paket) melalui QRIS di bawah dan unggah struknya untuk mengamankan kuota peserta Anda.</li>
-              <li><b>Sisa Pelunasan:</b> Sebesar <b id="dpNoticeRemaining">Rp 0</b> (50%) wajib dilunasi maksimal <b>H-3 sebelum hari keberangkatan trip</b>.</li>
+              <li><b>Sisa Pelunasan:</b> Sebesar <b id="dpNoticeRemaining">Rp 0</b> (50%) wajib dilunasi maksimal <b>H-7 sebelum hari keberangkatan trip</b>.</li>
               <li><b>Metode Pelunasan:</b> Pelunasan dapat ditransfer via QRIS yang sama dan dikonfirmasi langsung ke WhatsApp Admin / di dalam WhatsApp Group Trip.</li>
             </ul>
           </div>
@@ -3634,7 +3634,7 @@
               <div class="qris-amount-val" id="qrisTotalDisplay">Rp 0</div>
               <span class="qris-amount-sub" id="qrisPackageSub">Pilih salah satu paket trekking di bagian atas terlebih dahulu</span>
               <div class="qris-dp-reminder hide" id="qrisDpReminder">
-                <span>⚠️ Sisa Pelunasan: <b id="qrisDpRemainingVal">Rp 0</b> (Wajib lunas maks. H-3 trip)</span>
+                <span>⚠️ Sisa Pelunasan: <b id="qrisDpRemainingVal">Rp 0</b> (Wajib lunas maks. H-7 trip)</span>
               </div>
             </div>
             <span class="qris-status-tag">⚡ Bebas Biaya Admin</span>
@@ -3856,8 +3856,8 @@
           <span class="pass-value" id="passNominalBayar">Rp 0</span>
         </div>
         <div class="pass-row hide" id="passRowSisa">
-          <span class="pass-label">Sisa Pelunasan (H-3)</span>
-          <span class="pass-value" id="passSisaBayar" style="color:#f59e0b; font-weight:800;">Rp 0 (Wajib lunas maks. H-3 trip)</span>
+          <span class="pass-label">Sisa Pelunasan (H-7)</span>
+          <span class="pass-value" id="passSisaBayar" style="color:#f59e0b; font-weight:800;">Rp 0 (Wajib lunas maks. H-7 trip)</span>
         </div>
         <div class="pass-row">
           <span class="pass-label">Metode Pembayaran</span>
@@ -5117,7 +5117,7 @@
         var sisaStr = isDp ? ("Rp " + sisaPrice.toLocaleString("id-ID")) : "Rp 0 (Lunas)";
         var skemaStr = isDp ? "DP / Uang Muka (50%)" : "Lunas (100%)";
         var metodeStr = isDp 
-          ? ("QRIS - DP 50% (Bayar: " + nominalStr + ", Sisa: " + sisaStr + " maks. H-3)")
+          ? ("QRIS - DP 50% (Bayar: " + nominalStr + ", Sisa: " + sisaStr + " maks. H-7)")
           : ("QRIS - Lunas 100% (" + nominalStr + ")");
 
         if ($("passSkemaBayar")) $("passSkemaBayar").textContent = skemaStr;
@@ -5125,7 +5125,7 @@
         if ($("passRowSisa")) {
           if (isDp) {
             $("passRowSisa").classList.remove("hide");
-            if ($("passSisaBayar")) $("passSisaBayar").textContent = sisaStr + " (Wajib lunas maks. H-3 trip)";
+            if ($("passSisaBayar")) $("passSisaBayar").textContent = sisaStr + " (Wajib lunas maks. H-7 trip)";
           } else {
             $("passRowSisa").classList.add("hide");
           }

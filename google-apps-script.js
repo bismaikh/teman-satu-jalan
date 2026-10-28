@@ -6,7 +6,7 @@
  * ✨ FITUR DESAIN SPREADSHEET PREMIUM:
  * 1. 📊 TAB "DASHBOARD & REKAP":
  *    - Kartu Metrik KPI: Total Petualang, Total Rombongan, Total Kas Masuk, Sisa Tagihan DP.
- *    - Rekap Peserta Lunas vs Menunggu Pelunasan (H-3).
+ *    - Rekap Peserta Lunas vs Menunggu Pelunasan (H-7).
  *    - Rekap Gender: Ikhwan & Akhwat.
  *    - Tabel Rekapitulasi per Edisi Trip (Vol 6 vs Vol 7) & Kategori Paket.
  * 
@@ -20,7 +20,7 @@
  *      • BELUM LUNAS (DP): Kuning-Amber (#fef3c7 / #b45309)
  *      • Catatan Medis Khusus: Merah Muda Lembut (#ffe4e6 / #9f1239)
  * 
- * 3. 💰 TAB "MONITORING PELUNASAN H-3":
+ * 3. 💰 TAB "MONITORING PELUNASAN H-7":
  *    - Daftar otomatis peserta yang memilih DP 50%.
  *    - Menghitung sisa pelunasan dan menyediakan Link Klik Langsung WhatsApp ke PIC!
  * 
@@ -102,7 +102,7 @@ function doPost(e) {
     var nominalAngka = parseNominal(data.nominalBayar || data.nominal || 0);
     var sisaAngka = parseNominal(data.sisaPelunasan || 0);
     var isDp = skema.indexOf("DP") !== -1 || sisaAngka > 0;
-    var statusBayar = isDp ? "BELUM LUNAS (H-3)" : "LUNAS";
+    var statusBayar = isDp ? "BELUM LUNAS (H-7)" : "LUNAS";
 
     // Masukkan setiap anggota petualang ke dalam baris tabel
     if (data.explorers && data.explorers.length > 0) {
@@ -185,7 +185,7 @@ function setupSpreadsheetLengkap(docInstance) {
   // 2. Buat & Format Tab Dashboard & Rekap
   buatTabDashboard(doc);
 
-  // 3. Buat & Format Tab Monitoring Pelunasan H-3
+  // 3. Buat & Format Tab Monitoring Pelunasan H-7
   buatTabMonitoringDp(doc);
 
   // Jadikan Tab Dashboard sebagai tampilan utama yang aktif
@@ -233,7 +233,7 @@ function buatTabDataPeserta(doc) {
 
     // BARIS 2: PANDUAN WARNA (LEGEND PILL)
     sheet.getRange("A2:X2").merge()
-      .setValue("💡 PANDUAN STATUS:  [HIJAU] Lunas (100%)  •  [KUNING/AMBER] DP (50%) Wajib Pelunasan Maks. H-3  •  [MERAH MUDA] Ada Catatan Medis Khusus")
+      .setValue("💡 PANDUAN STATUS:  [HIJAU] Lunas (100%)  •  [KUNING/AMBER] DP (50%) Wajib Pelunasan Maks. H-7  •  [MERAH MUDA] Ada Catatan Medis Khusus")
       .setFontFamily("Arial")
       .setFontSize(8.5)
       .setFontColor("#cbd5e1")
@@ -466,7 +466,7 @@ function buatTabDashboard(docInstance) {
   buatKartuKpi(sheet, "F5:G7", "💰 TOTAL DANA MASUK (KAS)", "=SUM('👥 Data Peserta'!G4:G)", "Pembayaran QRIS", "#ecfdf5", "#047857", '"Rp"#,##0');
 
   // Kartu 4: Sisa Piutang Pelunasan DP (H5:I7)
-  buatKartuKpi(sheet, "H5:I7", "⏳ SISA PELUNASAN DP (H-3)", "=SUM('👥 Data Peserta'!H4:H)", "Wajib Lunas H-3", "#fffbeb", "#b45309", '"Rp"#,##0');
+  buatKartuKpi(sheet, "H5:I7", "⏳ SISA PELUNASAN DP (H-7)", "=SUM('👥 Data Peserta'!H4:H)", "Wajib Lunas H-7", "#fffbeb", "#b45309", '"Rp"#,##0');
 
   // -------------------------------------------------------------
   // KARTU STATUS & DEMOGRAFI (ROW 9 - 11)
@@ -475,7 +475,7 @@ function buatTabDashboard(docInstance) {
   buatKartuKpi(sheet, "B9:C11", "✅ STATUS: LUNAS 100%", "=COUNTIF('👥 Data Peserta'!I4:I, \"*LUNAS*\")", "Petualang Tuntas", "#f0fdf4", "#16a34a", "0");
 
   // Kartu 6: Menunggu Pelunasan (DP)
-  buatKartuKpi(sheet, "D9:E11", "⚠️ MENUNGGU PELUNASAN DP", "=COUNTIF('👥 Data Peserta'!I4:I, \"*BELUM LUNAS*\")", "Perlu Follow-up H-3", "#fefce8", "#ca8a04", "0");
+  buatKartuKpi(sheet, "D9:E11", "⚠️ MENUNGGU PELUNASAN DP", "=COUNTIF('👥 Data Peserta'!I4:I, \"*BELUM LUNAS*\")", "Perlu Follow-up H-7", "#fefce8", "#ca8a04", "0");
 
   // Kartu 7: Ikhwan
   buatKartuKpi(sheet, "F9:G11", "🥾 PETUALANG IKHWAN", "=COUNTIF('👥 Data Peserta'!M4:M, \"*Ikhwan*\")", "Laki-laki", "#f0f9ff", "#0284c7", "0");
@@ -541,7 +541,7 @@ function buatTabDashboard(docInstance) {
   // -------------------------------------------------------------
   sheet.getRange("B20:I21").merge()
     .setValue("📋 LIHAT DATA RINCI PETUALANG: Buka tab '👥 Data Peserta' di bawah untuk mengecek data kontak, domisili, data medis, dan bukti transfer.\n" +
-              "💰 MONITORING PELUNASAN: Buka tab '💰 Monitoring Pelunasan H-3' untuk memantau peserta DP dan mengirim pengingat WhatsApp.")
+              "💰 MONITORING PELUNASAN: Buka tab '💰 Monitoring Pelunasan H-7' untuk memantau peserta DP dan mengirim pengingat WhatsApp.")
     .setFontFamily("Arial").setFontSize(8.5).setFontColor("#475569").setBackground("#f8fafc")
     .setHorizontalAlignment("center").setVerticalAlignment("middle").setWrap(true);
   sheet.getRange("B20:I21").setBorder(true, true, true, true, false, false, "#94a3b8", SpreadsheetApp.BorderStyle.DASHED);
@@ -579,11 +579,11 @@ function buatKartuKpi(sheet, a1Notation, title, formula, subtitle, bgColor, acce
 }
 
 // =============================================================================
-// 6. PEMBUATAN & STYLING TAB "💰 MONITORING PELUNASAN H-3"
+// 6. PEMBUATAN & STYLING TAB "💰 MONITORING PELUNASAN H-7"
 // =============================================================================
 function buatTabMonitoringDp(docInstance) {
   var doc = docInstance || SpreadsheetApp.getActiveSpreadsheet();
-  var sheetName = "💰 Monitoring Pelunasan H-3";
+  var sheetName = "💰 Monitoring Pelunasan H-7";
   var sheet = doc.getSheetByName(sheetName);
 
   if (!sheet) {
@@ -594,7 +594,7 @@ function buatTabMonitoringDp(docInstance) {
 
   // Banner Header
   sheet.getRange("A1:H1").merge()
-    .setValue("⏳ MONITORING & PENAGIHAN PELUNASAN DP 50% (H-3 KEBERANGKATAN)")
+    .setValue("⏳ MONITORING & PENAGIHAN PELUNASAN DP 50% (H-7 KEBERANGKATAN)")
     .setFontFamily("Arial").setFontSize(12).setFontWeight("bold").setFontColor("#ffffff").setBackground("#92400e")
     .setHorizontalAlignment("center").setVerticalAlignment("middle");
   sheet.setRowHeight(1, 38);
@@ -629,8 +629,8 @@ function buatTabMonitoringDp(docInstance) {
   }
 
   // Formula Otomatis mengambil data yang BELUM LUNAS dari sheet data
-  // Menggunakan FILTER dinamis untuk mengekstrak hanya peserta berstatus BELUM LUNAS (H-3)
-  var filterFormula = '=IFERROR(FILTER({\'👥 Data Peserta\'!B4:B, \'👥 Data Peserta\'!K4:K, \'👥 Data Peserta\'!O4:O, \'👥 Data Peserta\'!D4:D & " (" & \'👥 Data Peserta\'!E4:E & ")", \'👥 Data Peserta\'!G4:G, \'👥 Data Peserta\'!H4:H}, \'👥 Data Peserta\'!I4:I="BELUM LUNAS (H-3)", \'👥 Data Peserta\'!J4:J="Petualang 1 (PIC)"), "Alhamdulillah, belum ada tagihan DP yang tertunda.")';
+  // Menggunakan FILTER dinamis untuk mengekstrak hanya peserta berstatus BELUM LUNAS (H-7)
+  var filterFormula = '=IFERROR(FILTER({\'👥 Data Peserta\'!B4:B, \'👥 Data Peserta\'!K4:K, \'👥 Data Peserta\'!O4:O, \'👥 Data Peserta\'!D4:D & " (" & \'👥 Data Peserta\'!E4:E & ")", \'👥 Data Peserta\'!G4:G, \'👥 Data Peserta\'!H4:H}, \'👥 Data Peserta\'!I4:I="BELUM LUNAS (H-7)", \'👥 Data Peserta\'!J4:J="Petualang 1 (PIC)"), "Alhamdulillah, belum ada tagihan DP yang tertunda.")';
 
   sheet.getRange("B4").setValue(filterFormula);
   sheet.getRange("A4:A50").setFormula('=IF(B4<>""; IF(ISNUMBER(SEARCH("Alhamdulillah"; B4)); ""; ROW()-3); "")');
@@ -667,12 +667,12 @@ function isiDataSimulasi() {
   var sampleRows = [
     // Rombongan 1: Vol 7 Lovetrail Couple (DP 50%)
     [
-      1, "TMN1JLN-V7-1011", new Date(), "Vol 7 — Curug Panjang", "Lovetrail Couple (400K)", "DP (50%)", 200000, 200000, "BELUM LUNAS (H-3)",
+      1, "TMN1JLN-V7-1011", new Date(), "Vol 7 — Curug Panjang", "Lovetrail Couple (400K)", "DP (50%)", 200000, 200000, "BELUM LUNAS (H-7)",
       "Petualang 1 (PIC)", "Ahmad Fauzi", "Suami / Ayah (Ketua)", "Ikhwan", "Dewasa (32 Th)", "'081288889999", "ahmad.fauzi@gmail.com", "-",
       "Jakarta Selatan", "Kendaraan Pribadi", "Langsung ke Bukit Waruwangi (06.00 WIB)", "Pernah • Rutin", "Siti Rahma", "'081299998888", "struk-dp-fauzi.jpg"
     ],
     [
-      2, "TMN1JLN-V7-1011", new Date(), "Vol 7 — Curug Panjang", "Lovetrail Couple (400K)", "DP (50%)", 0, 0, "BELUM LUNAS (H-3)",
+      2, "TMN1JLN-V7-1011", new Date(), "Vol 7 — Curug Panjang", "Lovetrail Couple (400K)", "DP (50%)", 0, 0, "BELUM LUNAS (H-7)",
       "Petualang 2", "Siti Rahma", "Istri / Ibu", "Akhwat", "Dewasa (29 Th)", "'081299998888", "-", "Alergi Dingin Ringan",
       "Jakarta Selatan", "Kendaraan Pribadi", "Langsung ke Bukit Waruwangi (06.00 WIB)", "Pernah • Rutin", "Ahmad Fauzi", "'081288889999", "struk-dp-fauzi.jpg"
     ],

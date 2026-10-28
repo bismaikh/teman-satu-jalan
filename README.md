@@ -14,7 +14,7 @@ Formulir pendaftaran interaktif untuk kegiatan trekking alam ramah syari'ah (pas
   - **Pilihan Awal Ekspedisi**: Pengunjung memilih ekspedisi terlebih dahulu sebelum form dan detail ditampilkan.
 - **Pilihan Skema Pembayaran (DP 50% & Lunas 100%)**:
   - **Lunas (100%)**: Bayar penuh sekarang, pendaftaran langsung terkonfirmasi tuntas.
-  - **DP (Uang Muka 50%)**: Cukup bayar 50% untuk mengamankan kuota slot petualang. Sisa pelunasan (50%) wajib dibayarkan paling lambat **H-3 sebelum hari keberangkatan trip**.
+  - **DP (Uang Muka 50%)**: Cukup bayar 50% untuk mengamankan kuota slot petualang. Sisa pelunasan (50%) wajib dibayarkan paling lambat **H-7 sebelum hari keberangkatan trip**.
   - Nominal QRIS dihitung dan disesuaikan otomatis saat memilih paket dan skema pembayaran.
 - **Paket Trekking Fleksibel**:
   - **Vol 6**: Single (160K), Couple (320K), Little Family (475K), Squad Family (630K).
@@ -29,7 +29,7 @@ Formulir pendaftaran interaktif untuk kegiatan trekking alam ramah syari'ah (pas
 - **Desain Google Spreadsheet Menarik & Otomatis**:
   - **Tab 1: 📊 DASHBOARD & REKAP** — Kartu Metrik KPI (Total Petualang, Total Rombongan, Total Kas Masuk, Sisa Tagihan DP, Rekap Gender Ikhwan/Akhwat, dan Tabel Rekap per Event).
   - **Tab 2: 👥 Data Peserta** — Master database lengkap dengan tema Forest Emerald & Lime, zebra striping, format Rupiah (`Rp #,##0`), serta conditional formatting otomatis.
-  - **Tab 3: 💰 Monitoring Pelunasan H-3** — Monitoring khusus peserta DP lengkap dengan **Link Klik Langsung WhatsApp** untuk menyapa & mengingatkan peserta.
+  - **Tab 3: 💰 Monitoring Pelunasan H-7** — Monitoring khusus peserta DP lengkap dengan **Link Klik Langsung WhatsApp** untuk menyapa & mengingatkan peserta.
   - **Menu Khusus Google Sheets (`🌿 Teman Satu Jalan`)**: Satu klik untuk re-design, refresh rumus, dan insert data simulasi.
 - **Tema Dual Mode (Outdoor Day & Forest Night)**:
   - Mode malam hijau tentara & mode siang terang.
