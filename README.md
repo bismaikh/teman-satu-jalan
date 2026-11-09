@@ -2,23 +2,22 @@
 
 Portal Registrasi Petualang Resmi **Teman Satu Jalan (TSJ) - Moeslim Sport Club**.
 
-Formulir pendaftaran interaktif untuk kegiatan trekking alam ramah syari'ah (pasangan suami-istri, keluarga, saudara semahram, dan sesama ikhwan). Dilengkapi integrasi otomatis ke **Google Sheets** via Google Apps Script, switcher event (Vol 6 aktif & Vol 7 terkunci), manajemen multi-petualang (roster rombongan), validasi responsif mobile, serta undangan grup WhatsApp otomatis.
+Formulir pendaftaran interaktif untuk kegiatan trekking alam ramah syari'ah (pasangan suami-istri, keluarga, saudara semahram, dan ikhwan). Dilengkapi integrasi otomatis ke **Google Sheets** via Google Apps Script, fokus trip utama (Vol 6: Curug Lewibumi - 27 Desember 2026), manajemen multi-petualang (roster rombongan), validasi responsif mobile, serta undangan grup WhatsApp otomatis.
 
 ---
 
 ## 🌟 Fitur Utama
 
-- **Event Showcase & Switcher Dinamis**:
-  - **Vol 6: Curug Lewibumi** — Rute 4 KM, meeting point Kadubereum / SPBU Palima.
-  - **Vol 7: Curug Panjang** — Rute 5 KM, meeting point Bukit Waruwangi / Rest Area Tol Cilegon Timur. Dilengkapi **Interactive Carousel 4 Slide** (TJ1.jpeg, TJ21.png, TJ22.png, TJ12.jpeg).
-  - **Pilihan Awal Ekspedisi**: Pengunjung memilih ekspedisi terlebih dahulu sebelum form dan detail ditampilkan.
+- **Event Showcase Trip 27 Desember (Vol 6: Curug Lewibumi)**:
+  - **Vol 6: Curug Lewibumi** — Rute 5 KM, meeting point Desa Kadubereum (06.00 WIB) / SPBU Palima (04.45 WIB). Dilengkapi **Interactive Carousel 4 Slide** (`1.png`, `2.png`, `3.png`, `4.png`).
+  - Tampilan langsung fokus pada rincian ekspedisi dan formulir pendaftaran.
 - **Pilihan Skema Pembayaran (DP 50% & Lunas 100%)**:
   - **Lunas (100%)**: Bayar penuh sekarang, pendaftaran langsung terkonfirmasi tuntas.
   - **DP (Uang Muka 50%)**: Cukup bayar 50% untuk mengamankan kuota slot petualang. Sisa pelunasan (50%) wajib dibayarkan paling lambat **H-7 sebelum hari keberangkatan trip**.
   - Nominal QRIS dihitung dan disesuaikan otomatis saat memilih paket dan skema pembayaran.
-- **Paket Trekking Fleksibel**:
-  - **Vol 6**: Single (160K), Couple (320K), Little Family (475K), Squad Family (630K).
-  - **Vol 7**: Single (200K), Couple (400K), Little Family (585K), Squad Family (775K).
+- **Paket Trekking Vol 6**:
+  - Single (160K - Ikhwan Only), Couple (320K), Little Family (475K), Squad Family (630K).
+  - Promo khusus untuk keluarga lebih dari 2 anak via konfirmasi Admin.
 - **Multi-Petualang Dinamis (Roster Rombongan)**:
   - Form otomatis menyesuaikan jumlah kartu petualang sesuai paket yang dipilih.
   - Petualang 1 otomatis menjadi Penanggung Jawab / PIC (Wajib PIC).
